@@ -1,0 +1,8 @@
+.page-layout {
+    display:flex;
+    flex-direction:column;
+    -webkit-box-orient:vertical;
+    flex:auto;
+    background:#f0f2f5;
+    overflow-x:hidden;
+}
