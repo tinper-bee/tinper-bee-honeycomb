@@ -1,0 +1,89 @@
+
+.domain .key-table-operate{
+  margin-bottom: 10px;
+  margin-right: 0;
+  padding: 0;
+}
+.domain .key-table-warning{
+  margin-bottom: 5px;
+  margin-right: 0;
+}
+.domain .key-table-list {
+  margin-right: 0;
+  padding: 0;
+}
+.domain .key-table-list .show-modal-button {
+  color:blue;
+  cursor: pointer;
+}
+.domain .key-table-list .forbid-modal-button {
+  color:blue;
+  cursor: pointer;
+  padding-right: 10px;
+}
+.domain .key-table-list .reuse-modal-button {
+  color:rgb(129,199,132);
+  cursor: pointer;
+}
+.domain .key-table-list .delete-modal-button {
+  color:red;
+  cursor: pointer;
+}
+.text-right {
+  text-align: right;
+}
+.domain .key-table-warning .close span{
+  display: none;
+}
+.domain .key-table-head{
+    width: 100%;
+    position: relative;
+    display: block;
+    background: whitesmoke;
+    padding: 10px 20px;
+    margin-bottom: 20px;
+}
+.domain .child .u-input-group{
+  width: 50%;
+  max-width: 600px;
+  min-width: 400px;
+}
+.domain .child.border{
+  padding-bottom: 40px;
+}
+.domain .error{
+  height: 30px;
+  line-height: 30px;
+}
+.privite-domain .u-checkbox-label{
+  min-width: 100px;
+}
+.domain .key-table-operate .u-button,.create-key-modal .u-button{
+  border-radius: 0;
+  height: 30px;
+  line-height: 30px;
+  vertical-align: middle;
+  padding: 0;
+}
+.domain .key-table-list .u-table-content .u-table-thead tr th,.key-table-list .u-table-content .u-table-tbody tr td{
+  font-size: 11px;
+  height: 36px;
+  line-height: 36px;
+  padding: 0 20px;
+}
+.domain-bind .u-modal-title{
+  font-weight: normal;
+  text-align: center;
+}
+.domain-bind .u-modal-footer{
+  text-align: center;
+}
+.domain-bind .u-modal-footer button{
+  background: #fff;
+  border: 1px solid #bdbdbd;
+  border-radius: 0;
+}
+.domain-bind .u-modal-footer button.u-button-primary{
+  background-color: #1e88e5;
+  border: 1px solid #1e88e5;
+}

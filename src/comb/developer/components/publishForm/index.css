@@ -1,0 +1,85 @@
+ 
+#content .rc-slider-handle {
+    position: absolute;
+    margin-top: -10px;
+    width: 45px;
+    height: 25px;
+    border-radius: 0;
+    margin-left: -2.5px;
+    cursor: pointer;
+    border: solid 2px #0084ff;
+    background-color: #fff;
+    text-align: center;
+    color: #0084ff;
+}
+#content .rc-slider-track{
+    background-color: #0084ff;
+}
+#content .u-select-selection--single{
+    height: 30px;
+}
+.publish .control-icon{
+    display: inline-block;
+    margin-top: 43px;
+}
+.publish .control-icon .uf{
+    font-size: 30px;
+    cursor: pointer;
+}
+.publish .u-form-control{
+    margin: 5px 0;
+}
+.publish .u-input-group{
+    margin: 5px 0;
+}
+.publish .u-input-group .u-form-control{
+    margin: 0;
+}
+.publish .u-select{
+    margin: 5px 0;
+}
+.publish .control-button .u-button{
+    margin: 10px;
+}
+
+.publish .divier{
+    margin-top: 20px;
+    margin-bottom: 20px;
+    border-top: 1px dashed #d8d8d8;
+}
+.publish .descript{
+    color: #ccc;
+}
+.publish .primary-color{
+    color: #0084ff;
+}
+.publish .publish-btn{
+    width: 160px;
+    height: 36px;
+}
+.publish .btn-group{
+    margin: 50px auto;
+    margin-left: -6px;
+}
+.publish .cancel-btn{
+    margin-left: 20px;
+    width: 120px;
+    height: 36px;
+}
+.publish .padding-0 {
+    padding: 0;
+}
+#content .u-label {
+    line-height: 30px;
+}
+.rc-checkbox-input[disabled]{
+    cursor: not-allowed;
+}
+
+.publish .res-name{
+  display: inline-block;
+  max-width: 100px;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}

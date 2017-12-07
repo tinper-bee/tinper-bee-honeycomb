@@ -1,11 +1,24 @@
-import React from 'react'
+import React,{Component} from 'react'
 import {Link} from 'mirrorx'
 import  './PageContent.css'
 
-const PageContent = () => (
-  <div className="honeycomb-layout">
+class PageContent extends Component {
+  constructor(props, context) {
+    super(props, context);
+    this.state = {
 
-  </div>
-)
+    }
+
+  }
+  render(){
+
+    return (
+      <div className="honeycomb-layout">
+        {this.props.children}
+      </div>
+    )
+  }
+
+}
 
 export default PageContent

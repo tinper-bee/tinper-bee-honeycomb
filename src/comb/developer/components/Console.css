@@ -1,0 +1,9 @@
+.outer{
+    background: #272822;
+    padding: 5px 40px;
+    height: 380px;
+    overflow-y: auto;
+    color: #fff;
+    font-size: 12px;
+    padding-top: 40px;
+}

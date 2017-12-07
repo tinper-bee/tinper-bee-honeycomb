@@ -1,0 +1,78 @@
+.upload-log{
+  margin-bottom: 40px;
+}
+
+.upload-log .log-content{
+    padding: 10px;
+    border: 1px solid #e1e1e1;
+    background: #f5f5f5;
+}
+.upload-log .outer{
+    padding: 5px 40px;
+    height: 380px;
+    overflow-y: auto;
+    background-color: #272822;
+    color: #fff;
+    font-size: 12px;
+}
+.outer {
+  height: 600px;
+  width: 100%;
+  overflow-y: auto;
+  color: #fff;
+  font-size: 12px;
+  background: #272822;
+  padding: 5px 40px;
+  padding-top: 20px;
+}
+
+.inner {
+  height: 590px;
+  width: 100%;
+  overflow-y: auto;
+  color: #fff;
+  font-size: 12px;
+  background: #272822;
+  padding: 5px 40px;
+}
+
+.console-edit {
+  padding-right: 10px;
+  background-image: linear-gradient(-180deg, #5B5B5B 0%, #545454 98%);
+  border: 1px solid #4D4D4D;
+  border-bottom-left-radius: 2px;
+  border-bottom-right-radius: 2px;
+  height: 50px;
+}
+
+.console-edit .u-input-group {
+  float: right;
+  width: 410px;
+  margin-top: 10px;
+}
+
+.console-edit .edit-icon {
+  background: #535556;
+  background-image: linear-gradient(-180deg, #535556 0%, #424242 100%);
+  border: 1px solid #222222;
+  box-shadow: 0 1px 0 0 #777777;
+  border-radius: 2px;
+  width: 86px;
+  height: 34px;
+  color: #fff;
+  margin-top: 8px;
+  margin-left: 10px;
+}
+
+.console-edit .edit-icon i {
+  vertical-align: middle;
+  margin-right: 4px;
+}
+
+.nextHighLight {
+  color: yellow;
+}
+
+.keyWordColr {
+  color: red;
+}

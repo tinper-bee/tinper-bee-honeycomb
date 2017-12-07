@@ -1,7 +1,13 @@
 module.exports = {
   "GET": [
     // 账户相关接口
-    { "/web/v1/menu/sidebarList": "./mock/api/sidebar.json" }
+    { "/web/v1/menu/sidebarList": "./mock/api/sidebar.json" },
+    { "/middleware/web/v1/mysql/page": "./mock/api/mysql.json" },
+    { "/middleware/web/v1/redis/page": "./mock/api/redis.json" },
+    { "/middleware/web/v1/mq/page": "./mock/api/mq.json" },
+    { "/middleware/web/v1/zk/page": "./mock/api/zk.json" },
+    { "/middleware/web/v1/jenkins/page": "./mock/api/jenkins.json" },
+    { "/middleware/web/v1/dclb/page": "./mock/api/dclb.json" }
   ],
   "POST": [
     // 我的相关接口

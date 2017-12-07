@@ -1,0 +1,24 @@
+.title-back {
+  position: relative;
+  width: 100%;
+  height: 46px;
+  text-align: center;
+  line-height: 46px;
+  box-shadow: 0 2px 3px rgba(0, 0, 0, .3);
+  background: #fff;
+  font-size: 16px;
+  z-index: 1;
+}
+
+.back-in-title {
+  position: absolute;
+  top: 0;
+  left: 5px;
+  width: 100px;
+}
+
+.back-word {
+  display: inline-block;
+  position: relative;
+  font-size: 12px;
+}

@@ -1,0 +1,88 @@
+.alarm-add-user{
+  .role-group {
+    margin-bottom: 20px;
+  }
+  .role-btn {
+    cursor: pointer;
+    display: inline-block;
+    width: 120px;
+    height: 31px;
+    margin: 0 20px;
+    padding: 4px;
+    line-height: 20px;
+    border: 1px solid #ccc;
+    border-radius: 100px;
+    cursor: pointer;
+    i{
+      padding-right: 15px;
+    }
+  }
+
+  .role-btn:hover {
+    border-color: #0084ff;
+    color: #0084ff;
+  }
+
+  .role-btn.active {
+    background: #0084ff;
+    border-color: #0084ff;
+    color: #fff;
+  }
+
+  .selected-user{
+    position: relative;
+    display: inline-block;
+    width: 100%;
+    padding: 10px 15px;
+    margin-bottom: 20px;
+    border: 1px solid #e6e6e6;
+    li{
+      display: inline-block;
+      position: relative;
+      padding-left: 10px;
+      padding-right: 10px;
+      width: 100px;
+      height: 30px;
+      line-height: 30px;
+      border: 1px solid #0084ff;
+      border-radius: 1000px;
+      i{
+        position: absolute;
+        right: 0;
+        color: #f5f5f5;
+        cursor: pointer;
+        &:hover{
+          color: red;
+        }
+      }
+    }
+  }
+  &-search{
+    display: inline-block;
+    width: 100%;
+    height: 36px;
+    margin-bottom: 20px;
+    &.u-input-group .u-form-control {
+      height: 36px;
+      width: 100%;
+      line-height: 36px;
+      border: 1px solid #e6e6e6;
+    }
+    &.u-input-group .u-input-group-btn {
+      top: 6px;
+      right: 20px;
+    }
+    &.u-input-group .u-input-group-btn i {
+      color: #0084ff;
+    }
+    .clear{
+      position: absolute;
+      top: 2px;
+      right: 18px;
+      cursor: pointer;
+    }
+  }
+  &-table{
+    margin-bottom: 20px;
+  }
+}

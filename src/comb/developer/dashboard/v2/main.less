@@ -1,0 +1,18 @@
+@import '../less-conf';
+.break-point {
+  width: 50%;
+  display: inline-block;
+  text-align: left;
+  @media screen and(max-width: @break-point-1) {
+    width: 100%;
+  }
+}
+
+body {
+  min-width: 1020px !important;
+}
+
+#content {
+  -webkit-box-shadow: 0 1px 5px #CCC inset;
+          box-shadow: 0 1px 5px #CCC inset;
+}

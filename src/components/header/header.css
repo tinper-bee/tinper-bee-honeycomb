@@ -6,3 +6,34 @@
     position: relative;
     height:64px;
 }
+.navmenu {
+    font-size:27px;
+}
+.u-navbar .u-navbar-brand {
+    line-height:64px;
+    padding:0;
+}
+.u-navbar .u-navbar-nav>li {
+    line-height:64px;
+    padding:0;
+}
+.u-menu-horizontal>.u-menu-item, .u-menu-horizontal>.u-menu-submenu>.u-menu-submenu-title {
+    padding:18px 20px;
+}
+.avatar-icon img {
+    width:24px;
+    height:24px;
+    margin-right:10px;
+}
+.u-menu-inline>.u-menu-item, .u-menu-inline>.u-menu-submenu>.u-menu-submenu-title, .u-menu-vertical>.u-menu-item, .u-menu-vertical>.u-menu-submenu>.u-menu-submenu-title {
+    padding:6px 8px 6px 12px;
+}
+.u-navbar .dropdown .u-menu-submenu-horizontal>.u-menu {
+    background:#fff;
+}
+.u-menu-inline>.u-menu-submenu>.u-menu-submenu-title {
+    line-height: 30px;
+}
+.u-menu-submenu-inline>.u-menu-submenu-title:after {
+    top:7px;
+}

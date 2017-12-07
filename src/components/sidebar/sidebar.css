@@ -7,6 +7,7 @@
     min-width: 256px;
     width: 256px;
     min-height:100vh;
+    transition:all  0.3s ease;
 }
 .u-navbar-side-container  {
     border:none;
@@ -77,4 +78,24 @@
     margin: 0 0 0 12px;
     font-family: 'Myriad Pro', 'Helvetica Neue', Arial, Helvetica, sans-serif;
     font-weight: 600;
+}
+.sidebar-expanded {
+    width:80px;
+    flex: 0 0 80px;
+    max-width: 80px;
+    min-width: 80px;
+    overflow: hidden;
+}
+.sidebar-expanded .logo-box {
+    padding:0;
+    text-align: center;
+}
+.sidebar-expanded h1 {
+    display:none;
+}
+.sidebar-expanded ul li span {
+    display:none;
+}
+.sidebar-expanded ul li i {
+    font-size:20px;
 }

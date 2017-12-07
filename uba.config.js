@@ -76,9 +76,10 @@ var devConfig = {
       })
     }, {
       test: /\.less$/,
+      exclude: /(node_modules)/,
       use: ExtractTextPlugin.extract({
         use: ['css-loader', 'postcss-loader', 'less-loader'],
-        fallback: 'style-loader'
+        fallback: "style-loader",
       })
     }, {
       test: /\.(png|jpg|jpeg|gif)(\?.+)?$/,
@@ -193,7 +194,7 @@ var prodConfig = {
     new ExtractTextPlugin({
       filename: 'assets/css/[name].css',
       allChunks: true
-    }),
+    })
     // new uglifyJsPlugin({
     //   compress: {
     //     warnings: false

@@ -1,0 +1,73 @@
+.detail {
+
+  .tile-img {
+    background: #f8f2e6;
+    /*padding-bottom: 25px;
+    padding-top: 25px;*/
+    margin-bottom: 5px;
+    text-align: center;
+    line-height: 120px;
+    height: 120px;
+    /*padding-top: 10px;*/
+    .head-img {
+      height: 100px;
+
+    }
+    img {
+      max-width: 150px;
+      height: 100px;
+      vertical-align: inherit
+    }
+  }
+  .build-version-row{
+    margin-top: 20px;
+  }
+  .ipass-list{
+    &.build-info{
+      margin-top: 15px;
+      font-size: 13px;
+      .label{
+        border-left-color: transparent;
+      }
+    }
+    .label {
+      display: inline-block;
+      color: #9a9a9a;
+      width: 80px;
+      height: 20px;
+      line-height: 20px;
+      border-left: 3px solid #DD3730;
+      padding-left: 10px;
+    }
+    .value {
+      display: inline-block;
+      height: 20px;
+      line-height: 20px;
+      a{
+        color: #1e88e5;
+        cursor: pointer;
+        &.version-active {
+          color: #fff;
+        }
+      }
+    }
+    .build-version {
+      white-space: normal;
+      height: auto;
+      line-height: 1;
+      vertical-align: -webkit-baseline-middle;
+      .version-number {
+        margin-bottom: 10px;
+      }
+    }
+  }
+
+  .detail-bg .btn.forbidden{
+    cursor: not-allowed;
+  }
+  .quick-publish-info span{
+    padding: 0 3px;
+  }
+
+}
+

@@ -1,0 +1,32 @@
+.create-form-complete{
+  text-align: center;
+  height: 800px;
+  .img{
+    display: inline-block;
+    width: 160px;
+    height: 160px;
+    margin-top: 150px;
+    &.pending{
+      background: url("../../../../assets/appManager/pending.png")no-repeat;
+      background-size: cover;
+    }
+    &.success{
+      background: url("../../../../assets/appManager/success.png")no-repeat;
+      background-size: cover;
+    }
+    &.err{
+      background: url("../../../../assets/appManager/failed.png")no-repeat;
+      background-size: cover;
+    }
+  }
+  .error{
+    color: red;
+  }
+  .u-button{
+    width: 140px;
+  }
+  p{
+    margin-top: 30px;
+    margin-bottom: 20px;
+  }
+}

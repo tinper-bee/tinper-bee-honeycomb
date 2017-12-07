@@ -17,9 +17,23 @@
       "urltype": "url",
       "children": [
         {
-          "id": "analysis",
-          "name": "分析页",
-          "location": "analysis",
+          "id": "dashboard",
+          "name": "资源池",
+          "location": "dashboard",
+          "menustatus": "Y",
+          "parentid": null,
+          "icon": "iconfont cl cl-filebox yellow-700",
+          "target": "",
+          "urltype": "url",
+          "children": [],
+          "sort": 2,
+          "openview": "curpage",
+          "category": "pass"
+        },
+        {
+          "id": "mdservice",
+          "name": "中间件",
+          "location": "mdservice",
           "menustatus": "Y",
           "parentid": null,
           "icon": "iconfont cl cl-filebox yellow-700",

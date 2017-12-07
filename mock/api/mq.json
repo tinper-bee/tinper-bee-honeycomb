@@ -1,0 +1,17 @@
+{
+  "success": "success",
+  "message": null,
+  "detailMsg": {
+    "data": {
+      "content": [],
+      "totalPages": 1,
+      "totalElements": 0,
+      "last": true,
+      "numberOfElements": 0,
+      "sort": null,
+      "first": true,
+      "size": 0,
+      "number": 0
+    }
+  }
+}

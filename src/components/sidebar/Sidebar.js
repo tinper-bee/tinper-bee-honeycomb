@@ -1,21 +1,33 @@
 import React,{Component} from 'react'
-import {Link} from 'mirrorx'
+import mirror, {actions, connect} from 'mirrorx'
 import {Menu,Navbar,Icon,Breadcrumb} from 'tinper-bee';
-import { Scrollbars } from 'react-custom-scrollbars';
 import './sidebar.css';
-
-
+const classNames = require('classnames');
 const SubMenu = Menu.SubMenu;
-const MenuItemGroup = Menu.ItemGroup;
-const MenuToggle = Menu.MenuToggle;
 const SideContainer = Menu.SideContainer;
 
-const NavItem = Navbar.NavItem;
-const Header = Navbar.Header;
-const Brand = Navbar.Brand;
-const Nav = Navbar.Nav;
-
-
+mirror.model({
+  name: 'app',
+  initialState: {
+    expanded:false,
+    openKeys:[]
+  },
+  reducers: {
+    setExpanded(state,expanded) {
+      const expand = expanded?false:!state.expanded;
+      return {
+        ...state,
+        expanded:expand
+      }
+    },
+    setOpenKeys(state,openKeys){
+      return {
+        ...state,
+        openKeys:openKeys
+      }
+    }
+  }
+})
 
 class Siderbar extends Component {
 
@@ -46,7 +58,6 @@ class Siderbar extends Component {
   }
 
 
-
   handleSelect(index) {
     this.setState({selectedkey: index});
   }
@@ -61,6 +72,7 @@ class Siderbar extends Component {
   }
   onOpenChange(openKeys) {
     const state = this.state;
+    actions.app.setExpanded(true);
     const latestOpenKey = this.myfilter(openKeys,state.openKeys);
     const latestCloseKey = this.myfilter(state.openKeys,openKeys);
 
@@ -75,7 +87,8 @@ class Siderbar extends Component {
       this.state.currentArray.push(latestCloseKey);
       nextOpenKeys = this.getAncestorKeys(latestCloseKey);
     }
-    this.setState({openKeys: nextOpenKeys});
+    actions.app.setOpenKeys(nextOpenKeys);
+    //this.setState({openKeys: nextOpenKeys});
   }
   //IE下 array.find（）方法不可用
   myfilter(arr1,arr2) {
@@ -102,8 +115,9 @@ class Siderbar extends Component {
   }
 
   render() {
+    let {expanded,openKeys} = this.props;
     return (
-      <div className="sidebar-contanier">
+      <div className={classNames({ 'sidebar-contanier':true,'sidebar-expanded': expanded })}>
         <div className="sider-menu">
           <div className="logo-box">
             <a href="#/">
@@ -112,11 +126,10 @@ class Siderbar extends Component {
             </a>
           </div>
           <SideContainer onToggle={this.onToggle.bind(this)} expanded={this.state.expanded}>
-            <Menu mode="inline" className="wrapper-menu" openKeys={this.state.openKeys} selectedKeys={[this.state.current]}  onOpenChange={this.onOpenChange.bind(this)}  onClick={this.handleClick.bind(this)}>
+            <Menu mode="inline" className="wrapper-menu" openKeys={openKeys} selectedKeys={[this.state.current]}  onOpenChange={this.onOpenChange.bind(this)}  onClick={this.handleClick.bind(this)}>
               {
 
                 this.state.menu.map(function (item) {
-                  console.log(item);
 
                   let blank = item.openview=="blank"?"_blank":"";
 
@@ -126,7 +139,7 @@ class Siderbar extends Component {
                     let title = (<a href="javascript:;"><i className={'icon '+item.icon}></i><span>{item.name}</span></a>);
                     item.children.map(function(it){
                       let blank =it.openview=="blank"?"_blank":"";
-                      list.push(<Menu.Item key={it.id}><a target={blank} ref="child" href={'#'+item.location}>{it.name}</a></Menu.Item>)
+                      list.push(<Menu.Item key={it.id}><a target={blank} ref="child" href={'#'+it.location}>{it.name}</a></Menu.Item>)
                     });
 
                     return (
@@ -152,4 +165,7 @@ class Siderbar extends Component {
   }
 }
 
-export default Siderbar
+export default connect(state => {
+  return state.app
+})(Siderbar)
+

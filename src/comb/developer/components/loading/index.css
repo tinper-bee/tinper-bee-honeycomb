@@ -1,0 +1,10 @@
+.u-modal-diaload{
+    top: 50%;
+    left: 50%;
+    margin-top: -60px;
+    margin-left: -55px;
+    position: absolute;
+    background: transparent;
+    height: auto;
+    width: auto;
+}

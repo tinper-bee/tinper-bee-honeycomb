@@ -1,0 +1,42 @@
+@import '../../less-conf';
+@height: 410px;
+.mid-box-layout {
+  width: 40%;
+  @media screen and (max-width: @break-point) {
+    width: 50%;
+  }
+  display: inline-block;
+  min-width: 300px; // 合适的值的需要
+  // max-width: 500px; // 给个合适的值
+  height: @height; // 多十个像素是margin
+  vertical-align: top;
+  &--body {
+    position: relative;
+    margin: 5px;
+    background-color: white;
+    height: @height - 10px;
+    -webkit-box-shadow: 0 2px 6px 1px #d2d2d2;
+            box-shadow: 0 2px 6px 1px #d2d2d2;
+  }
+}
+
+.mid-box-layout__secondary {
+  width: 30%;
+  @media screen and (max-width: @break-point) {
+    width: 50%;
+  }
+}
+
+.mid-box-layout__third {
+  width: 30%;
+  .mid-box-layout--body {
+    background: #f0f0f0;
+  }
+  @media screen and (max-width: @break-point) {
+    width: 100%;
+    height: auto;
+    & .mid-box-layout--body {
+      height: (@height - 10) / 2;
+    }
+  }
+}

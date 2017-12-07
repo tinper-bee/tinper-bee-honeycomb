@@ -1,0 +1,50 @@
+.transition-page{
+    position: absolute;
+    width: 550px;
+    padding: 5px;
+    left: 50%;
+    margin-left: -250px;
+    top: 150px;
+}
+.success-button{
+    width: 160px;
+    height: 36px;
+
+}
+
+.control{
+    margin-left: 179px;
+    padding: 5px;
+}
+.back-button{
+    width: 120px;
+    height: 36px;
+    margin-left: 20px;
+}
+.image{
+    width: 120px;
+    height: 120px;
+    vertical-align: top;
+}
+.content{
+    width: 350px;
+    margin-left: 64px;
+    padding: 5px;
+    display: inline-block;
+}
+.notice{
+
+    height: 13px;
+    color: #a0a0a0;
+    font-size: 12px;
+    font-weight: 400;
+    line-height: 48px;
+}
+.message{
+
+    height: 15px;
+    color: #424242;
+    font-weight: 400;
+    line-height: 48px;
+    margin-top: 17px;
+}

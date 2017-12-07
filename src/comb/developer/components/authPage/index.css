@@ -1,0 +1,64 @@
+.auth-page{
+  background-color: #fff;
+  height: 100%;
+}
+.role-user{
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    padding: 0 5px;
+    background-image: url("../../assets/img/auth/user.png");
+    background-size: cover;
+    vertical-align: text-bottom;
+}
+
+.role-owner{
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    padding: 0 5px;
+    background-image: url("../../assets/img/auth/owner.png");
+    background-size: cover;
+    vertical-align: text-bottom;
+}
+.user-search{
+    float: right;
+    width: 240px;
+    height: 36px;
+}
+
+.user-search.u-input-group .u-form-control{
+    background-color: #f5f5f5;
+    border-color: #f5f5f5;
+    border-radius: 100px;
+    height: 36px;
+    line-height: 36px;
+}
+.user-search.u-input-group .u-input-group-btn{
+    top: 6px;
+    right: 30px;
+}
+
+.user-table{
+    margin-top: 30px;
+}
+.user-auth{
+    padding: 40px;
+}
+
+.default-head{
+    display: inline-block;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background-image: url("../../assets/img/auth/default_icon.png");
+    background-size: cover;
+    vertical-align: text-bottom;
+}
+
+.app-btn-auth li{
+  float: left;
+  margin-right: 20px;
+  margin-top: 20px;
+  cursor: pointer;
+}
