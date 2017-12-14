@@ -20,6 +20,7 @@
           "id": "dashboard",
           "name": "资源池",
           "location": "dashboard",
+          "components":"developer/md-rp/main",
           "menustatus": "Y",
           "parentid": null,
           "icon": "iconfont cl cl-filebox yellow-700",
@@ -34,6 +35,7 @@
           "id": "mdservice",
           "name": "中间件",
           "location": "mdservice",
+          "components":"developer/md-service/main.page",
           "menustatus": "Y",
           "parentid": null,
           "icon": "iconfont cl cl-filebox yellow-700",
@@ -46,194 +48,6 @@
         }
       ],
       "sort": 1,
-      "openview": "curpage",
-      "category": "engine"
-    },
-    {
-      "id": "myReleasePool",
-      "name": "表单页",
-      "location": "/fe/MyRP/index.html",
-      "menustatus": "Y",
-      "parentid": null,
-      "icon": "uf uf-pencil-s",
-      "target": "",
-      "urltype": "url",
-      "children": [
-        {
-          "id": "analysis",
-          "name": "分析页",
-          "location": "analysis",
-          "menustatus": "Y",
-          "parentid": null,
-          "icon": "iconfont cl cl-filebox yellow-700",
-          "target": "",
-          "urltype": "url",
-          "children": [],
-          "sort": 2,
-          "openview": "curpage",
-          "category": "pass"
-        }
-      ],
-      "sort": 2,
-      "openview": "curpage",
-      "category": "pass"
-    },
-    {
-      "id": "continuous",
-      "name": "列表页",
-      "location": "/fe/continuous/index.html",
-      "menustatus": "Y",
-      "parentid": null,
-      "icon": "uf uf-table",
-      "target": "",
-      "urltype": "url",
-      "children": [
-        {
-          "id": "analysis",
-          "name": "分析页",
-          "location": "analysis",
-          "menustatus": "Y",
-          "parentid": null,
-          "icon": "iconfont cl cl-filebox yellow-700",
-          "target": "",
-          "urltype": "url",
-          "children": [],
-          "sort": 2,
-          "openview": "curpage",
-          "category": "pass"
-        }
-      ],
-      "sort": 2,
-      "openview": "curpage",
-      "category": "engine"
-    },
-    {
-      "id": "appmgr",
-      "name": "详情页",
-      "location": "/fe/appManager/index.html",
-      "menustatus": "Y",
-      "parentid": null,
-      "icon": "uf uf-listsearch",
-      "target": "",
-      "urltype": "url",
-      "children": [
-        {
-          "id": "analysis",
-          "name": "分析页",
-          "location": "analysis",
-          "menustatus": "Y",
-          "parentid": null,
-          "icon": "iconfont cl cl-filebox yellow-700",
-          "target": "",
-          "urltype": "url",
-          "children": [],
-          "sort": 2,
-          "openview": "curpage",
-          "category": "pass"
-        }
-      ],
-      "sort": 2,
-      "openview": "curpage",
-      "category": "engine"
-    },
-    {
-      "id": "mirrorRes",
-      "name": "结果",
-      "location": "/fe/imagesCata/index.html",
-      "menustatus": "Y",
-      "parentid": null,
-      "icon": "uf uf-correct",
-      "target": "",
-      "urltype": "url",
-      "children": [
-        {
-          "id": "analysis",
-          "name": "分析页",
-          "location": "analysis",
-          "menustatus": "Y",
-          "parentid": null,
-          "icon": "iconfont cl cl-filebox yellow-700",
-          "target": "",
-          "urltype": "url",
-          "children": [],
-          "sort": 2,
-          "openview": "curpage",
-          "category": "pass"
-        }
-      ],
-      "sort": 3,
-      "openview": "curpage",
-      "category": "engine"
-    },
-    {
-      "id": "middleware",
-      "name": "异常",
-      "location": "/fe/md-service/index.html",
-      "menustatus": "Y",
-      "parentid": null,
-      "icon": "uf uf-exc-t",
-      "target": "",
-      "urltype": "url",
-      "children": [
-        {
-          "id": "analysis",
-          "name": "分析页",
-          "location": "analysis",
-          "menustatus": "Y",
-          "parentid": null,
-          "icon": "iconfont cl cl-filebox yellow-700",
-          "target": "",
-          "urltype": "url",
-          "children": [],
-          "sort": 2,
-          "openview": "curpage",
-          "category": "pass"
-        }
-      ],
-      "sort": 4,
-      "openview": "curpage",
-      "category": "pass"
-    },
-    {
-      "id": "confcenter",
-      "name": "账户",
-      "location": "/confcenter",
-      "menustatus": "Y",
-      "parentid": null,
-      "icon": "uf uf-users-o",
-      "target": "",
-      "urltype": "view",
-      "children": [
-        {
-          "id": "analysis",
-          "name": "分析页",
-          "location": "analysis",
-          "menustatus": "Y",
-          "parentid": null,
-          "icon": "iconfont cl cl-filebox yellow-700",
-          "target": "",
-          "urltype": "url",
-          "children": [],
-          "sort": 2,
-          "openview": "curpage",
-          "category": "pass"
-        }
-      ],
-      "sort": 5,
-      "openview": "curpage",
-      "category": "paas"
-    },
-    {
-      "id": "yunw",
-      "name": "使用文档",
-      "location": "/fe/dataObs/index.html",
-      "menustatus": "Y",
-      "parentid": null,
-      "icon": "uf uf-book",
-      "target": "",
-      "urltype": "url",
-      "children": [],
-      "sort": 6,
       "openview": "curpage",
       "category": "engine"
     }

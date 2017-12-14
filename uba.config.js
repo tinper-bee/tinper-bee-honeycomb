@@ -124,7 +124,9 @@ var devConfig = {
     ],
     alias: {
       components: path.resolve(__dirname, 'src/components/'),
-      assets: path.resolve(__dirname, 'src/assets/'),
+      honeyAssets: path.resolve(__dirname, 'src/assets/'),
+      combs:path.resolve(__dirname, 'src/comb/'),
+      mock:path.resolve(__dirname, 'mock/')
     }
   }
 }
@@ -207,7 +209,9 @@ var prodConfig = {
     ],
     alias: {
       components: path.resolve(__dirname, 'src/components/'),
-      assets: path.resolve(__dirname, 'src/assets/'),
+      honeyAssets: path.resolve(__dirname, 'src/assets/'),
+      combs:path.resolve(__dirname, 'src/comb/'),
+      mock:path.resolve(__dirname, 'mock/')
     }
   }
 }

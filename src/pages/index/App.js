@@ -1,7 +1,21 @@
 import React from 'react'
-import {Route,Link,} from 'mirrorx'
+import {Route,Link,Router,Switch,withRouter,actions, connect} from 'mirrorx'
 import Loadable from 'react-loadable';
 import {Loading} from 'tinper-bee';
+import { Transition,TransitionGroup,CSSTransition} from 'react-transition-group'
+import 'honeyAssets/css/animation.css'
+
+const duration = 300;
+
+const defaultStyle = {
+  transition: `opacity ${duration}ms ease-in`,
+  opacity: 0,
+}
+
+const transitionStyles = {
+  entering: { opacity: 0.01},
+  entered: { opacity: 1 },
+};
 
 const MyLoadingComponent = function ({ error, pastDelay }) {
   if (error) {
@@ -12,44 +26,50 @@ const MyLoadingComponent = function ({ error, pastDelay }) {
     return null;
   }
 }
+import Apps from './Home'
+import Test from './Test'
 
-import wrapperComponent from './wrapperComponent'
 
-const AsyncUser = Loadable({
-  loader: () => import('./User'),
-  loading: MyLoadingComponent,
-  delay: 10000,
-  timeout: 10000,
-});
-import '../../comb/developer/components/Title.css';
+import 'combs/developer/components/Title.css';
 
 const AsyncMyRP = Loadable({
-  loader: () => import('../../comb/developer/MyRP/main'),
+  loader: () => import('combs/developer/myrp/main'),
   loading: MyLoadingComponent,
 });
-import '../../comb/developer/MyRP/index.css';
+import 'combs/developer/myrp/index.css';
 
 
-const AsyncAlarmCenter = Loadable({
-  loader: () => import('../../comb/developer/alarm-center/routes'),
-  loading: MyLoadingComponent,
-});
 
 const AsyncMdService = Loadable({
-  loader: () => import('../../comb/developer/md-service/main.page'),
+  loader: () => import('combs/developer/md-service/main.page'),
   loading: MyLoadingComponent,
 });
-import '../../comb/developer/md-service/index.css';
-import '../../comb/developer/md-service/component/serivceitem.css';
+import 'combs/developer/md-service/index.css';
+import 'combs/developer/md-service/component/serivceitem.css';
 
 
-const App = () => (
-  <div>
-    <Route exact path="/" component={wrapperComponent(AsyncMyRP)}/>
-    <Route path="/user" component={AsyncUser} />
-    <Route path="/dashboard" component={wrapperComponent(AsyncMyRP)} />
-    <Route path="/mdservice" component={wrapperComponent(AsyncMdService)} />
-  </div>
-)
+const App = ({ location}) => {
 
-export default App
+  const currentKey = location.pathname.split('/')[1] || '/'
+  const timeout = { enter: 500, exit: 500 }
+
+
+  return (
+    <Apps>
+      <TransitionGroup component="main" className="page-main">
+        <CSSTransition key={currentKey} timeout={timeout} classNames="fade" appear>
+          <section className="page-main-inner">
+            <Switch location={location}>
+              <Route exact={true} path="/" component={Test} />
+              <Route path="/dashboard" component={AsyncMyRP} />
+              <Route path="/mdservice" component={AsyncMdService} />
+            </Switch>
+          </section>
+        </CSSTransition>
+      </TransitionGroup>
+    </Apps>
+  )
+}
+
+export default withRouter(App);
+

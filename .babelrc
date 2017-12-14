@@ -12,6 +12,8 @@
     }],
     [
       "syntax-dynamic-import"
-    ]
+    ],
+    ["react-loadable/babel"],
+    ["transform-decorators-legacy"]
   ]
 }

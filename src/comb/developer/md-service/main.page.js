@@ -117,7 +117,6 @@ class MainPage extends Component {
     let self = this;
 
     let serivceItems = describes.map((result, i) => {
-      console.log(result)
       return (
         <Items
          info={result}

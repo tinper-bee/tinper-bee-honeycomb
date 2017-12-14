@@ -1,5 +1,5 @@
 import React,{Component} from 'react'
-import mirror, {actions, connect} from 'mirrorx'
+import mirror, {actions, connect,NavLink} from 'mirrorx'
 import {Menu,Navbar,Icon,Breadcrumb} from 'tinper-bee';
 import './sidebar.css';
 const classNames = require('classnames');
@@ -10,7 +10,8 @@ mirror.model({
   name: 'app',
   initialState: {
     expanded:false,
-    openKeys:[]
+    openKeys:[],
+    menus:[],
   },
   reducers: {
     setExpanded(state,expanded) {
@@ -24,6 +25,12 @@ mirror.model({
       return {
         ...state,
         openKeys:openKeys
+      }
+    },
+    setMenus(state,menus){
+      return {
+        ...state,
+        menus:menus
       }
     }
   }
@@ -48,9 +55,7 @@ class Siderbar extends Component {
 
     axios.get('/web/v1/menu/sidebarList')
       .then(function (response) {
-        self.setState({
-          menu: response.data.data
-        });
+        actions.app.setMenus(response.data.data)
 
       }).catch(function (error) {
     });
@@ -115,7 +120,7 @@ class Siderbar extends Component {
   }
 
   render() {
-    let {expanded,openKeys} = this.props;
+    let {expanded,openKeys,menus} = this.props;
     return (
       <div className={classNames({ 'sidebar-contanier':true,'sidebar-expanded': expanded })}>
         <div className="sider-menu">
@@ -129,7 +134,7 @@ class Siderbar extends Component {
             <Menu mode="inline" className="wrapper-menu" openKeys={openKeys} selectedKeys={[this.state.current]}  onOpenChange={this.onOpenChange.bind(this)}  onClick={this.handleClick.bind(this)}>
               {
 
-                this.state.menu.map(function (item) {
+                menus.map(function (item) {
 
                   let blank = item.openview=="blank"?"_blank":"";
 
@@ -139,7 +144,9 @@ class Siderbar extends Component {
                     let title = (<a href="javascript:;"><i className={'icon '+item.icon}></i><span>{item.name}</span></a>);
                     item.children.map(function(it){
                       let blank =it.openview=="blank"?"_blank":"";
-                      list.push(<Menu.Item key={it.id}><a target={blank} ref="child" href={'#'+it.location}>{it.name}</a></Menu.Item>)
+                      list.push(<Menu.Item key={it.id}>
+                        <NavLink key={it.id} ref="child" to={it.location}>{it.name}</NavLink>
+                      </Menu.Item>)
                     });
 
                     return (
@@ -153,7 +160,6 @@ class Siderbar extends Component {
                     return (
                       <Menu.Item key={item.id} >{title}</Menu.Item>
                     )
-
                   }
                 })
               }
