@@ -1,0 +1,148 @@
+@import '~utils/variables.less';
+#cradit-adjust-detail{
+    width: 1260px;
+    .cradit-adjust-detail{
+        background-color: #fff;
+        .main-header{
+            border: 1px solid #e1e6eb ;
+            border-bottom:none;
+            position: relative;
+            .main-content{
+                .tabs {
+                    .u-tabs-nav-scroll{
+                        width: 100%;
+                    }
+                    .u-tabs-ink-bar {
+                        height: 3px !important;
+                        width: 29px !important;
+                        background-color: @t-tab-color !important;
+                        border-radius: 3px;
+                        left: 36px;
+                    }
+                    .u-tabs-nav{
+                        left: 50%;
+                        transform:translateX(-50%) !important;
+
+                    }
+                    .u-tabs-tab-active {
+                        color: @t-tab-color !important;
+                    }
+                    .u-tabs-bar{
+                        border-bottom: 1px solid #e1e6eb;
+                    }
+                    .u-tabs-tab {
+                        width: 100px;
+                        text-align: center;
+                        font-size:15px;
+                        font-family:PingFangHK-Regular;
+                        color: #666;
+                        padding:0 0 17px 0;
+                        margin-top: 19px;
+                    }
+                    .u-tabs-tab:hover {
+                        color: @t-tab-color;
+                    }
+                }
+                .section{
+                    height: 520px;
+                    margin-bottom: 20px;
+                    padding: 15px;
+                    position: relative;
+                    .section-title{
+                        padding-top: 10px;
+                        padding-left: 10px;
+                        font-size: 13px;
+                        color: #333333;
+                        &::after {
+                            content: "";
+                            height: 8px;
+                            width: 4px;
+                            position: absolute;
+                            background-color: rgba(225,76,70,1);
+                            left: 15px;
+                            top: 30px;
+                        }
+                    }
+                    .u-row{
+                        margin: 0 80px;
+                        .label{
+                            width: 400px;
+                            margin: auto;
+                            margin-top: 20px;
+                            .label-title{
+                                box-sizing: border-box;
+                                color: #666;
+                                display: inline-block;
+                                font-size: 13px;
+                                height: 28px;
+                                line-height: 28px;
+                                padding-right: 10px;
+                                text-align: right;
+                                vertical-align: middle;
+                                width: 150px;
+                            }
+                            .label-content{
+                                color: #000;
+                                display: inline-block;
+                                font-size: 13px;
+                                height: 28px;
+                                line-height: 28px;
+                                position: relative;
+                                vertical-align: middle;
+                                vertical-align: top;
+                                width: 240px;
+                                .u-row.refer{
+                                    margin: auto 0;
+                                }
+                                ::-webkit-input-placeholder {
+                                    color: @t-tab-color;
+                                }
+                                ::-moz-placeholder {
+                                    color: @t-tab-color;
+                                }
+                                :-ms-input-placeholder {
+                                    color: @t-tab-color;
+                                }
+                                :-moz-placeholder {
+                                    color: @t-tab-color;
+                                }
+                                .label-view-8px{
+                                    margin-left: 8px !important;
+                                    color: #333 !important;
+                                }
+                            }
+                            .label-narrow{
+                                width: 120px;
+                            }
+                        }
+                    }
+                }
+            }
+            .main-title {
+                position:absolute;
+                top: 0;
+                left: 20px;
+                line-height: 60px;
+                font-size: 16px;
+                color: #333;
+            }
+            .sum-buttons{
+                position: absolute;
+                top: 0;
+                right: 20px;
+                line-height: 60px;
+                font-size: 0;
+                z-index: 99;
+            }
+        }
+        .required {
+			&:before {
+				content: '*';
+				color: @t-tab-color;
+				position: relative;
+				top: 0;
+				left: -5px;
+			}
+		}
+    }
+}

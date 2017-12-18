@@ -1,0 +1,70 @@
+@font-color: #333333;
+.tmc_list_content {
+	min-width: 190px;
+	border-left: 1px solid #e3e7ed;
+	padding: 40px 30px 20px 20px;
+	position: relative;
+	overflow: hidden;
+	flex: 1;
+	&:first-child {
+		border-left: none;
+	}
+	.tmc_left_top{
+		.u-tabs-tabpane-active{
+			overflow: hidden;
+		}
+	}
+    .tmc_list_logo{
+        position: absolute;
+        right: -6px;
+        top: -14px;
+    }
+	.tmc_list_title {
+		height: 20px;
+		line-height: 20px;
+		font-size: 15px;
+		font-weight: bold;
+		color: @font-color;
+	}
+	.tmc_list_ul {
+		margin-top: 15px;
+	}
+	.tmc_list_li {
+		margin-top: 10px;
+		font-size: 12px;
+		color: @font-color;
+		display: flex;
+		flex-direction: column;
+		a {
+			width: 100%;
+			display: block;
+			display: flex;
+			justify-content: space-between;
+			color: @font-color;
+			&:visited {
+				color: @font-color;
+			}
+			.li_num_name {
+				display: inline-block;
+			}
+			.li_num {
+				display: inline-block;
+			}
+		}
+		span {
+			width: 100%;
+			display: block;
+		}
+		.li_num {
+            color: #3291ff;
+            text-align: right;
+        }
+        .li_mny{
+            margin-top:3px;
+            color: #DF972A;
+        }
+        .li_info{
+            margin-top:3px;
+        }
+	}
+}

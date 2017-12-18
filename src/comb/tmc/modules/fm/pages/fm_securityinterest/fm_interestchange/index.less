@@ -1,0 +1,186 @@
+@import "../../../../../utils/variables.less";
+
+@text-color: #666666;
+@collapse-color: #F5F5F5;
+@btn-active: #D9F3F0;
+@pop-color: #333333;
+@border-color: #e1e6eb;
+@btn-border: rgba(217,217,217,1);
+@btn-text: rgba(51,51,51,0.98);
+
+.bread-container{
+    margin: 0 auto;
+    padding: 0 60px;
+    width: 1296px;
+}
+
+.card-container{
+    margin: 20px auto;
+    width: 1260px;
+    background-color: @w-color; 
+
+    .title-container{       
+        height: 58px;
+        border: 1px solid @border-color;
+        border-radius: 2px 2px 0px 0px;
+        .title{
+            margin: 18px 20px;
+            font-size: 16px;
+            font-weight: bold;
+        }
+        .btn-area{
+            margin: 15px 0;
+            padding-right: 36px; 
+            float: right;
+            .btn{
+                border:1px solid @btn-border;
+                background: @w-color;
+                width:80px;
+                height:28px;
+                min-width:80px;
+                line-height: 26px;
+                display: inline-block;
+                text-align: center;
+                font-size:13px;
+                color: @btn-text;
+                border-radius:2px;
+                padding:0;
+                margin-left:10px;
+            }
+            .btn:hover{
+                border:1px solid @t-btn-bgcolor;
+                background: @w-color;
+                color: @t-btn-bgcolor;
+            }
+            .btn:active{
+                background: @btn-active;
+            }
+            .btn-success{
+                border-color: @t-btn-bgcolor;
+                background: @t-btn-bgcolor;
+                color:@w-color;
+            }
+            .btn-success:hover{
+                border-color: @t-btn-bgcolor;
+                background: @t-btn-bgcolor;
+                color:@w-color;
+            }
+        }
+    }
+}
+
+.record-version{
+    padding: 0;
+    text-align: left;
+    min-height:565px;
+    background: @w-color;
+    font-size:13px;
+    .date-text{
+        font-size: 12px;
+        color: @text-color;
+    }
+    .record-item{
+        border-bottom:1px solid @border-color;
+        border-left:1px solid @border-color;
+        height:70px;
+        padding-top: 15px;
+        line-height: 20px;
+        cursor: pointer;
+        background: @w-color;
+        font-family:PingFangHK-Regular;
+        color:rgba(51,51,51,1);
+        padding-left: 15px;
+    }
+    .item-active{
+        border-bottom: 1px solid @border-color;
+        border-left: 3px solid @t-tab-color;
+        background:@w-color;
+        height:70px;
+        padding-top: 15px;
+        line-height: 20px;
+        cursor: pointer;
+        color:@t-tab-color;
+        font-family:PingFangHK-Regular;
+        padding-left: 15px;
+    }
+}
+
+.collapse-area{
+    float: left;
+    width: 827px;
+    margin-left: 206px;
+    background-color: @collapse-color;           
+    .u-form-item{
+        float: left;            
+    }
+    .u-form-inline{
+        padding: 2px 0;
+        .u-label{
+            width: 125px;
+            text-align: right;
+            font-size: 13px;
+            color: @text-color;
+        }
+    }
+    .u-form-control{
+        width: 120px;
+    }
+}
+
+.btn-hide-area{
+    border:1px solid rgba(217,217,217,1);
+    border-radius: 2px ; 
+    text-align: center;
+    padding:10px 5px;
+   
+    .hide-item{
+        padding:0;
+        margin-top:6px;
+        height:29px;
+        line-height: 28px;
+        background-color:#fff;
+        .btn-hide{
+            border:1px solid rgba(217,217,217,1);
+            border-radius:2px;
+            font-size:12px;
+            font-family:PingFangSC-Regular;
+            color:rgba(102,102,102,1);
+            background:#fff;
+            width:70px;
+            min-width:70px;
+            height:28px;
+            line-height: 26px;
+            display: inline-block;
+            text-align: center;
+            padding:0;
+        }
+        .btn-hide:hover{
+            border-color:@t-btn-bgcolor;
+            color:@t-btn-bgcolor;
+        }
+        .btn-hide:active{
+            background: @btn-active;
+        }
+        .approve-detail-button{
+            .u-button{
+            .btn-hide;
+                margin-left:0;
+                color:rgba(102,102,102,1)!important;
+                border-color:rgba(217,217,217,1)!important;
+            }
+            .u-button:hover{
+                border-color:@t-btn-bgcolor !important;
+                color:@t-btn-bgcolor !important;
+            }
+        }
+    }
+    .u-dropdown-menu-item:first-child{
+        margin-top:0;
+    }
+}
+
+.popover{
+    padding: 15px 20px;
+    color: @pop-color;
+    line-height: 30px;
+}

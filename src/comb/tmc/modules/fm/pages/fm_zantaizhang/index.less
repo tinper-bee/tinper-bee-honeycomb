@@ -1,0 +1,79 @@
+@import '../../../../utils/publicStyle.less';
+@import '../../../../utils/variables.less';
+@boder:1px solid #E3E7ED;
+.taizhang-page {
+    .credit-title {
+        padding: 0;
+    }
+    .date-picker-select {
+        top: 9px !important;
+    }
+    .u-select-selection {
+        height: 28px;
+        .u-select-selection__placeholder {
+            text-align: left;
+        }
+    }
+    .u-table {
+        background: white;
+        border: @boder;
+        border-top: none;
+    }
+    .paymentShareIcon:hover,.icon-shanchu:hover{
+        color: #00B39E !important;
+    }
+    .fm-table .icon-style:hover:after {
+        display: none !important;
+    }
+    .contstatus-group {
+        background: white;
+        margin-left: 0;
+        padding-left: 20px;
+        border-left: @boder;
+        border-top: @boder;
+    }
+    .bd-header {
+      overflow: hidden;
+
+      .search-condition {
+        float: right;
+
+        &>div {
+          width: 120px;
+          margin: 0 10px;
+          text-align: right;
+        }
+        
+        .icon-rili {
+          top: -11px !important;
+        }
+      }
+      
+      &>h2 {
+        float: left;
+        width: 150px;
+        margin-left: 20px;
+        font-size: 16px;
+        color: #333;
+      }
+    }
+    .fm-table {
+      .show-title {
+        position: relative;
+
+        .title-text {
+          position: absolute;
+          width: 100px;
+          height: 50px;
+          background: red;
+          display: none;
+        }
+
+        &:hover {
+          .title-text {
+            display: block;
+          }
+        }
+      }
+    }
+}

@@ -1,0 +1,201 @@
+@import "../../../../utils/variables.less";
+
+.container{
+    padding: 15px;
+    background: @t-bgcolor;
+    .bread{
+        background: @w-color;
+    }
+
+    .top-container{
+        height: 410px;
+        min-width: 1298px;
+        margin: 0 15px 15px;
+        border: 1px solid #E1E9F0; 
+        border-radius: 2px; 
+        background: @w-color;
+        background-image: url(../../../../static/images/if/product-top.png);
+        background-size: cover;
+        .top-introduction{
+            height: 410px;
+            background: url(../../../../static/images/if/introduction.png) no-repeat center center;
+        }
+        .account{
+            float: right;
+            margin: 15px 36px;
+            color: @w-color;
+            font-size: 14px;
+            a{
+                color: #3291ff;
+            }
+            a:hover{
+                color: #8abdf8;
+            }
+        }
+    }
+
+    .product-container{
+        height: 234px;
+        min-width: 1298px;
+        margin: 5px 0;
+        background-color: @w-color;
+        border: 1px solid #E1E9F0; 
+        border-radius: 2px; 
+        color: @b-color;
+        font-size: 13px;
+        background: url(../../../../static/images/if/texture.png) no-repeat center bottom;  
+        background-size: 105% 100%; 
+        .top-pic{
+            width:315px;
+            height: 232px;
+            margin: 0 auto;
+            text-align: center;
+            color: #333333;             
+            .pic-title{
+                padding: 40px 0 20px;
+                font-size: 34px;               
+            }
+            .pic-subtitle{
+                padding: 3px 0;
+                margin: 0 86px;
+                font-size: 14px;
+                color: #3291ff;
+                border: 1px solid #3291ff; 
+                border-radius: 2px; 
+            }
+            .pic-description{
+                padding: 25px;
+                font-size: 12px; 
+                color: #999999;
+                //text-shadow: 2px 3px 2px black;             
+            }
+        }
+        .product-tag{
+            background:#3291ff;
+            border-radius:1px;
+            width:64px;
+            height:42px;
+            margin: -239px 20px 0;
+            padding: 5px 0;
+            text-align: center;
+            color: @w-color;
+            font-weight: lighter;
+            .product-type{
+                font-size: 7px;
+                line-height: 12px;
+            }
+            .type-name{
+                font-size: 12px;               
+                line-height: 22px;
+            }
+        }
+        .rate-panel{       
+            .hot-name{
+                margin-top: 15px;
+                font-size: 20px;
+                font-weight: bold;
+            }
+            .hot-rate{
+                margin-top: 25px;
+                font-size: 60px;
+                font-weight: bold;
+                color: #FE711E;
+                line-height: 50px;
+                background-image: -webkit-gradient(linear, 0 0, 0 bottom, from(#FE711E), to(#FD3D39));
+                -webkit-background-clip: text;
+                -webkit-text-fill-color: transparent;
+                .percent{
+                    font-size: 25px;
+                }
+            }        
+            .hot-profit{
+                margin-top: 0px;
+                font-weight: normal;
+            }      
+            .earn-panel{
+                padding: 19px 0;
+                .earn-btn{
+                    width: 186px;
+                    height: 42px;
+                    padding: 5px 18px;
+                    border-radius: 2px; 
+                    background-image: -webkit-gradient(linear, left top,right bottom, from(#FE711E), to(#FD3D39));
+                }
+            }                  
+            .hot-provider{
+                color: #999999;
+                font-size: 15px;
+            }
+        }
+        .info-panel{
+            margin-top: 70px;
+            .invest-info{
+                font-size: 14px;
+                line-height: 30px;
+                .product-provider {
+                    width: 106px;
+                    line-height: 22px;
+                    margin-bottom: 8px;
+                    border: 1px solid #5991ef;
+                    color: #5991ef;
+                    border-radius: 15px;
+                    text-align: center;
+                    font-size: 13px;
+                }
+                .income{
+                    font-size: 16px;
+                    color: #fe711e;
+                    font-weight: bold;
+                    background-image: -webkit-gradient(
+                        linear,
+                        0 0,
+                        0 bottom,
+                        from(#fe711e),
+                        to(#fd3d39)
+                    );
+                    -webkit-background-clip: text;
+                    -webkit-text-fill-color: transparent;
+                }
+            }
+        }     
+    }
+
+    .step-container{
+        height: 422px;
+        min-width: 1298px;
+        margin: 15px;
+        background: @w-color;
+        border: 1px solid #E1E9F0; 
+        border-radius: 2px; 
+        background: url(../../../../static/images/if/steps.png) no-repeat center bottom;
+        background-color: @w-color;
+        background-size: 59%;
+    }
+
+    .contract-container{
+        height: 130px;
+        min-width: 1298px;
+        margin: 0 15px;
+        padding: 10px 0;
+        border: 1px solid #E1E9F0; 
+        border-radius: 2px; 
+        background-color: #222C3A;
+        //background-image: -webkit-gradient(linear, 0 0, 0 bottom, from(#4f4e4e), to(#323232));
+        text-align: center;
+        font-size: 13px;
+        .contract-text{
+            margin: 15px 90px;
+            color: @w-color;
+        }     
+        .contract-last{
+            margin: 15px 90px;
+            color: #6F7E98;                     
+        }  
+    }
+}
+
+#if_applyperchase_product-container{
+    .u-col-md-4{
+        margin-top: 0;
+    }  
+}

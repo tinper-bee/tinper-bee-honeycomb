@@ -1,0 +1,96 @@
+@import '../../../../utils/publicStyle.less';
+@import '../../../../utils/variables.less';
+.fm-interest {
+    .item-credit {
+        height: 60px; 
+        background: @w-color;
+        border-radius: 2px 2px 0 0;
+    }
+        
+    .credit-title {
+        padding: 0;
+        span.bd-title-1 {
+            line-height: 28px;
+        }
+        .add-button {
+            width: 80px;
+            min-width: 80px !important;
+            margin-top: -3px;
+        }
+        .cancel-button {
+            border: #d9d9d9 1px solid;
+            color: #333;
+            background:#fff;
+            width: 80px;
+            height: 28px;
+            margin: -3px 0 0 20px;
+            border-radius: 2px;
+            font-size: 13px;
+            padding: 0;
+        }
+    }
+
+    .credit-search {
+        margin: 15px 16px;
+        float: right;
+        line-height: 0;
+    }
+
+    .fm-select {
+        .select-code {
+            width: 240px;
+            margin-left: calc(~'100%-912px');
+        }
+
+        .select-mny {
+            width: 124px;
+            margin-left: 10px;
+        }
+
+        .select-state {
+            width: 124px;
+            margin-left: 10px;
+        } 
+
+        .select-type {
+            width: 124px;
+            margin-left: 10px;
+            //margin-right: 10px;
+        } 
+
+        .select-date {
+            display: inline-block;
+            margin-left: -6px;
+            width: 124px;
+            position: relative;
+            .select-rili {
+                position: absolute;
+                z-index:10;
+                opacity: .6;
+                right:4px;
+                top:0; 
+            }
+        }
+
+        .btn-select {
+            width: 80px;
+            height: 28px;
+            padding: 0;
+            //margin-left: 10px;
+            margin: -3px 0 0 10px;
+            font-size: 13px;
+            border: 1px solid #00B39E;
+            background: #fff;
+            color:#00B39E;
+        }
+
+        .btn-reset {
+            padding: 0;
+            margin: -3px 0 0 10px;
+            font-size: 13px;
+            border: none;
+            background: #fff;
+            color:#3291FF;
+        }
+    }
+}

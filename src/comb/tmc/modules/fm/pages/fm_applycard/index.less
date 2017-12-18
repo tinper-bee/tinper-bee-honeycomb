@@ -1,0 +1,887 @@
+/**颜色类**/
+@c : #ccc;
+@3 : #333;
+@bgCor : #f2f2f2;
+@6 : #666666;
+@9 : #999999;
+@d9: #D9D9D9;
+@f : #ffffff;
+@f7 : #f7f7f7;
+@f6 : #f6f6f6;
+@defaultCor: #00B39E;
+@hoverCor: #009a88;
+@buttonActiveCor: #05B4A0;
+@borderActiveBgCor: #D9F3F0;
+@4d : @defaultCor;
+@borderCor: #E1E9F0;
+@activeCor: #E14C46;
+@mainCor: @defaultCor;
+@e9: #e9e9e9;
+@tableHoverBg: #e3f2fd;
+
+/**border类**/
+.b-r-1 {
+	border-radius: 1px;
+}
+.b-r-2 {
+	border-radius: 2px;
+}
+.b-r-6 {
+	border-radius: 6px;
+}
+.b-r-half {
+	border-radius: 50%;
+}
+
+.b-t (@color){  
+	border-top: 1px solid @color;
+}
+.b-r (@color){  
+	border-right: 1px solid @color;
+}
+.b-b (@color){  
+	border-bottom: 1px solid @color;
+}
+.b-l (@color){  
+	border-left: 1px solid @color;
+}
+
+/**padding类**/
+.pdl20 {
+	padding-left: 20px!important;
+}
+.pdt28 {
+	padding-top: 28px!important;
+}
+.pdt5 {
+	padding-top: 5px!important;
+}
+.pdt15 {
+	padding-top: 15px!important;
+}
+.pdb15 {
+	padding-bottom: 15px!important;
+}
+.mgr20 {
+	margin-right: 20px!important;
+}
+/**文字类**/
+.tac {
+	text-align: center;
+}
+.tar {
+	text-align: right;
+}
+
+/**布局类**/
+.fl {
+	float: left;
+}
+.fr {
+	float: right;
+}
+.cf{
+    *zoom: 1;
+
+    &:before, &:after {
+		display: table;
+    	content: " ";
+    }
+    &:after {
+    	clear: both;
+    }
+}
+/**通用类**/
+i.uf {
+	cursor: pointer;
+}
+
+.placeholder(...) {
+    ::-webkit-input-placeholder {color:@arguments}
+    ::-moz-placeholder {color:@arguments}
+    :-ms-input-placeholder {color:@arguments}
+}
+
+
+/**正文**/
+.financeApp-wrap-prew {
+	width: 1080px;
+	margin:10px auto;
+}
+
+/*-------正文--------*/
+.financeApp-form {
+	width: 1260px;
+	min-width: 1260px;
+	.b-r-6;
+	margin: 10px auto;
+	background-color: @f7;
+	font-family: 'MicrosoftYaHei', 'Microsoft YaHei';
+    font-weight: 400;
+    font-style: normal;
+    font-size: 13px;
+    color: @6;
+}
+
+/*-------标题区域  开始--------*/
+.financeApp-title {
+	height: 50px;
+	line-height: 50px;
+	border: 1px solid @borderCor;
+	background-color: @f;
+	font-weight: 600;
+	.pdl20;
+	color: @3;
+	font-size: 16px;
+	display: flex;
+	justify-content: space-between;
+ 
+	.financeApp-title-item {	
+		width: 400px;
+		height: 50px;
+
+		.u-button {
+			padding: .1rem 1.3rem;
+			margin-right: 10px;
+			margin-top: 10px;
+		}
+
+		.show-none {
+			display: none;
+		}		
+	}
+}
+
+/*-------tab区域------*/
+.financeApp-tab {
+	flex: 0 auto;
+	display: inline-block;
+	position: relative;
+
+	li {
+		font-weight: 100;
+		text-align: center;
+		width: 98px;
+		height: 50px;
+		font-size: 15px;
+		color: @6;
+		cursor: pointer;
+		.fl;
+
+		&.active {
+			color: @activeCor;
+		}
+	}
+
+	.scrollBar {
+		position: absolute;
+		height: 3px;
+		width: 24px;
+		.b-r-1;
+		bottom: 0px;
+		left: 37px;
+		background-color: @activeCor;
+	}
+}
+.tabs-nav-animated {	
+    transition: transform 0.3s cubic-bezier(0.35, 0, 0.25, 1);
+}
+/*-------标题区域  结束------*/
+
+
+/*-------内容区域  开始------*/
+.financeApp-info {
+
+	/*---内容每块区域---*/
+	.financeApp-info-section {
+		background-color: @f;
+		margin-bottom: 10px;
+		border: 1px solid #E1E9F0;
+		padding: 0 0 20px;
+
+		&:first-child {
+			border-top-color: #fff;
+		}
+	}
+
+	/*---内容每块抬头---*/
+	.financeApp-info-title {
+		line-height: 48px;
+		height: 48px;
+		width: 100%;
+		color: @3;
+		font-weight: 400;
+		padding-left: 30px;
+
+		&.other-info {
+			border-bottom: 1px solid #E1E9F0;
+			line-height: 50px;
+			height: 50px;
+		}
+
+		&.blockClass {
+			position: relative;
+			&:after {
+				background-color: @activeCor;
+			    content: "";
+			    height: 8px;
+			    left: 20px;
+			    margin-top: -4px;
+			    position: absolute;
+			    top: 50%;
+			    width: 4px;
+			}
+		}
+	}
+
+	.financeApp-info-wrong {
+		color: red;
+		margin-right: 56px;		
+	}
+}
+/*-------内容区域  结束------*/	
+
+/*-------修改默认的表单样式 开始------*/	
+.financeApp-info {
+	.u-form {
+		label {
+			&.require {
+				position: relative;
+
+				&:before {
+					position: absolute;
+					content: "*";
+				    height: 12px;
+				    left: -13px;
+				    line-height: 12px;
+				    position: absolute;
+				    top: 6px;
+				    width: 12px;
+				    color: red;
+				    font-weight: 600;
+				}
+			}
+		}
+
+		.u-label {
+			position: relative;
+			top: 5px;
+			padding-right: 12px;
+			font-size: 13px;
+		}
+
+		.u-form-item {
+			position: relative;
+			padding: 8px 0;
+
+			&.u-form-inline {
+				min-height: 30px;
+			}
+
+			&>div {
+				display: inline-block;
+			}
+
+			input[type="text"] {
+				.b-r-2;
+			}
+
+			input.large,  input.u-form-control{
+				width: 240px;
+			}
+			
+			input.middle {
+				width: 120px;
+			}
+
+			input.disable-input {
+				border: none;
+				color: @3;
+				background-color: #fff;
+			}
+
+			.middle {
+				input[type="text"] {
+					width: 120px;
+				}
+			}
+
+			input.u-form-control {
+				padding-left: 8px!important;
+				font-size: 13px;
+			}
+
+			[placeholder] {
+				color: @9;
+			}			
+
+			.placeholder(@9);		
+
+			.u-input-group-outer {
+				max-width: 360px!important;
+			}
+
+			input.input-strong {
+				font-weight: 600;
+				font-size: 16px;
+				color: @activeCor!important;
+			}
+
+			input[value], input[type] {
+				color: @3;
+			}
+
+			.u-input-number {
+				&.strong {
+					input{
+						text-align: left;
+						font-weight: 600;
+						font-size: 16px;
+						color: @activeCor;
+					}						
+				}
+				input{
+					text-align: left;
+				}
+				.u-input-group-addon {
+					display: none;
+				}
+			}
+
+			.u-radio-group {
+				.is-checked {
+					.u-radio-label {
+						&:before {
+							border-color: @defaultCor;
+						    box-shadow: none;
+						}
+
+						&:after {
+						    background: @defaultCor;
+						}
+					}
+				}
+
+				.u-radio-label {
+					font-size: 12px;
+					padding-left: 19px;
+					&:before {
+						width: 14px;
+					    height: 14px;
+					    text-align: center;
+					    left: 2px;
+					    top: 5px;
+						border-color: #D9D9D9;
+						background-color: #fff;
+					}
+					&:after {
+						top: 9px;
+					    border-radius: 3px;
+					    height: 6px;
+					    width: 6px;
+					    background: #fff;
+					    margin-left: 6px;
+					} 
+				}
+
+				.u-radio-label:hover {
+					&:before {
+						border-color: @defaultCor;
+					}
+				}
+			}
+			
+		}
+		
+		.tmc_uploader_content {
+		    margin-left: 48px;
+		}
+
+		.u-form-error {
+			display: inline-block;
+			visibility: hidden;
+			transform: translateX(7px);
+
+			&.show {
+				display: inline-block!important;
+				visibility: visible;
+			}
+		}
+
+
+		.u-row {
+			margin: 0;
+
+			.u-form-group {
+				position: relative;
+
+			}	
+		}
+
+		.u-col-md-2 {
+			text-align: right;
+			padding-right: 0;
+		}
+
+		.u-col-md-4 {
+			margin-top: 0;
+			padding-left: 0;
+		}
+
+		.u-col-md-10 {
+			padding-left: 0;
+		}
+
+		.u-input-group {
+			& > span {
+				color: @3;
+			}
+		}
+
+		.u-textarea-wrap {
+			width: 869px;
+			height: 64px;
+			padding: 6px;
+			.b-r-2;
+
+			&.preview {
+				height: auto;
+			}
+		}
+
+		.u-switch.is-checked {
+		    border-color: @defaultCor;
+			background-color: @defaultCor;
+		}
+	}
+}
+
+.financeApp-form {
+	.u-affix-content {
+		z-index: 1500!important;
+	}	
+
+	.u-tabs-nav-wrap {
+		width: auto;		
+	}
+}
+/*-------修改默认的表单样式  结束------*/	
+
+.financeApp-info-section {
+	.light-tabs {
+		position: relative;
+		top: -39px;
+
+		.tabs-wraps {
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			li {
+				height: 28px;
+				line-height: 25px;
+				.tac;
+				width: 90px;
+				border: 1px solid #e1e9f0;
+				.b-r-2;
+				cursor: pointer;
+
+				a {
+					color: @6;
+					font-size: 13px;
+				}
+
+				&.active {
+					border-color: @mainCor;
+
+					a {
+						color: @mainCor;
+					}
+				}
+			}
+		}
+	}
+}
+
+.ranks-head {
+	margin: 42px 58px -18px;
+	line-height: 40px;
+	border: 1px solid #e1e9f0;
+
+	&.ranks-head-preview {
+		margin: 24px 58px 0px;
+	}
+	
+	h5 {
+		line-height: 40px;
+		border-bottom: 1px solid #e1e9f0;
+
+		.u-button {
+			padding: .1rem 1.3rem;
+		}
+
+		.add-btn {
+			position: relative;
+			top: -1px;
+		}
+	}
+
+	.u-table { 
+		tr:hover {
+			background-color: #fff;
+		}		
+
+		thead, tbody {
+			tr {
+				th:first-child {
+					padding-left: 24px;
+				}
+
+				td:first-child {
+					padding-left: 24px;
+				}
+			}
+		}		
+	}
+
+	.ranks-title {
+		padding: 0 24px;
+		font-size: 13px;
+		color: @3;			
+	}
+
+	i.iconfont {
+		&:hover {
+			color: @defaultCor;
+		}
+	}
+
+	.ranks-thead {
+		line-height: 40px;
+		background-color: #F2F2F2;
+		color: @3;
+		padding: 0 20px;	
+
+		b {
+			display: inline-block;
+			padding: 0 14px;
+		}		
+
+		b.per-35 {
+			width: 35%;
+		}
+		b.per-25 {
+			width: 25%;
+		}
+		b.per-10 {
+			width: 10%;
+		}
+		b.per-20 {
+			width: 20%;
+		}
+		b.per-15 {
+			width: 15%;
+		}
+	}
+
+	.u-table th {
+	    padding: 11px 8px;
+	}
+	.u-table td {
+		padding: 8px;
+	}
+}	
+
+/*-------修改默认的弹窗样式------*/	
+.u-modal {
+	.u-modal-header {
+		border-color: @e9;
+	}
+
+	.modal-title {
+		font-size: 14px;
+		display: inline-block;
+	}
+
+	.modal-title-count {
+		display: inline-block;
+		color: @4d;
+		font-size: 13px;
+		.fr;
+		margin-right: 30px;
+		padding-top: 2px;
+
+		i {
+			font-style: normal;
+		}
+	}
+
+	.modal-title-close {
+		.uf-close-bold {
+			color: #bdbdbd;	
+
+			&:hover, &:active {
+				color: @4d;
+			}		
+		}
+	}
+}
+
+/*-------修改默认的弹窗样式  结束------*/	
+
+
+/*-------修改默认的button样式------*/	
+.u-button {
+	.b-r-2;
+	height: 28px;
+	line-height: 25px;
+	.tac;
+	width: 90px;
+
+	i.uf {
+		font-size: 12px;
+	}
+}
+
+.u-button-border {
+
+	&.u-button-info {
+		background-color: #fff;
+	    border: 1px solid @d9;
+	    color: @6;
+
+	    &:hover {
+	    	background-color: #fff;
+		    border-color: @defaultCor;
+		    color: @defaultCor;
+	    }
+
+	    &:active {
+			border-color: @defaultCor;
+		    color: @defaultCor;
+		    background-color: @borderActiveBgCor;
+	    }
+
+	    &:focus {
+	    	background-color: #fff;
+		    border: 1px solid @d9;
+		    color: @6;
+	    }
+	}		
+}
+
+.u-button-border-special {
+
+	&.u-button-info {
+		background-color: #fff;
+	    border: 1px solid @defaultCor;
+	    color: @defaultCor;
+
+	    &:hover {
+	    	background-color: @borderActiveBgCor;
+		    border-color: @defaultCor;
+		    color: @defaultCor;
+	    }
+
+	    &:active {
+			border-color: @defaultCor;
+		    color: @defaultCor;
+		    background-color: @borderActiveBgCor;
+	    }
+
+	    &:focus {
+	    	background-color: #fff;
+		    border: 1px solid @defaultCor;
+		    color: @defaultCor;
+	    }
+	}		
+}
+
+.u-button-info {
+	background-color: @defaultCor;
+	border: 1px solid @defaultCor;
+	color: #fff;
+
+	&:hover {
+		background-color: @hoverCor;
+		border: 1px solid @hoverCor;
+	}
+
+	&:active, &:focus{
+		background-color: @buttonActiveCor;
+		border: 1px solid @buttonActiveCor;
+	}
+}
+
+
+
+.u-popconfirm-confirm .u-button-primary {
+	background-color: @defaultCor;
+	border-color: @defaultCor;
+}
+
+/*-------弹窗提示信息  开始------*/	
+.financeApp-success {
+	position: relative;
+	width: 100%;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	text-align: center;
+	background-color: @f;
+	color: @3;	
+
+	.financeApp-success-wrap {
+		width: 100%;
+		height: 100%;
+	}
+}
+
+.financeApp-success-status {
+
+	.financeApp-success-icon {
+		margin: 0 auto;
+		height: 50px;
+		width: 50px;
+		.b-r-half;
+		background-color: @defaultCor;
+		line-height: 50px;
+		.tac;		
+		color: @f;
+
+		i.uf-correct {
+			font-size: 32px;
+		}		
+	}
+	.financeApp-success-title {
+		font-size:18px;
+		line-height: 50px;
+	}
+}
+
+.financeApp-success-detail {
+	position: relative;
+	margin: 0 auto;
+	height: 30px;
+	line-height: 55px;
+	.b-r-1;
+	background-color: @f;
+	padding: 0 26px;
+	text-align: center;
+
+	&> span:first-child{
+		margin-right: 40px;
+	}
+}
+
+
+.financeApp-success-step {
+	margin: 10px auto 0;
+	padding: 10px 70px;
+	background-color: @f;
+	.b-r-1;
+
+	.u-slider-dot {
+		border: none; 
+		background-color: #2db7f5;
+		height: 14px;
+		width: 14px;
+		bottom: -4px;
+	}
+
+	.u-slider-handle {
+		background-color: #2db7f5;
+    	border: none;
+	}
+
+	.financeApp-slider-track {
+		visibility: visible; 
+		left: 0%; 
+		width: 33.3333%;
+	}
+
+	.left0 {
+		left: 0%;
+	}
+	.left33 {
+		left: 33.3333%;
+	}
+	.left66 {
+		left: 66.6667%;
+	}
+	.left100 {
+		left: 100%;
+	}
+
+	.u-slider-rail, .u-slider-track {
+	    border-radius: 6px;
+	    height: 3px;
+	    position: absolute;
+	}
+}	
+
+.financeApp-success-buttons {
+	.u-button {
+		margin: 6px;
+
+		&.large-button {
+			height: 35px;
+		}
+	}
+	
+}
+/*-------弹窗提示信息  结束------*/	
+	
+
+.row-operations-item {
+	&:hover, &:active {
+		color: @defaultCor;
+	}
+}
+
+
+.apply-card-drop {
+	&.u-dropdown-menu {
+		border: none;
+	} 	
+	.btn-more-dropdown.u-dropdown-menu {		
+		height: auto!important;
+	}
+
+	.u-dropdown-menu-item {
+		.btn-cancel {
+			background-color: #fff!important;
+			border-color: @d9!important;
+			margin-left: 0!important;
+		}
+
+		.u-button {
+			font-size: 12px!important;
+			padding: .1rem 1.3rem!important;
+		}
+	}
+
+	li.u-dropdown-menu-item {
+		height: 32px!important;
+	}
+
+	.u-dropdown-menu-item-active {
+		background-color: #fff!important;
+	}
+}
+
+.u-switch {
+	&.apply-preview, &:after {
+		cursor: auto; 
+	}
+}
+
+.rc-calendar-clear-btn {
+	display: none;
+}
+
+
+.u-table {
+	tr:hover {
+		background-color: @tableHoverBg;
+	}
+}

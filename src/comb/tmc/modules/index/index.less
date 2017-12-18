@@ -1,0 +1,52 @@
+@import '../../utils/variables.less';
+@bg-color: #ffffff;
+@c-margin:15px;
+@border-color:#e3e7ed;
+
+.tmc_index_content {
+	min-width: 1260px;
+	display: flex;
+	flex-flow: row nowrap;
+	justify-content: center;
+	padding: 25px 57px;
+	.tmc_index_left {
+		min-width: 950px;
+		flex-grow: 1;
+		.tmc_left_top {
+			height: 220px;
+			background: @bg-color;
+			border: 1px solid @border-color;
+			border-radius: 2px;
+			display: flex;
+			justify-content: flex-start;
+		}
+		.tmc_left_bottom {
+			margin-top: @c-margin;
+			border: 1px solid @border-color;
+			border-radius: 2px;
+			height: 354px;
+			background: @bg-color;
+		}
+	}
+	.tmc_index_right {
+		min-width: 295px;
+		width: 295px;
+		margin-left: @c-margin;
+		.tmc_right_top {
+			height: 275px;
+			border: 1px solid @border-color;
+			border-radius: 2px;
+			background: @bg-color;
+		}
+		.tmc_right_bottom {
+			margin-top: @c-margin;
+			border: 1px solid @border-color;
+			border-radius: 2px;
+			height: 300px;
+			background: @bg-color;
+		}
+	}
+	.border-none{
+		border: none;
+	}
+}

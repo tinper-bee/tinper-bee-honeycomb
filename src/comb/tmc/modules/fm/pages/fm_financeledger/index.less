@@ -1,0 +1,99 @@
+@import '../../../../utils/publicStyle.less';
+@import '../../../../utils/variables.less';
+.fm-financeledger {
+    position: relative;
+    background: @w-color;
+    i.uf{
+        padding: 0;
+        color: #999999;
+    }
+	.item-credit {
+		height: 60px;
+		background: @w-color;
+		border-radius: 2px 2px 0 0;
+	}
+
+	.credit-title {
+		padding: 0;
+		span.bd-title-1 {
+			line-height: 28px;
+		}
+		.add-button {
+			width: 100px;
+			min-width: 80px !important;
+			margin-top: -3px;
+		}
+	}
+
+	.credit-search {
+		margin: 15px 16px;
+		float: right;
+		line-height: 0;
+	}
+    .u-tabs-bar{
+        border-bottom: 1px solid #E3E7ED ;
+    }
+    .u-tabs-tab{
+        padding: 14px 20px;
+        margin-right: 5px;
+        color:@t-tab-color;
+    }
+    .u-tabs-ink-bar{
+        width: 25px !important;
+        margin-left: 20%;
+        height: 3px;
+        background: @t-tab-color;
+    }
+    .u-table{
+        border: none;
+    }
+	.search-content {
+        display: flex;
+        height: 49px;
+        justify-content: flex-start;
+        align-items:center;
+        // align-content:center;
+		position: absolute;
+		right: 0;
+        top: 0;
+        z-index: 1000;
+		.search-item {
+            margin-left: 10px;
+            .refer{
+                margin: 0;
+            }
+            .u-form-control{
+                height: 28px;
+                line-height: 28px;
+            }
+            .u-select-selection--single{
+                height: 28px;
+                line-height: 28px;
+            }
+        }
+        .search-reset{
+            margin-right: 10px;
+        }
+        .search-button{
+            color:@w-color;
+            background: @t-btn-bgcolor;
+            padding: 1px 7px;
+        }
+        .search-reset{
+            height: 28px;
+            line-height: 28px;
+            text-align: center;
+            color: @t-btn-bgcolor;
+            cursor: pointer;
+        }
+    }
+    .width-240{
+        width: 240px;
+        .calendar-picker{
+            width: 240px !important;
+        }
+    }
+    .width-120{
+        width: 120px;
+    }
+}

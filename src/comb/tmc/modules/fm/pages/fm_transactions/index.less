@@ -1,0 +1,111 @@
+@import '~utils/variables.less';
+@bg-color: #ffffff;
+@c-margin:15px;
+@border-color: #e3e7ed;
+#fm-transactions {
+	.fm-transactions {
+		min-width: 1260px;
+		.listItem {
+			margin: 0 10px;
+			flex: 1;
+			border: 1px solid #e3e7ed;
+		}
+		.top {
+			min-width: 1260px;
+			display: flex;
+			flex-flow: row nowrap;
+			justify-content: space-between;
+			.top-listItem {
+				padding: 45px 15px 47px 15px;
+				width: 407px;
+				height: 247px;
+				background: rgba(255, 255, 255, 1);
+				border-radius: 2px;
+				display: flex;
+				flex-flow: row nowrap;
+				justify-content: space-between;
+				.listItem-left {
+					padding-left: 20px;
+					padding-top: 20px;
+					width: 200px;
+					height: 155px;
+					h4 {
+						font-size: 30px;
+						color: #666666;
+						.listItem-left-title {
+							color: #fc3607;
+						}
+					}
+					p {
+						margin-top: 10px;
+						margin-left: 4px;
+						font-size: 16px;
+						color: #ae8b74;
+					}
+					a {
+						margin-top: 15px;
+						margin-left: 4px;
+						display: flex;
+						width: 114px;
+						height: 32px;
+						align-items: center;
+						justify-content: center;
+						border: 1px solid #ff4e00;
+						color: #ff4e00;
+						border-radius: 16px;
+					}
+					a:hover {
+						cursor: pointer;
+					}
+				}
+				.listItem-right {
+					width: 155px;
+					height: 155px;
+				}
+			}
+		}
+		.bottom {
+			padding: 0 10px;
+			.bottom-item {
+				border: 1px solid #e3e7ed;
+				margin-top: 15px;
+				min-width: 1260px;
+				height: 317px;
+				background: rgba(255, 255, 255, 1);
+				border-radius: 2px;
+				h3 {
+					padding-left: 20px;
+					height: 50px;
+					line-height: 49px;
+					font-size: 16px;
+					border-bottom: 1px solid #e3e7ed;
+				}
+				.bottom-chart {
+					display: flex;
+					flex-flow: row nowrap;
+					justify-content: center;
+					align-items: center;
+					#bottomMychart {
+						width: 700px;
+						height: 265px;
+						margin-right: 100px;
+					}
+					.bottom-content {
+						display: flex;
+						flex-direction: column;
+						justify-content: center;
+						width: 190px;
+						span {
+							color: #333333;
+							font-size: 15px;
+						}
+						.bottom-contentOrg {
+							font-size: 20px;
+							color: rgba(223, 151, 42, 1);
+						}
+					}
+				}
+			}
+		}
+	}
+}

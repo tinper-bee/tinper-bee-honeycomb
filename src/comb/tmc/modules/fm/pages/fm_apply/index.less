@@ -1,0 +1,49 @@
+@import '../../../../utils/publicStyle.less';
+@import '../../../../utils/variables.less';
+.fm-apply {
+    .apply-list {
+        vertical-align: middle;
+        .apply-item {
+            width: 300px;
+            height: 100px;
+            margin-right: 20px;
+            display: inline-block;
+            border: 1px solid #E3E7ED;
+            padding: 23px 30px;
+            cursor: pointer;
+            background: @w-color;
+            &:last-child {
+                vertical-align: top;
+                .icon-box {
+                    background: url('../../../../static/images/repayprcpl.png') no-repeat center center;
+                }
+            }
+            .title-box {
+                display: inline-block;
+                &>.bd-title-1 {
+                    font-size: 16px;
+                    line-height: 25px;
+                    height: 25px;
+                    margin: 0;
+                    font-weight: 600;
+                }
+                &>p:last-child {
+                    font-size: 13px;
+                    color: #999;
+                    line-height: 18px;
+                    position: relative;
+                    top: 5px;
+                }
+            }
+            .icon-box {
+                float: right;
+                width: 52px;
+                height: 52px;
+                background: url('../../../../static/images/financepay.png') no-repeat center center;
+            }
+        }
+    }
+    .zijinyun-search {
+        margin-top: 14px;
+    }
+}

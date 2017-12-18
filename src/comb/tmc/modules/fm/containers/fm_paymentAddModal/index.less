@@ -1,0 +1,59 @@
+@keyframes fadeIn {
+    0% {left: 100%;opacity: 0;transform: translateY(0)}
+    100% {left:calc(~"100% - 900px");opacity: 1;transform: translateY(0)}
+}
+@keyframes fadeOut {
+    0% {left: calc(~"100% - 900px");opacity: 1;transform: translateY(0)}
+    100% {left:100%;opacity: 0;transform: translateY(0)}
+}
+.paymentAddModal.fade .u-modal-dialog {
+    animation: fadeOut .3s linear !important;
+}
+.paymentAddModal.fade.in .u-modal-dialog {
+    animation: fadeIn .3s linear !important;
+}
+.paymentAddModal {
+    .u-row {
+        margin-left: 0;
+    }
+    .u-input-group-outer {
+        padding-left: 10px;
+    }
+    .businessForm {
+        width: 90%;
+        margin: 0 auto;
+    }
+    .u-modal-lg {
+        position: absolute;
+        right: 0;
+        top: 0;
+        margin-top: 0;
+    }
+    .paymentAddSpan {
+        float: right;
+        margin-right: 60px;
+    }
+    .u-input-group.simple .u-form-control:not(:last-child) {
+        padding-right: 13px;
+    }
+    .u-form-control {
+        border-radius: 3px !important;
+    }
+    .u-modal-dialog {
+        position: absolute;
+        margin: 0;
+    }
+    .u-form-error-inline{
+        margin-left: 70px !important;
+    }
+    .refer {
+        width: 240px;
+    }
+    .u-label,.transtatus,.traneventid {
+        height:21px; 
+        font-size:13px;
+        font-family:PingFangHK-Regular;
+        color:rgba(102,102,102,1);
+        line-height:21px;
+    }
+}

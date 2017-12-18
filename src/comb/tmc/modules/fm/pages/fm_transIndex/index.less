@@ -1,0 +1,127 @@
+.fl {
+	float: left;
+}
+.fr {
+	float: right;
+}
+.cf{
+    *zoom: 1;
+
+    &:before, &:after {
+		display: table;
+    	content: " ";
+    }
+    &:after {
+    	clear: both;
+    }
+}
+
+@activeColor: #FC3607;
+@infoColor: #AE8B74;
+
+.fm-index-wrap {
+	width: 94vw;
+	margin: 2vh auto;
+
+	.fm-top-wrap {
+		height: 32vh;
+		margin-bottom: 3vh;
+		width: 100%;
+		display: flex;
+		justify-content: space-between;	
+		align-content: stretch;
+
+		li {
+			width: 30vw;
+			padding: 5vh 3vw;
+			background-color: #fff;
+			height: 100%;
+
+			.pad {
+				padding: 4vh 2vw;
+				display: flex;
+				justify-content: space-between;	
+				align-content: stretch;
+			}
+
+			.left-center {				
+				margin: 0 auto;
+			}
+ 		}
+	}
+
+	.fm-bottom-wrap {
+		height: 45vh;
+		width: 100%;
+		display: flex;
+		justify-content: space-between;	
+		align-content: stretch;
+
+		li {
+			width: 46vw;
+			background-color: #fff;
+			height: 100%;
+
+			div.fm-bottom-section {
+				padding:30px 50px;
+				height: 100%;
+				width: 100%;
+			}
+		}
+	}
+
+	img {
+		height: 100%;
+	}
+		
+}
+
+.fm-bonds-img , .fm-loan-img {
+	height: 100%;
+	max-height: 100%;
+}
+
+.fm-bonds-main, .fm-loan-main {
+	height: 100%;
+	padding-top: 4vh;
+
+	.fm-bonds-text {
+		color: @activeColor;
+	}
+
+	.fm-bonds-info {
+		color: @infoColor;
+	}
+
+	.fm-preview-btn {
+		&:hover {
+			background-color: @activeColor;
+			color: #fff;
+		}
+	}
+
+	&>div {
+		width: 100%;
+
+		&:first-child {
+			font-size: 30px;
+			font-weight: 600;
+			line-height:30px;
+		}
+		&:nth-child(2) {
+			font-size: 16px;
+			line-height: 48px;
+		}
+		&:last-child {
+			height: 36px;
+			width: 114px;
+			font-size: 14px;
+			border: 1px solid  @activeColor;
+			text-align: center;
+			line-height: 34px;
+			border-radius: 100px;
+			box-sizing: border-box;
+			cursor: pointer;
+		}
+	}
+}

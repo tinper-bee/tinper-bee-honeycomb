@@ -1,0 +1,1941 @@
+/* 授信协议详情页 */
+import React, { Component } from 'react';
+import {
+	Breadcrumb,
+	Button,
+	Table,
+	FormGroup,
+	InputGroup,
+	ButtonGroup,
+	Icon,
+	Checkbox,
+	Row,
+	Col,
+	Label,
+	Select,
+	Modal,
+	Dropdown
+} from 'tinper-bee';
+import Menu, { Item as MenuItem, Divider, SubMenu, MenuItemGroup } from 'bee-menus';
+import Form from 'bee-form';
+import Affix from 'bee-affix';
+import FormControl from 'bee-form-control';
+import DatePicker from 'bee-datepicker';
+import moment from 'moment';
+import InputRender from 'bee-table/build/render/InputRender.js';
+import DateRender from 'bee-table/build/render/DateRender';
+import SelectRender from 'bee-table/build/render/SelectRender';
+import zhCN from 'rc-calendar/lib/locale/zh_CN';
+import Refer from '../../../../../containers/Refer';
+import TextArea from '../../fm_applycard/TextareaItem';
+import ModifyRecordModal from '../ModifyRecord';
+import DeleteModal from '../../../../../containers/DeleteModal';
+
+import NoData from '../../../../../containers/NoData';
+import * as enumData from '../enumData';
+import Ajax from '../../../../../utils/ajax.js';
+import { numFormat, toast } from '../../../../../utils/utils.js';
+import './index.less';
+import InputItem from '../../../../../containers/FormItems/InputItem';
+import SelectItem from '../../../../../containers/FormItems/SelectItem';
+import DateTimePickerItem from '../../../../../containers/FormItems/DateTimePickerItem';
+
+const { RangePicker } = DatePicker;
+const FormItem = Form.FormItem;
+const Option = Select.Option;
+const rootURL = window.reqURL.fm + 'fm/';
+
+let operationType = ''; // 通过何种操作进入页面  是新增还是修改还是变更
+let count = 1; //新增行生成key时用
+
+export default class CreditDetail extends Component {
+	constructor() {
+		super();
+		this.state = {
+			credittype: {
+				title: '授信种类',
+				columns: [
+					{
+						title: '编码',
+						key: 'bm',
+						dataIndex: 'code.display',
+						width: 200,
+						render: (text, record, index) =>
+							this.state.editable && !this.state.disabled ? (
+								<InputItem
+									value={record.code.value}
+									type="customer"
+									defaultValue={record.code.value}
+									onChange={(value) => this.onRowChange('credittype', index, 'code', value)}
+								/>
+							) : (
+								record.code.value || '-'
+							)
+					},
+					{
+						title: '类型',
+						key: 'lx',
+						dataIndex: 'type.display',
+						width: 150,
+						render: (text, record, index) =>
+							this.state.editable && !this.state.disabled ? (
+								<Refer
+									ctx={'/uitemplate_web'}
+									refModelUrl={'/bd/cctypeRef/'}
+									refCode={'cctypeRef'}
+									refName={'授信类别'}
+									value={this.state.typeRef[index] || {}}
+									onChange={(value) => {
+										this.state.typeRef[index] = value;
+										this.onTableReferChange('credittype', index, 'type', value);
+									}}
+								/>
+							) : (
+								text || '-'
+							)
+					},
+					{
+						title: '币种',
+						key: 'bz',
+						dataIndex: 'currenyid.display',
+						width: 150,
+						render: (text, record, index) => {
+							return this.state.editable && !this.state.disabled ? (
+								<Refer
+									ctx={'/uitemplate_web'}
+									refModelUrl={'/bd/currencyRef/'}
+									refCode={'currencyRef'}
+									refName={'币种'}
+									value={this.state.currtypeidRefTab0[index] || {}}
+									onChange={(value) => {
+										this.state.currtypeidRefTab0[index] = value;
+										this.onTableReferChange('credittype', index, 'currenyid', value);
+									}}
+								/>
+							) : (
+								text || '-'
+							);
+						}
+					},
+					{
+						title: '金额',
+						key: 'je',
+						dataIndex: 'money.value',
+						width: 150,
+						render: (text, record, index) =>
+							this.state.editable && !this.state.disabled ? (
+								<InputItem
+									type="customer"
+									value={numFormat(record.money.value, '')}
+									defaultValue={numFormat(record.money.value, '')}
+									onChange={(value) => this.onRowChange('credittype', index, 'money', value)}
+								/>
+							) : isNaN(numFormat(record.money.value, '')) ? (
+								'-'
+							) : (
+								numFormat(record.money.value, '')
+							)
+					}
+				],
+				data: [],
+				showTab: false
+			},
+			creditdetail: {
+				title: '授信明细',
+				columns: [
+					{
+						title: '授信使用单位',
+						key: 'sxsydw',
+						dataIndex: 'credituseunit.value',
+						width: 200,
+						render: (text, record, index) =>
+							this.state.creditagree.agreetype.value === 'group' &&
+							this.state.editable &&
+							!this.state.disabled ? (
+								<Refer
+									ctx={'/uitemplate_web'}
+									refModelUrl={'/bd/finorgRef/'}
+									refCode={'finorgRef'}
+									refName={'财务组织'}
+									value={this.state.credituseunitRef[index] || {}}
+									onChange={(value) => {
+										this.state.credituseunitRef[index] = value;
+										this.onTableReferChange('creditdetail', index, 'credittype', value);
+									}}
+								/>
+							) : (
+								text || '-'
+							)
+					},
+					{
+						title: '授信类别',
+						key: 'sxlb',
+						dataIndex: 'credittype.display',
+						width: 130,
+						render: (text, record, index) =>
+							this.state.editable &&
+							!this.state.disabled &&
+							this.state.creditagree.credittypecontral.value ? (
+								<Refer
+									ctx={'/uitemplate_web'}
+									refModelUrl={'/bd/cctypeRef/'}
+									refCode={'cctypeRef'}
+									refName={'授信类别'}
+									value={this.state.credittypeRef[index] || {}}
+									onChange={(value) => {
+										this.state.credittypeRef[index] = value;
+										this.onTableReferChange('creditdetail', index, 'credittype', value);
+									}}
+								/>
+							) : (
+								this.state.creditdetail.data[index].credittype.display || '-'
+							)
+					},
+					{
+						title: '控制方式',
+						key: 'kzfs',
+						dataIndex: 'controltype.display',
+						width: 130,
+						render: (text, record, index) =>
+							this.state.editable && !this.state.disabled ? (
+								<SelectRender
+									isclickTrigger={true}
+									value={text}
+									onChange={(value) => this.onRowChange('creditdetail', index, 'controltype', value)}
+									dataSource={enumData.controlTypeAry}
+								>
+									<Option value={'prompt'}>提示</Option>
+									<Option value={'control'}>控制</Option>
+									<Option value={'uncontrol'}>不控制</Option>
+								</SelectRender>
+							) : (
+								this.enumMapping(record.controltype.value, enumData.controlTypeAry)
+							)
+					},
+					{
+						title: '币种',
+						key: 'bz',
+						dataIndex: 'currtypeid.display',
+						width: 130,
+						render: (text, record, index) =>
+							this.state.editable && !this.state.disabled ? (
+								<Refer
+									ctx={'/uitemplate_web'}
+									refModelUrl={'/bd/currencyRef/'}
+									refCode={'currencyRef'}
+									refName={'币种'}
+									value={this.state.currtypeidRefTab1[index] || {}}
+									onChange={(value) => {
+										this.state.currtypeidRefTab1[index] = value;
+										this.onTableReferChange('creditdetail', index, 'currtypeid', value);
+									}}
+								/>
+							) : (
+								record.currtypeid.display || '-'
+							)
+					},
+					{
+						title: '原币金额',
+						key: 'ybje',
+						dataIndex: 'money.value',
+						width: 130,
+						render: (text, record, index) =>
+							this.state.editable && !this.state.disabled ? (
+								<InputItem
+									type="customer"
+									value={numFormat(record.money.value, '')}
+									defaultValue={numFormat(record.money.value, '')}
+									onChange={(value) => this.onRowChange('creditdetail', index, 'money', value)}
+								/>
+							) : isNaN(numFormat(record.money.value, '')) ? (
+								'-'
+							) : (
+								numFormat(record.money.value, '')
+							)
+					},
+					{
+						title: '贷款银行',
+						key: 'khyh',
+						dataIndex: 'loanbankid.display',
+						width: 180,
+						render: (text, record, index) =>
+							this.state.editable && !this.state.disabled ? (
+								<Refer
+									ctx={'/uitemplate_web'}
+									refModelUrl={'/bd/finbranchRef/'}
+									refCode={'finbranchRef'}
+									refName={'金融网点'}
+									value={this.state.loanbankidRef[index]}
+									onChange={(value) => {
+										this.state.loanbankidRef[index] = value;
+										this.onTableReferChange('creditdetail', index, 'loanbankid', value);
+									}}
+									multiLevelMenu={[
+										{
+											name: [ '金融机构' ],
+											code: [ 'refname' ]
+										},
+										{
+											name: [ '金融网点' ],
+											code: [ 'refname' ]
+										}
+									]}
+								/>
+							) : (
+								record.loanbankid.display || '-'
+							)
+					}
+				],
+				data: [],
+				showTab: true
+			},
+			creditguarantee: {
+				title: '担保合同',
+				columns: [
+					{
+						title: '担保合同',
+						key: 'dbht',
+						dataIndex: 'guarantee.display',
+						width: 200,
+						render: (text, record, index) =>
+							this.state.editable ? (
+								// 请改正 参照来源未知
+								<Refer
+									ctx={'/uitemplate_web'}
+									refModelUrl={'/fm/contractref/'}
+									refCode={'contractcode'}
+									refName={'合同'}
+									value={this.state.guaranteeRef[index]}
+									onChange={(value) => {
+										this.state.guaranteeRef[index] = value;
+										this.onTableReferChange('creditguarantee', index, 'guarantee', value);
+									}}
+								/>
+							) : (
+								record.guarantee.display || ''
+							)
+					},
+					{
+						title: '担保币种',
+						key: 'dbbz',
+						dataIndex: 'currtypeid.display',
+						width: 150,
+						render: (text, record, index) =>
+							this.state.editable ? (
+								<Refer
+									ctx={'/uitemplate_web'}
+									refModelUrl={'/bd/currencyRef/'}
+									refCode={'currencyRef'}
+									refName={'币种'}
+									value={this.state.currtypeidRefTab2[index] || {}}
+									onChange={(value) => {
+										this.state.currtypeidRefTab2[index] = value;
+										this.onTableReferChange('creditguarantee', index, 'currtypeid', value);
+									}}
+								/>
+							) : (
+								record.currtypeid.display || ''
+							)
+					},
+					{
+						title: '占用授信担保额度',
+						key: 'zysxdbed',
+						dataIndex: 'occquota.display',
+						width: 150,
+						render: (text, record, index) =>
+							this.state.editable ? (
+								<InputItem
+									type="customer"
+									value={record.occquota.value}
+									defaultValue={record.occquota.value}
+									onChange={(value) => this.onRowChange('creditguarantee', index, 'occquota', value)}
+								/>
+							) : (
+								record.occquota.value || ''
+							)
+					}
+				],
+				data: [],
+				showTab: false
+			},
+			creditagree: {
+				orgid: { display: '', value: null }, // 组织id  受信人 授信使用单位
+				agreestatus: { display: '-', value: '0' }, // 协议状态
+				vbillstatus: { display: '-', value: '0' }, // 审批状态
+				agreebankid: { display: '', value: null }, // 授信银行
+				currenyid: { display: '', value: null }, // 币种
+				creditorgid: { display: '', value: null },
+				inheritagree: { display: '', value: null }, // 继承授信协议
+				agreecode: { display: '', value: null }, // 协议编码
+				money: { display: '', value: null }, // 原币额度
+				agreetype: { display: '企业授信', value: 'org' }, // 协议类型
+				isinherited: { display: null, value: false }, // 被继承
+				version: { display: '-', value: '-' }, // 版本号
+				controltype: { display: '', value: null }, // 控制方式
+				actualenddate: { display: '', value: null }, // 实际结束日期
+				creditcontroltype: { display: '', value: null }, // 授信控制方式
+				memo: { display: '', value: null }, // 备注
+
+				creditperiod: { display: '', value: null }, // 授信期间
+				periodunit: { display: '', value: null }, // 期间单位
+				begindate: { display: '', value: null }, // 起始日期
+				enddate: { display: '', value: null }, // 结束日期
+				guaranteetype: { display: '信用', value: '1' }, // 担保方式
+				contract: { display: '', value: null }, //担保合同
+				credittypecontral: { display: null, value: false }, //分授信类别控制
+
+				code: { display: '', value: null }, // 编码
+				type: { display: 'null', value: null }, // 类型
+				money: { display: null, value: null }, // 金额
+
+				creator: { display: '-', value: null }, // 创建人
+				approver: { display: '-', value: null }, // 审批人
+				creationtime: { display: '', value: null }, // 录入时间
+				approvedate: { display: '', value: null } // 审批时间
+			}, // 表头卡片
+			id: null, //主表主键
+			ts: null,
+			orgidRef: {}, //组织参照
+			agreebankidRef: {}, // 授信银行参照
+			currenyidRef: {}, //币种参照
+			inheritagreeRef: {}, // 继承授信协议参照
+			typeRef: [], // 授信种类下的类型参照
+			credituseunitRef: [], // 授信使用单位参照
+			credittypeRef: [], // 授信明细上的授信类别参照
+			loanbankidRef: [], //贷款银行参照
+			guaranteeRef: [], //担保合同参照
+			currtypeidRefTab0: [], //授信种类上的币种参照
+			currtypeidRefTab1: [], //授信明细上的币种参照
+			currtypeidRefTab2: [], //担保合同上的币种参照
+			modifyRecordData: [], // 变更记录数据
+			activeTab: 0, // 顶部锚点跳转tab
+			active_table_tab: 'creditdetail', // 表格tab 默认授信明细高亮
+			checkFormNow: false, // 临时试验用，可删除
+			editable: true, // 编辑态和浏览态切换
+			disabled: false, // 变更态和浏览态切换 变更操作 允许变更的字段: 控制方式  原币额度 担保方式
+			arrow: false, // 更多按钮是下拉是否展开
+			showModal: false, // 变更记录模态框
+			credittype_deletedRow: { rows: [] }, //授信种类删除的行
+			creditdetail_deletedRow: { rows: [] }, //授信明细删除的行
+			creditguarantee_deletedRow: { rows: [] }, //担保合同删除的行
+			isReady: true // 能否发送数据的开关
+		};
+		this.operation = {
+			title: '操作',
+			key: 'cz',
+			width: 150,
+			render: (text, record, index) =>
+				this.state.editable ? (
+					/* 删除 */
+					<DeleteModal onConfirm={() => this.onRowDel(this.state.active_table_tab, index, text, record)} />
+				) : null
+		};
+	}
+	// 组件挂载前给表格加操作列，并且只加一次
+	componentWillMount() {
+		let hasPushedOperation = this.state.credittype.columns.some((item) => item.title === '操作');
+		if (hasPushedOperation) return;
+
+		[ 'credittype', 'creditdetail', 'creditguarantee' ].forEach((item) => {
+			this.state[item].columns.push(this.operation);
+		});
+	}
+	componentDidMount() {
+		const { type } = this.props.location.query;
+		if (type == 'add') return;
+		const { agreestatus, id } = this.props.location.state;
+		console.log('上一页传递过来的信息', type, this.props.location.state); //里面存了id的值
+		type === 'view' && this.setState({ editable: false });
+		type === 'modify' && this.setState({ disabled: true });
+		operationType = type;
+		this.setState(
+			{
+				id,
+				creditagree: {
+					...this.state.creditagree,
+					agreestatus
+				}
+			},
+			this.selectById
+		);
+	}
+	componentDidUnmount() {
+		operationType = '';
+	}
+
+	// 滚动到锚点位置
+	scrollToAnchor = (anchorName, activeTab) => {
+		if (anchorName) {
+			let anchorElement = document.getElementById(anchorName);
+			if (anchorElement) {
+				anchorElement.scrollIntoView({
+					behavior: 'smooth',
+					block: 'center',
+					inline: 'nearest'
+				});
+			}
+		}
+		this.setState({ activeTab });
+	};
+
+	// 取消按钮
+	cancelBtn = () => {
+		this.props.router.push({
+			pathname: '/fm/creditmanage'
+		});
+	};
+
+	// 保存按钮  新增保存,修改保存,变更保存
+	saveBtn = () => {
+		if (this.state.isReady) {
+			this.state.isReady = false;
+			let path = operationType == 'modify' ? 'change' : 'save'; // 新增和修改保存都使用save接口,变更保存使用change接口
+			let { creditagree, credittype, creditdetail, creditguarantee } = this.state;
+			let { creditagreeid, controltype, money, guaranteetype, memo } = creditagree;
+			let creditagreeSend = [],
+				credittypeSend = [],
+				creditdetailSend = [],
+				creditguaranteeSend = [];
+
+			let creditagreeValues = {};
+			for (let attr in creditagree) {
+				creditagreeValues[attr] = {
+					display: creditagree[attr].display,
+					value: creditagree[attr].value
+				};
+			}
+			creditagreeSend.push({
+				values: creditagreeValues
+			});
+
+			credittype.data.forEach((item, index) => {
+				credittypeSend.push({
+					status: item.myStatus,
+					values: {
+						code: { value: item.code.value },
+						type: { display: item.type.display, value: item.type.value },
+						currenyid: item.currenyid,
+						money: { value: item.money.value },
+						id: { value: item.id.value },
+						creditagreeid: { value: item.creditagreeid.value },
+						tenantid: { value: item.tenantid.value },
+						sysid: { value: item.sysid.value },
+						ts: { value: item.ts.value },
+						dr: { value: item.dr.value }
+					}
+				});
+			});
+			creditdetail.data.forEach((item, index) => {
+				creditdetailSend.push({
+					status: item.myStatus,
+					values: {
+						credituseunit: {
+							display: item.credituseunit.display,
+							value: item.credituseunit.value
+						},
+						credittype: { display: item.credittype.display, value: item.credittype.value },
+						controltype: { value: item.controltype.value },
+						currtypeid: {
+							display: item.currtypeid.display,
+							value: item.currtypeid.value
+						},
+						money: { value: item.money.value },
+						loanbankid: {
+							display: item.loanbankid.display,
+							value: item.loanbankid.value
+						},
+						id: { value: item.id.value },
+						creditagreeid: { value: item.creditagreeid.value },
+						tenantid: { value: item.tenantid.value },
+						sysid: { value: item.sysid.value },
+						ts: { value: item.ts.value },
+						dr: { value: item.dr.value }
+					}
+				});
+			});
+			creditguarantee.data.forEach((item, index) => {
+				creditguaranteeSend.push({
+					status: item.myStatus,
+					values: {
+						guarantee: {
+							display: item.guarantee.display,
+							value: item.guarantee.value
+						},
+						currtypeid: {
+							display: item.currtypeid.display,
+							value: item.currtypeid.value
+						},
+						occquota: { value: item.occquota.value },
+						creditagreeid: { value: item.creditagreeid.value },
+						id: { value: item.id.value },
+						tenantid: { value: item.tenantid.value },
+						sysid: { value: item.sysid.value },
+						ts: { value: item.ts.value },
+						dr: { value: item.dr.value }
+					}
+				});
+			});
+			// 发送的数据为从状态中取到的每一行的数据据拼接上删除的行
+			let data = {
+				creditagree: { rows: creditagreeSend },
+				credittype: { rows: credittypeSend.concat(this.state.credittype_deletedRow.rows) },
+				creditdetail: { rows: creditdetailSend.concat(this.state.creditdetail_deletedRow.rows) },
+				creditguarantee: { rows: creditguaranteeSend.concat(this.state.creditguarantee_deletedRow.rows) }
+			};
+			console.log('保存时的state', this.state);
+			console.log('保存时发送的数据', data);
+			Ajax({
+				url: rootURL + `creditagree/${path}`,
+				data: { data },
+				success: (res) => {
+					let { data, message, success } = res;
+					if (success) {
+						operationType = '';
+						toast({ content: '保存成功!' });
+						this.setState(
+							{
+								editable: false,
+								id: data.creditagree.rows[0].values.id.value
+							},
+							this.selectById
+						);
+					}
+					this.state.isReady = true;
+				},
+				error: (res) => {
+					if (res === '') {
+						return;
+					} else {
+						toast({ content: res.message, color: 'danger' });
+						this.setState({
+							data: []
+						});
+					}
+					this.state.isReady = true;
+				}
+			});
+		}
+	};
+	// 操作按钮
+	handleOperationType = (operation) => {
+		// 十一种按钮: 提交 收回 修改 删除版本 变更 变更记录 结束 取消结束 保存 返回 更多
+		// 涉及editable的操作   修改,变更时editable变成true,保存时editable变成false
+		// 涉及disabled的操作 变更时disabled变成true,保存时disabled变成false
+		// 涉及showModal的操作  变更记录时showModal变成true
+		// 剩下的提交,收回,删除版本,结束,取消结束 弹窗提醒
+		// 返回跳到上一页,更多展开按钮列表
+		let { id, ts } = this.state.creditagree;
+		let dorpdownMenu = document.getElementsByClassName('dorpdown-menu')[0];
+		switch (operation) {
+			case 'edit':
+				console.log('修改');
+				operationType = 'edit';
+				this.setState({
+					editable: true,
+					arrow: false
+				});
+				dorpdownMenu.style.display = 'none';
+				break;
+			case 'modify':
+				console.log('变更');
+				operationType = 'modify';
+				this.setState({
+					active_table_tab: 'creditguarantee',
+					editable: true,
+					disabled: true,
+					arrow: false
+				});
+				dorpdownMenu.style.display = 'none';
+				break;
+			case 'modifyrecord':
+				console.log('变更记录');
+				this.setState({
+					showModal: true
+				});
+				this.getModifyRecordData();
+				break;
+			case 'commit':
+				console.log('提交');
+				this.newRequest('commit', id, ts);
+				break;
+			case 'unCommit':
+				console.log('收回');
+				this.newRequest('unCommit', id, ts);
+				break;
+			case 'end':
+				console.log('结束');
+				this.newRequest('end', id, ts);
+				break;
+			case 'unend':
+				console.log('取消结束');
+				this.newRequest('unend', id, ts);
+				break;
+			case 'delversion':
+				console.log('删除');
+				this.newRequest('delversion', id, ts);
+				break;
+			default:
+				break;
+		}
+	};
+
+	// 删除,提交,取消提交,结束,取消结束 接口
+	newRequest = (path, id, ts) => {
+		if (this.state.isReady) {
+			this.state.isReady = false;
+			const pathMatching = [
+				{ path: 'commit', type: '提交' },
+				{ path: 'unCommit', type: '收回' },
+				{ path: 'end', type: '结束' },
+				{ path: 'unend', type: '取消结束' },
+				{ path: 'delversion', type: '版本删除' }
+			];
+			let matched = pathMatching.find((item) => item.path == path);
+			let data = {
+				creditagree: {
+					rows: [ { values: { id, ts } } ]
+				}
+			};
+
+			Ajax({
+				url: rootURL + `creditagree/${path}`,
+				data: { data },
+				success: (res) => {
+					let { data, message, success } = res;
+					if (success) {
+						toast({ content: `${matched.type}成功！` });
+						let id = data.creditagree.rows[0].values.id.value;
+						this.setState({ id }, this.selectById);
+					}
+					this.state.isReady = true;
+				},
+				error: (res) => {
+					if (res === '') {
+						return;
+					} else {
+						toast({ content: res.message, color: 'danger' });
+					}
+					this.state.isReady = true;
+				}
+			});
+		}
+	};
+
+	// 卡片的文本框，下拉框，文本域内容改变时
+	handleInputChange = (key, value) => {
+		console.log(key, value);
+		// key 对应的字段
+		// value 要传给后台的value
+		let display;
+		if (typeof value === 'object') {
+			display = value.label;
+			value = value.key;
+		} else {
+			display = value;
+		}
+		if (key === 'guaranteetype' && value == 1) {
+			// 担保方式为信用时不显示担保合同表格 并且将之前的担保合同表格清空
+			this.state.creditguarantee.showTab = false;
+			this.state.active_table_tab = 'creditdetail';
+			// this.state.creditguarantee.data = [];
+			// 把担保合同列表清空 如果是新增的记录,state中增加删除,是后台返回的记录,status变成3
+			this.state.creditguarantee.data.forEach((item, index) => {
+				if (item.id.value) {
+					// 后台返回的记录
+					item.myStatus = 3;
+				} else {
+					// 新增的记录
+					this.state.credittype.data.splice(index, 1);
+				}
+			});
+		} else if (key === 'guaranteetype' && value != 1) {
+			this.state.creditguarantee.showTab = true;
+		}
+		if (key === 'credittypecontral' && value == false) {
+			// 不勾选分授信类别控制时不显示授信类别表格  并且将之前的授信类别表格清空 授信明细下的授信类别置空
+			this.state.active_table_tab = 'creditdetail';
+			this.state.credittype.showTab = false;
+			this.state.creditdetail.data.forEach((item) => {
+				item.myStatus = 1;
+				item.credittype = {
+					display: '',
+					value: null
+				};
+			});
+			this.state.credittypeRef.forEach((item) => {
+				item.refname = null;
+				item.refpk = null;
+			});
+			// 把授信类别列表清空 如果是新增的记录,state中直接删除,是已有的记录,status变成3
+			this.state.credittype.data.forEach((item, index) => {
+				if (item.id.value) {
+					// 后台返回的记录
+					item.myStatus = 3;
+				} else {
+					// 新增的记录
+					this.state.credittype.data.splice(index, 1);
+				}
+			});
+		} else if (key === 'credittypecontral' && value != false) {
+			this.state.credittype.showTab = true;
+		}
+		this.setState({
+			creditagree: {
+				...this.state.creditagree,
+				[key]: {
+					...this.state.creditagree[key],
+					display,
+					value
+				}
+			}
+		});
+	};
+
+	// 卡片的参照内容改变时
+	handleRefChange = (key, value) => {
+		console.log(key, value);
+		if (!value.refpk) {
+			value.refpk = null;
+			value.name = null;
+		}
+		this.setState({
+			creditagree: {
+				...this.state.creditagree,
+				[key]: {
+					...this.state.creditagree[key],
+					display: value.refname,
+					value: value.refpk
+				}
+			}
+		});
+	};
+	// 获取详情页面数据
+	selectById = () => {
+		Ajax({
+			url: rootURL + `creditagree/selectById`,
+			data: {
+				id: this.state.id //主表主键
+			},
+			success: (res) => {
+				let { data, message, success } = res;
+				console.log('请求回来的数据', res.data);
+				if (success) {
+					if (!data) return;
+					let { creditagree, credittype, creditdetail, creditguarantee } = data;
+
+					// 参照显示处理
+					let refMappingAry = [
+						{
+							section: 'creditagree',
+							from: 'agreebankid',
+							to: 'agreebankidRef'
+						},
+						{ section: 'creditagree', from: 'currenyid', to: 'currenyidRef' },
+						{
+							section: 'creditagree',
+							from: 'inheritagree',
+							to: 'inheritagreeRef'
+						},
+						{
+							section: 'credittype',
+							from: 'type',
+							to: 'typeRef'
+						},
+						{
+							section: 'credittype',
+							from: 'currenyid',
+							to: 'currtypeidRefTab0'
+						},
+						{
+							section: 'creditdetail',
+							from: 'credituseunit',
+							to: 'credituseunitRef'
+						},
+						{
+							section: 'creditdetail',
+							from: 'credittype',
+							to: 'credittypeRef'
+						},
+						{
+							section: 'creditdetail',
+							from: 'loanbankid',
+							to: 'loanbankidRef'
+						},
+						{
+							section: 'creditdetail',
+							from: 'currtypeid',
+							to: 'currtypeidRefTab1'
+						},
+						{
+							section: 'creditguarantee',
+							from: 'currtypeid',
+							to: 'currtypeidRefTab2'
+						},
+						{
+							section: 'creditguarantee',
+							from: 'guarantee',
+							to: 'guaranteeRef'
+						}
+					];
+
+					// 分授信类别控制时显示授信种类表格
+					if (creditagree.rows[0].values.credittypecontral.value) {
+						this.setState({
+							credittype: {
+								...this.state.credittype,
+								showTab: true
+							}
+						});
+					}
+					// 担保方式为不为信用时显示担保合同表格
+					if (creditagree.rows[0].values.guaranteetype.value !== '1') {
+						this.setState({
+							creditguarantee: {
+								...this.state.creditguarantee,
+								showTab: true
+							}
+						});
+					}
+					refMappingAry.forEach((item) => {
+						if (item.section == 'creditagree') {
+							this.state[item.to].refname = data[item.section].rows[0].values[item.from].display;
+							this.state[item.to].refpk = data[item.section].rows[0].values[item.from].value;
+						} else {
+							this.state[item.to] = [];
+							data[item.section] &&
+								data[item.section].rows.forEach((cur) => {
+									this.state[item.to].push({
+										refname: cur.values[item.from].display,
+										refpk: cur.values[item.from].value
+									});
+								});
+						}
+					});
+
+					let dataSource0 = credittype ? this.formatData(credittype.rows) : [];
+					let dataSource1 = creditdetail ? this.formatData(creditdetail.rows) : [];
+					let dataSource2 = creditguarantee ? this.formatData(creditguarantee.rows) : [];
+					// 原币金额保留两位小数
+					creditagree.rows[0].values.money.value = (creditagree.rows[0].values.money.value - 0).toFixed(2);
+					this.setState({
+						creditagree: creditagree.rows[0].values,
+						credittype: {
+							...this.state.credittype,
+							data: dataSource0
+						},
+						creditdetail: {
+							...this.state.creditdetail,
+							data: dataSource1
+						},
+						creditguarantee: {
+							...this.state.creditguarantee,
+							data: dataSource2
+						}
+					});
+				} else {
+					toast({ content: message, color: 'warning' });
+					this.err();
+				}
+			},
+			error: (res) => {
+				if (res === '') {
+					return;
+				} else {
+					console.log('danger', res.message);
+					toast({ content: res.message, color: 'danger' });
+					this.setState({
+						data: []
+					});
+				}
+			}
+		});
+	};
+
+	// 处理后台返回的数据
+	formatData = (data) => {
+		let result = [];
+		data &&
+			data.forEach((item, index) => {
+				item.values.key = index;
+				item.values.myStatus = 0; //增加一个myStatus属性,后面增删改的时候修改传给后台的status时使用
+				result.push(item.values);
+			});
+		return result;
+	};
+
+	// 下拉列表枚举值映射
+	enumMapping = (value, ary) => {
+		let result = ary.find((item, index) => item.value == value);
+		if (!result) return '-';
+		return result.key;
+	};
+
+	disabledDate = (current) => {
+		let begin = moment(this.state.creditagree.begindate.value);
+		return current && current.valueOf() < begin.valueOf();
+	};
+
+	// 获取变更记录表格数据
+	getModifyRecordData = () => {
+		let { id } = this.state;
+		Ajax({
+			url: rootURL + `creditagree/recordchange`,
+			data: { id },
+			success: (res) => {
+				let { data, message, success } = res;
+				this.setState({
+					modifyRecordData: this.formatData(res.data.creditagree.rows)
+				});
+			},
+			error: (res) => {
+				if (res === '') {
+					return;
+				} else {
+					console.log('danger', res.message);
+					toast({ content: res.message, color: 'danger' });
+					this.setState({
+						data: []
+					});
+				}
+			}
+		});
+	};
+
+	// 点击授信担保信息子表顶部的标签
+	tableTabClick = (tabName) => {
+		this.setState({
+			active_table_tab: tabName
+		});
+	};
+
+	// 点击表格的新增按钮
+	onRowAdd = () => {
+		let { active_table_tab, credittype, creditdetail, creditguarantee } = this.state;
+		console.log(active_table_tab + '表格新增行');
+		let valueObj = {
+			display: null,
+			value: null,
+			scale: -1
+		};
+
+		let newRow0 = {
+			myStatus: 2,
+			key: 'new' + count,
+			tempid: 'new' + count,
+			id: JSON.parse(JSON.stringify(valueObj)),
+			code: JSON.parse(JSON.stringify(valueObj)),
+			currenyid: JSON.parse(JSON.stringify(valueObj)),
+			type: JSON.parse(JSON.stringify(valueObj)),
+			money: JSON.parse(JSON.stringify(valueObj)),
+			creditagreeid: JSON.parse(JSON.stringify(valueObj)),
+			tenantid: JSON.parse(JSON.stringify(valueObj)),
+			sysid: JSON.parse(JSON.stringify(valueObj)),
+			ts: JSON.parse(JSON.stringify(valueObj)),
+			dr: {
+				display: null,
+				value: 0,
+				scale: -1
+			}
+		};
+
+		let newRow1 = {
+			myStatus: 2,
+			key: 'new' + count,
+			tempid: 'new' + count,
+			id: JSON.parse(JSON.stringify(valueObj)),
+			credituseunit: JSON.parse(JSON.stringify(valueObj)),
+			credittype: JSON.parse(JSON.stringify(valueObj)),
+			controltype: JSON.parse(JSON.stringify(valueObj)),
+			currtypeid: JSON.parse(JSON.stringify(valueObj)),
+			money: JSON.parse(JSON.stringify(valueObj)),
+			loanbankid: JSON.parse(JSON.stringify(valueObj)),
+			creditagreeid: JSON.parse(JSON.stringify(valueObj)),
+			tenantid: JSON.parse(JSON.stringify(valueObj)),
+			sysid: JSON.parse(JSON.stringify(valueObj)),
+			ts: JSON.parse(JSON.stringify(valueObj)),
+			dr: {
+				display: null,
+				value: 0,
+				scale: -1
+			}
+		};
+
+		let newRow2 = {
+			myStatus: 2,
+			key: 'new' + count++,
+			tempid: 'new' + count,
+			id: JSON.parse(JSON.stringify(valueObj)),
+			guarantee: JSON.parse(JSON.stringify(valueObj)),
+			currtypeid: JSON.parse(JSON.stringify(valueObj)),
+			occquota: JSON.parse(JSON.stringify(valueObj)),
+			creditagreeid: JSON.parse(JSON.stringify(valueObj)),
+			tenantid: JSON.parse(JSON.stringify(valueObj)),
+			sysid: JSON.parse(JSON.stringify(valueObj)),
+			ts: JSON.parse(JSON.stringify(valueObj)),
+			dr: {
+				display: null,
+				value: 0,
+				scale: -1
+			}
+		};
+		active_table_tab === 'credittype' && credittype.data.push(newRow0);
+		active_table_tab === 'creditdetail' && creditdetail.data.push(newRow1);
+		active_table_tab === 'creditguarantee' && creditguarantee.data.push(newRow2);
+		console.log(this.state[active_table_tab].data);
+		this.forceUpdate();
+	};
+
+	onRowDel = (tabName, index, text, record) => {
+		// tabName=>点击的列表卡片的名称  index=>在对应表格中行的索引
+		console.log(tabName, index, text, record);
+		console.log('删除' + tabName + '表格中的第' + (index + 1) + '行');
+		// id值为true,说明是存在的,否则为新增的,如果是新增的,直接在deleted数组中删除这一项 通过tempid来找到这叫记录然后删除,如果是之前存在的,在deletedRow数组中增加一项
+		if (record.id.value) {
+			this.state[tabName + '_deletedRow'].rows.push({
+				status: 3,
+				values: { id: record.id, ts: record.ts, tenantid: record.tenantid }
+			});
+		}
+		this.state[tabName].data.splice(index, 1);
+
+		// 还要删掉参照数组中的对应项
+		switch (tabName) {
+			case 'credittype':
+				this.state.currtypeidRefTab0.splice(index, 1);
+				this.forceUpdate();
+				break;
+			case 'creditdetail':
+				this.state.credituseunitRef.splice(index, 1);
+				this.state.currtypeidRefTab1.splice(index, 1);
+				this.state.loanbankidRef.splice(index, 1);
+				this.forceUpdate();
+				break;
+			case 'creditguarantee':
+				this.state.guaranteeRef.splice(index, 1);
+				this.state.currtypeidRefTab2.splice(index, 1);
+				this.forceUpdate();
+				break;
+			default:
+				break;
+		}
+		console.log('credittype_deletedRow', this.state.credittype_deletedRow);
+		console.log('creditdetail_deletedRow', this.state.creditdetail_deletedRow);
+		console.log('creditguarantee_deletedRow', this.state.creditguarantee_deletedRow);
+		this.forceUpdate();
+	};
+
+	// 表格输入框和下拉内容改变时
+	onRowChange = (tabName, index, key, value) => {
+		// console.log(tabName, index, key, value); // tabName 3个列表卡片的名称 index 点击的行在表格中的索引 key 字段名称，value 输入后的值
+		console.log(value);
+		if (!value) return;
+		let record = this.state[tabName].data[index];
+		console.log('编辑表格前的state中的字段', key, record[key]);
+		if (record.id.value) {
+			// 说明是在编辑之前就存在的记录而不是新增的记录,把myStatus改成1
+			record.myStatus = 1;
+		}
+		record[key].display = value;
+		record[key].value = value;
+		console.log('编辑表格后的state中的字段', key, record[key]);
+		this.forceUpdate();
+	};
+
+	// 表格的参照数据改变时
+	onTableReferChange = (tabName, index, key, value) => {
+		// tabName 表格的名称 ,index 修改的记录在表格tabName中的索引,key 字段 value 参照对象
+		let record = this.state[tabName].data[index];
+		console.log('选择表格参照前的state中的字段', key, record[key]);
+		if (record.id.value) {
+			// 说明是在编辑之前就存在的记录而不是新增的记录,本次操作属于修改操作,要把myStatus改成1
+			record.myStatus = 1;
+		}
+		record[key] = {
+			display: value.refname,
+			value: value.refpk
+		};
+		console.log('选择表格参照后的state中的字段', key, record[key]);
+		this.forceUpdate();
+	};
+
+	tabsAry = [
+		{
+			target: 'agreement-section',
+			text: '协议信息'
+		},
+		{
+			target: 'basic-section',
+			text: '基本信息'
+		},
+		{
+			target: 'guarantee-section',
+			text: '授信担保信息'
+		},
+		{
+			target: 'character-section',
+			text: '人员信息'
+		}
+	];
+
+	btnAry = [
+		{ type: 'edit', text: '修改', matchingAgreeStatus: 0 },
+		{ type: 'commit', text: '提交', matchingAgreeStatus: 0 },
+		// { type: 'unCommit', text: '收回', matchingAgreeStatus: 3 },
+		{ type: 'modify', text: '变更', matchingAgreeStatus: 5 },
+		{ type: 'modifyrecord', text: '变更记录', matchingAgreeStatus: 5 },
+		{ type: 'end', text: '结束', matchingAgreeStatus: 5 },
+		// { type: 'unend', text: '取消结束', matchingAgreeStatus: 6 },
+		{ type: 'delversion', text: '删除版本', matchingAgreeStatus: 0 }
+	];
+
+	render() {
+		let {
+			activeTab,
+			creditagree,
+			credittype,
+			creditdetail,
+			creditguarantee,
+			active_table_tab,
+			editable,
+			disabled,
+			showModal
+		} = this.state;
+		let { agreestatus } = creditagree;
+		let displayValue = this.state.arrow ? 'block' : 'none';
+		let MoreBtnGroup = (
+			<Dropdown
+				overlayClassName="dorpdown-menu"
+				trigger={[ 'click' ]}
+				animation="slide-up"
+				getPopupContainer={() => document.getElementsByClassName('btn-group')[0]}
+				overlay={
+					<Menu>
+						{this.btnAry.map((item, index) => {
+							if (agreestatus.value === item.matchingAgreeStatus) {
+								if (item.type === 'delversion') {
+									if (creditagree.version.value - 1 > 0) {
+										return (
+											<MenuItem key={index}>
+												<span onClick={() => this.handleOperationType(item.type)}>
+													{item.text}
+												</span>
+											</MenuItem>
+										);
+									}
+								} else {
+									return (
+										<MenuItem key={index}>
+											<span onClick={() => this.handleOperationType(item.type)}>{item.text}</span>
+										</MenuItem>
+									);
+								}
+							}
+						})}
+					</Menu>
+				}
+			>
+				<Button
+					className="btn-2 btn-cancel btn-more"
+					onClick={() => {
+						this.setState({ arrow: !this.state.arrow });
+					}}
+				>
+					更多<i className={this.state.arrow ? 'arrow-open' : 'arrow-close'} />
+				</Button>
+			</Dropdown>
+		);
+		return (
+			<div className="bd-wraps" id="credit_detail">
+				<Breadcrumb>
+					<Breadcrumb.Item href="#">首页</Breadcrumb.Item>
+					<Breadcrumb.Item href="#">授信</Breadcrumb.Item>
+					<Breadcrumb.Item href="#/fm/creditdetail" active>
+						授信协议管理
+					</Breadcrumb.Item>
+				</Breadcrumb>
+				<Affix>
+					<div className="bd-header">
+						<div className="bd-title-1">银行授信协议</div>
+						<ul id="nav-header" className="contstatus-group">
+							{this.tabsAry.map((item, index) => (
+								<li
+									key={index}
+									className={activeTab === index ? 'active' : ''}
+									onClick={() => this.scrollToAnchor(item.target, index)}
+								>
+									{item.text}
+									<span className="bottom-border" />
+								</li>
+							))}
+						</ul>
+						{editable ? (
+							<span className="btn-group">
+								<Button className="btn-2" colors="primary" type="ghost" onClick={this.saveBtn}>
+									保存
+								</Button>
+								<Button className="btn-2 btn-cancel" shape="border" bordered onClick={this.cancelBtn}>
+									取消
+								</Button>
+							</span>
+						) : (
+							<span className="btn-group">
+								{/* 根据协议状态 agreestatus
+								待提交 0 提交 修改 删除
+								待审批 3 收回
+								未执行 1 
+								在执行 5 变更 变更记录 结束
+								已结束 6 取消结束 */}
+
+								<Button className="btn-2 btn-cancel" shape="border" bordered onClick={this.cancelBtn}>
+									返回
+								</Button>
+								{agreestatus.value == '3' && (
+									<Button
+										className="btn-2 btn-hover"
+										shape="border"
+										bordered
+										onClick={this.cancelBtn}
+									>
+										收回
+									</Button>
+								)}
+								{agreestatus.value == '6' && (
+									<Button
+										className="btn-2 btn-hover"
+										shape="border"
+										bordered
+										onClick={this.cancelBtn}
+									>
+										取消结束
+									</Button>
+								)}
+
+								{agreestatus.value == '0' && MoreBtnGroup}
+								{agreestatus.value == '5' && MoreBtnGroup}
+							</span>
+						)}
+					</div>
+				</Affix>
+				<section className="bd-table section-wrap" id="agreement-section">
+					<div className="card-title">
+						<span className="color-block" />协议信息
+					</div>
+
+					<Form
+						useRow={true}
+						showSubmit={false}
+						submitCallBack={(flag, obj) => this.checkForm(flag, obj, 1)}
+						checkFormNow={this.state.checkFormNow}
+						className="info-form"
+					>
+						<FormItem
+							showMast={true}
+							inline={true}
+							labelClassName="float-right"
+							labelSm={2}
+							labelMd={2}
+							labelLg={2}
+							lg={4}
+							md={4}
+							sm={4}
+							xs={4}
+							labelName={'协议编码:'}
+							isRequire={false}
+							errorMessage={'协议编码不能为空'}
+							method="change" /* reg={item.reg}*/
+						>
+							{editable ? (
+								<InputItem
+									type="customer"
+									disabled={disabled}
+									placeholder={'请输入协议编码'}
+									className="big-input"
+									value={creditagree.agreecode.value}
+									defaultValue={creditagree.agreecode.value}
+									onChange={(value) => this.handleInputChange('agreecode', value)}
+								/>
+							) : (
+								<Label>{creditagree.agreecode.value}</Label>
+							)}
+						</FormItem>
+						<Col lg={2} md={2} sm={2} xs={2} className="text-right">
+							<Label>协议状态:</Label>
+						</Col>
+						<Col lg={4} md={4} sm={4} xs={4}>
+							{this.enumMapping(creditagree.agreestatus.value, enumData.agreeStatusAry)}
+							<Label style={{ marginLeft: 55 }}>审批状态:</Label>
+							{this.enumMapping(creditagree.vbillstatus.value, enumData.vbillStatusAry)}
+						</Col>
+						<FormItem
+							showMast={true}
+							inline={true}
+							labelClassName="float-right"
+							labelSm={2}
+							labelMd={2}
+							labelLg={2}
+							lg={4}
+							md={4}
+							sm={4}
+							xs={4}
+							labelName={'授信银行:'}
+							isRequire={false}
+							errorMessage={'授信银行不能为空'}
+							method="change" /* reg={item.reg}*/
+						>
+							{editable ? (
+								<Refer
+									ctx={'/uitemplate_web'}
+									refModelUrl={'/bd/finbranchRef/'}
+									refCode={'finbranchRef'}
+									refName={'金融网点'}
+									value={this.state.agreebankidRef}
+									onChange={(value) => {
+										this.handleRefChange('agreebankid', value);
+										this.setState({ agreebankidRef: value });
+									}}
+									multiLevelMenu={[ { name: [ '金融机构' ], code: [ 'refname' ] } ]}
+								/>
+							) : (
+								<Label>{creditagree.agreebankid.display || '-'}</Label>
+							)}
+						</FormItem>
+						<FormItem
+							showMast={false}
+							inline={true}
+							labelClassName="float-right"
+							labelSm={2}
+							labelMd={2}
+							labelLg={2}
+							lg={4}
+							md={4}
+							sm={4}
+							xs={4}
+							labelName={'受信人:'}
+							isRequire={false}
+							errorMessage={'受信人不能为空'}
+							method="change" /* reg={item.reg}*/
+						>
+							<Label>
+								{creditagree.orgid.display ? creditagree.orgid.display : creditagree.orgid.value}
+							</Label>
+						</FormItem>
+						<FormItem
+							showMast={true}
+							inline={true}
+							labelClassName="float-right"
+							labelSm={2}
+							labelMd={2}
+							labelLg={2}
+							lg={4}
+							md={4}
+							sm={4}
+							xs={4}
+							labelName={'原币额度:'}
+							isRequire={false}
+							errorMessage={'原币额度格式错误'}
+							method="change"
+							reg={/^\d*\.{0,1}\d*$/}
+						>
+							{editable ? (
+								<InputItem
+									type="customer"
+									placeholder={'请输入数字'}
+									className="small-input"
+									value={creditagree.money.value}
+									defaultValue={creditagree.money.value}
+									onChange={(value) => this.handleInputChange('money', value)}
+								/>
+							) : (
+								<Label>
+									{numFormat(creditagree.money.value, '') == 'NaN' ? (
+										0
+									) : (
+										numFormat(creditagree.money.value, '')
+									)}
+								</Label>
+							)}
+						</FormItem>
+						<FormItem
+							showMast={false}
+							inline={true}
+							labelClassName="float-right"
+							labelSm={2}
+							labelMd={2}
+							labelLg={2}
+							lg={4}
+							md={4}
+							sm={4}
+							xs={4}
+							labelName={'币种:'}
+							isRequire={false}
+							errorMessage={'币种不能为空'}
+							method="change" /* reg={item.reg}*/
+						>
+							{editable ? (
+								<Refer
+									disabled={disabled}
+									ctx={'/uitemplate_web'}
+									refModelUrl={'/bd/currencyRef/'}
+									refCode={'currencyRef'}
+									refName={'币种'}
+									referClassName="ref-currency"
+									value={this.state.currenyidRef}
+									onChange={(value) => {
+										this.state.currenyidRef = value;
+										this.handleRefChange('currenyid', value);
+									}}
+								/>
+							) : (
+								<Label>{creditagree.currenyid.display || '-'}</Label>
+							)}
+						</FormItem>
+						<FormItem
+							showMast={false}
+							inline={true}
+							labelClassName="float-right"
+							labelSm={2}
+							labelMd={2}
+							labelLg={2}
+							lg={4}
+							md={4}
+							sm={4}
+							xs={4}
+							labelName={'协议类型:'}
+							isRequire={false}
+							errorMessage={'协议类型不能为空'}
+							method="change" /* reg={item.reg}*/
+						>
+							{editable ? (
+								<SelectItem
+									disabled={disabled}
+									defaultValue={creditagree.agreetype.value}
+									items={() => [ { label: '集团授信', value: 'group' }, { label: '企业授信', value: 'org' } ]}
+									type="customer"
+									onChange={(value) => this.handleInputChange('agreetype', value)}
+								/>
+							) : (
+								<Label>{this.enumMapping(creditagree.agreetype.value, enumData.agreeTypeAry)}</Label>
+							)}
+						</FormItem>
+						<FormItem
+							showMast={false}
+							inline={true}
+							labelClassName="float-right"
+							labelSm={2}
+							labelMd={2}
+							labelLg={2}
+							lg={4}
+							md={4}
+							sm={4}
+							xs={4}
+							labelName={'控制方式:'}
+							isRequire={false}
+							errorMessage={'控制方式不能为空'}
+							method="change" /* reg={item.reg}*/
+						>
+							{editable ? (
+								<SelectItem
+									defaultValue={creditagree.controltype.value}
+									items={() => [
+										{ label: '提示', value: 'prompt' },
+										{ label: '控制', value: 'control' },
+										{ label: '不控制', value: 'uncontrol' }
+									]}
+									type="customer"
+									onChange={(value) => this.handleInputChange('controltype', value)}
+								/>
+							) : (
+								<Label>
+									{this.enumMapping(creditagree.controltype.value, enumData.controlTypeAry, '控制方式')}
+								</Label>
+							)}
+						</FormItem>
+						<FormItem
+							showMast={false}
+							inline={true}
+							labelClassName="float-right"
+							labelSm={2}
+							labelMd={2}
+							labelLg={2}
+							lg={4}
+							md={4}
+							sm={4}
+							xs={4}
+							labelName={'授信占用方式:'}
+							isRequire={false}
+							method="change" /* reg={item.reg}*/
+						>
+							{editable ? (
+								<SelectItem
+									disabled={disabled}
+									defaultValue={creditagree.creditcontroltype.value}
+									items={() => [
+										{ label: '总额控制', value: 'total' },
+										{ label: '余额控制', value: 'balance' }
+									]}
+									type="customer"
+									onChange={(value) => this.handleInputChange('creditcontroltype', value)}
+								/>
+							) : (
+								<Label>
+									{this.enumMapping(
+										creditagree.creditcontroltype.value,
+										enumData.creditControlTypeAry
+									)}
+								</Label>
+							)}
+						</FormItem>
+						<FormItem
+							showMast={false}
+							inline={true}
+							labelClassName="float-right"
+							labelSm={2}
+							labelMd={2}
+							labelLg={2}
+							lg={4}
+							md={4}
+							sm={4}
+							xs={4}
+							labelName={'继承授信协议:'}
+							isRequire={false}
+							errorMessage={'继承授信协议不能为空'}
+							method="change" /* reg={item.reg}*/
+						>
+							{editable ? (
+								<Refer
+									disabled={disabled}
+									ctx={'/uitemplate_web'}
+									refModelUrl={'/fm/creditref/'}
+									refCode={'creditref'}
+									refName={'授信协议'}
+									clientParam={{ agreestatus: 6 }}
+									multiLevelMenu={[
+										{
+											name: [ '编码' ],
+											code: [ 'refcode' ]
+										}
+									]}
+									showLabel={false}
+									value={this.state.inheritagreeRef}
+									onChange={(value) => this.handleRefChange('inheritagree', value)}
+								/>
+							) : (
+								<Label>{creditagree.inheritagree.display || '-'}</Label>
+							)}
+						</FormItem>
+
+						<Col lg={2} md={2} sm={2} xs={2} className="text-right">
+							<Label>版本号:</Label>
+						</Col>
+						<Col lg={4} md={4} sm={4} xs={4}>
+							<Label style={{ marginRight: 40 }}>
+								{creditagree.version.value == '-' ? '-' : 'v' + creditagree.version.value + '.0'}
+							</Label>
+							<Checkbox
+								checked={creditagree.isinherited.value}
+								disabled={true}
+								onChange={() => this.handleInputChange('isinherited', !creditagree.isinherited.value)}
+							/>
+							<Label style={{ marginLeft: 8 }}>被继承</Label>
+						</Col>
+						<FormItem
+							showMast={false}
+							inline={true}
+							labelClassName="float-right"
+							labelSm={2}
+							labelMd={2}
+							labelLg={2}
+							lg={4}
+							md={4}
+							sm={4}
+							xs={4}
+							labelName={'实际结束日期:'}
+							isRequire={false}
+							errorMessage={'实际结束日期不能为空'}
+							method="change" /* reg={item.reg}*/
+						>
+							<Label>{creditagree.actualenddate.value ? creditagree.actualenddate.value : '-'}</Label>
+						</FormItem>
+
+						<Col lg={2} md={2} sm={2} xs={2} className="text-right">
+							<Label>备注:</Label>
+						</Col>
+						<Col lg={9} md={9} sm={9} xs={9}>
+							{editable ? (
+								<TextArea
+									className="text-area"
+									count={200}
+									value={creditagree.memo.value}
+									placeholder={'备注内容不超过200字'}
+									onChange={(value) => this.handleInputChange('memo', value)}
+								/>
+							) : (
+								<Label>{creditagree.memo.value || ''}</Label>
+							)}
+						</Col>
+					</Form>
+				</section>
+
+				<section className="bd-table section-wrap" id="basic-section">
+					<div className="card-title">
+						<span className="color-block" />基本信息
+					</div>
+					<Form
+						useRow={true}
+						showSubmit={false}
+						submitCallBack={(flag, obj) => this.checkForm(flag, obj, 1)}
+						checkFormNow={this.state.checkFormNow}
+						className="info-form"
+					>
+						<FormItem
+							showMast={false}
+							inline={true}
+							labelClassName="float-right"
+							labelSm={2}
+							labelMd={2}
+							labelLg={2}
+							lg={4}
+							md={4}
+							sm={4}
+							xs={4}
+							labelName={'授信期间:'}
+							isRequire={false}
+							errorMessage={'授信期间格式错误'}
+							method="change"
+							reg={/^\d*\.{0,1}\d{0,1}$/}
+						>
+							{editable ? (
+								<InputItem
+									type="customer"
+									disabled={disabled}
+									placeholder={'请输入数字'}
+									className="small-input"
+									value={creditagree.creditperiod.value}
+									defaultValue={creditagree.creditperiod.value}
+									onChange={(value) => this.handleInputChange('creditperiod', value)}
+								/>
+							) : (
+								<Label>{creditagree.creditperiod.value || ''}</Label>
+							)}
+						</FormItem>
+
+						<FormItem
+							showMast={false}
+							inline={true}
+							labelClassName="float-right"
+							labelSm={2}
+							labelMd={2}
+							labelLg={2}
+							lg={4}
+							md={4}
+							sm={4}
+							xs={4}
+							labelName={'期间单位:'}
+							isRequire={false}
+							errorMessage={'期间单位不能为空'}
+							method="change" /* reg={item.reg}*/
+						>
+							{editable ? (
+								<SelectItem
+									disabled={disabled}
+									defaultValue={creditagree.periodunit.value}
+									items={() => [
+										{ label: '年', value: 'YEAR' },
+										{ label: '季度', value: 'QUARTER' },
+										{ label: '月', value: 'MONTH' },
+										{ label: '日', value: 'DAY' }
+									]}
+									type="customer"
+									onChange={(value) => this.handleInputChange('periodunit', value)}
+								/>
+							) : (
+								<Label>{this.enumMapping(creditagree.periodunit.value, enumData.periodUnitAry)}</Label>
+							)}
+						</FormItem>
+
+						<FormItem
+							showMast={true}
+							inline={true}
+							labelClassName="float-right"
+							labelSm={2}
+							labelMd={2}
+							labelLg={2}
+							lg={4}
+							md={4}
+							sm={4}
+							xs={4}
+							labelName={'起始日期:'}
+							isRequire={false}
+							errorMessage={'起始日期不能为空'}
+							method="change" /* reg={item.reg}*/
+						>
+							{editable ? (
+								<DateTimePickerItem
+									disabled={disabled}
+									format={'YYYY-MM-DD'}
+									locale={zhCN}
+									defaultValue={
+										creditagree.begindate.value ? moment(creditagree.begindate.value) : null
+									}
+									placeholder={'请选择日期'}
+									onChange={(d) => this.handleInputChange('begindate', d)}
+								/>
+							) : (
+								<Label>{creditagree.begindate.value || ''}</Label>
+							)}
+						</FormItem>
+
+						<FormItem
+							showMast={true}
+							inline={true}
+							labelClassName="float-right"
+							labelSm={2}
+							labelMd={2}
+							labelLg={2}
+							lg={4}
+							md={4}
+							sm={4}
+							xs={4}
+							labelName={'结束日期:'}
+							isRequire={false}
+							errorMessage={'结束日期不能为空'}
+							method="change" /* reg={item.reg}*/
+						>
+							{editable ? (
+								<DateTimePickerItem
+									format={'YYYY-MM-DD'}
+									locale={zhCN}
+									disabledDate={this.disabledDate}
+									defaultValue={creditagree.enddate.value ? moment(creditagree.enddate.value) : null}
+									placeholder={'请选择日期'}
+									onChange={(d) => this.handleInputChange('enddate', d)}
+								/>
+							) : (
+								<Label>{creditagree.enddate.value || ''}</Label>
+							)}
+						</FormItem>
+
+						<FormItem
+							showMast={false}
+							inline={true}
+							labelClassName="float-right"
+							labelSm={2}
+							labelMd={2}
+							labelLg={2}
+							lg={4}
+							md={4}
+							sm={4}
+							xs={4}
+							labelName={'担保方式:'}
+							isRequire={false}
+							errorMessage={'担保方式不能为空'}
+							method="change" /* reg={item.reg}*/
+						>
+							{editable ? (
+								<SelectItem
+									defaultValue={creditagree.guaranteetype.value}
+									items={() => [
+										{ label: '信用', value: '1' },
+										{ label: '保证', value: '2' },
+										{ label: '质押', value: '3' },
+										{ label: '抵押', value: '4' },
+										{ label: '保证金', value: '5' },
+										{ label: '混合', value: '6' }
+									]}
+									type="customer"
+									onChange={(value) => this.handleInputChange('guaranteetype', value)}
+								/>
+							) : (
+								<Label>
+									{this.enumMapping(creditagree.guaranteetype.value, enumData.guaranteeTypeAry)}
+								</Label>
+							)}
+						</FormItem>
+
+						<Col lgOffset={2} mdOffset={2} smOffset={2} xsOffset={2} lg={4} md={4} sm={4} xs={4}>
+							<Checkbox
+								checked={creditagree.credittypecontral.value}
+								disabled={!editable}
+								onChange={() =>
+									this.handleInputChange('credittypecontral', !creditagree.credittypecontral.value)}
+							/>
+							<Label style={{ marginLeft: 8 }}>分授信类别控制</Label>
+						</Col>
+					</Form>
+				</section>
+
+				<section id="guarantee-section">
+					<div className="bd-header card-header">
+						<div className="card-title">
+							<span className="color-block" />授信担保信息
+						</div>
+						<div className="btn-group">
+							<ButtonGroup>
+								{[ 'credittype', 'creditdetail', 'creditguarantee' ].map((item, index) => {
+									return (
+										this.state[item].showTab && (
+											<Button
+												className={active_table_tab === item ? 'tabActive' : 'tab'}
+												onClick={() => {
+													this.tableTabClick(item);
+												}}
+											>
+												{this.state[item].title}
+											</Button>
+										)
+									);
+								})}
+							</ButtonGroup>
+						</div>
+					</div>
+					<div className="card-body">
+						<div className="bd-header" id="subtable-header">
+							<span className="bd-title-sub">{[ active_table_tab ].title}</span>
+							{((editable && disabled && active_table_tab === 2) || (editable && !disabled)) && (
+								<Button className="btn-2 btn-hover" onClick={this.onRowAdd}>
+									新增
+								</Button>
+							)}
+						</div>
+						<Table
+							className="bd-table card-subtable"
+							columns={this.state[active_table_tab].columns}
+							data={this.state[active_table_tab].data}
+							emptyText={() => <span>暂无记录</span>}
+						/>
+					</div>
+				</section>
+
+				<section className="bd-table section-wrap" id="character-section">
+					<div className="card-title">
+						<span className="color-block" />人员信息
+					</div>
+					<Row>
+						{[
+							{ label: '创建人', key: 'creator' },
+							{ label: '录入时间', key: 'creationtime' },
+							{ label: '审批人', key: 'approver' },
+							{ label: '审批时间', key: 'approvedate' }
+						].map((item, index) => [
+							<Col lg={2} md={2} sm={2} xs={2} className="text-right">
+								<Label>{item.label}:</Label>
+							</Col>,
+							<Col lg={4} md={4} sm={4} xs={4}>
+								<Label>{(creditagree[item.key] && creditagree[item.key].value) || '-'}</Label>
+							</Col>
+						])}
+					</Row>
+				</section>
+
+				<ModifyRecordModal
+					showModal={this.state.showModal}
+					modalData={this.state.modifyRecordData}
+					enumMapping={this.enumMapping}
+					close={() => {
+						this.setState({ showModal: false });
+					}}
+				/>
+			</div>
+		);
+	}
+}

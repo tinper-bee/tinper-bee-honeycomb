@@ -1,0 +1,74 @@
+
+// 弹窗组件动画修改
+.u-modal.fade .slide_in {
+	animation: sideSlide_in .5s ease-out;
+}
+@keyframes sideSlide_in {
+	0% {
+		right: -100%;
+        top: 0;
+        opacity: 0;
+	}
+	100% {
+		right: 0;
+        top: 0;
+        opacity: 1;
+	}
+}
+.u-modal.fade .slide_out {
+	animation: sideSlide_out .5s ease-out;
+}
+@keyframes sideSlide_out {
+	0% {
+		right: 0;
+        top: 0;
+        opacity: 1;
+	}
+	100% {
+		right: -100%;
+        top: 0;
+        opacity: 0;
+	}
+}
+.listModal {
+    .u-pagination>.active>a {
+        color:#00b39e;
+        background-color: white;
+    }
+    .u-table-body {
+        min-height: 290px !important;
+    }
+    .u-table-tbody {
+        td {
+            height: 40px !important;
+        }
+    }
+    .u-table tr:hover {
+        background: #00b39e;
+    }
+    .u-modal-xlg {
+        position: absolute;
+        right: 0;
+        top: 0;
+        margin-top: 0;
+    }
+    // .u-modal-xlg {
+    //     position: absolute;
+    //     right: 0;
+    //     margin-top: 0;
+    //     top: 0 !important;
+    // }
+    .u-col-md-4 {
+        margin-top: 10px;
+    }
+    .u-pagination {
+        float: right;
+    }
+    .u-modal-content:after {
+        content: ".";
+        display: block;
+        height: 0;
+        clear: both;
+        visibility: hidden;
+    }
+}

@@ -1,0 +1,91 @@
+@import '../../utils/variables.less';
+.msg-modal {
+    display: flex;
+    &.footer-hidden .u-modal-body {
+        margin: 9px 27px 0 42px !important;
+        height: 111px !important;
+    }
+    .u-modal-header {
+        border: none;
+    }
+    .u-modal-dialog {
+        top: 50%;
+        left: 50%;
+        width: 416px;
+        height: 201px;
+        margin: -100px 0 0 -208px;
+        justify-content: center;
+        align-items: center;
+        .u-modal-content {
+            padding: 38px 19px 10px 37px;
+            &>div {
+                padding: 0;
+            }
+            .u-modal-title {
+                .title-icon {
+                    display: inline-block;
+                    font-size: 22px;
+                    margin-right: 20px;
+                    position: relative;
+                    top: 3px;
+                }
+                .bd-title-1 {
+                    margin: 0;
+                }
+                .close-icon {
+                    position: absolute;
+                    top: 16px;
+                    right: 13px;
+                    font-size: 14px;
+                    color: #BDBDBD;
+                }
+            }
+    
+            .u-modal-body {
+                font-size: 13px;
+                color: #666;
+                width: 289px;
+                height: 42px;
+                margin: 9px 27px 43px 42px;
+            }
+    
+            .u-modal-footer {
+                .u-button {
+                    width: 102px;
+                    height: 36px;
+                    line-height: 19px;
+                    &:first-child {
+                        margin-right: 10px;
+                    }
+                }
+            }
+        }
+    }
+}
+.icon-tishianniuchenggong, .icon-tishianniuchenggong:hover {
+    color: #00B578;
+}
+.icon-tishianniuguanbi, .icon-tishianniuguanbi:hover {
+    color: #F04134;
+}
+.icon-tishianniuzhuyi, .icon-tishianniuzhuyi:hover {
+    color: #FF8F2F;
+}
+.icon-tishianniutixing, .icon-tishianniutixing:hover {
+    color: #108EE9;
+}
+
+//确定取消按钮公共样式 
+.credit-search {
+    width: 240px !important;
+    .search-input {
+        width: 240px !important;
+        height: 28px;
+        padding-left: 9px;
+        border: 1px solid #ccc !important;
+        margin-top: 0 !important; 
+        &:focus {
+            border-color: @t-btn-bgcolor !important;
+        }
+    }
+}

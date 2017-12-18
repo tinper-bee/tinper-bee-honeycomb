@@ -1,0 +1,264 @@
+@import '../../../../../utils/variables.less';
+.record-wrapper{
+    margin:10px auto;
+    min-width: 1260px;
+    width: 1260px;
+    padding:0;
+    .u-breadcrumb {
+		margin: 10px -35px;
+		padding: 0;
+		background-color: transparent;
+		li {
+			a {
+				color: #999999;
+				&:hover {
+					color: #3291ff;
+				}
+			}
+			&.active {
+				span {
+					color: #666666;
+				}
+			}
+		}
+	}
+   .change-content{
+        //overflow: hidden;
+        width: 1260px;
+
+        .record-title{
+            border:1px solid rgba(225,230,235,1);
+            padding:0 23px;
+            overflow: hidden;
+            height:50px;
+            line-height: 50px;
+            background:#fff;
+            .record-name{
+                float: left;
+                width: 100px;
+                font-size:16px;
+                font-family:PingFangHK-Medium;
+                color:rgba(51,51,51,1);
+                font-weight: bold;
+            }
+            .skip-tab{
+                margin-left:300px;
+                margin-right:300px;
+                text-align: center;
+                overflow: hidden;
+                height: 50px;
+                line-height: 50px;  
+                ul{
+                  display: inline-block;
+                  text-align: center;
+                  position:relative;
+                  margin-left:43px;
+                  li{
+                    text-align: center;
+                    float:left;
+                    margin-right:43px;
+                    font-size:15px;
+                    font-family:PingFangHK-Medium;
+                    color:rgba(102,102,102,1);  
+                    cursor: pointer; 
+                    &.active {
+                     color:  @t-tab-color;
+                   }
+                  }
+                  .scrollBar {
+                   position: absolute;
+                   height: 3px;
+                   width: 24px;
+                   border-radius: 1px;
+                   bottom: 2px;
+                   left:20px;
+                   background-color: @t-tab-color;
+                 }
+                }
+                
+              }
+        }
+
+        .record-content{
+            padding:0;
+            .record-version{
+                padding:0;
+                text-align: left;
+                min-height:565px;
+                background:rgba(237,237,237,1);
+                .record-item{
+                    border-bottom:1px solid rgba(225,230,235,1);
+                    border-left:1px solid rgba(225,230,235,1);
+                    height:50px;
+                    cursor: pointer;
+                    background:rgba(237,237,237,1);
+                    font-size:16px;
+                    font-family:PingFangHK-Regular;
+                    color:rgba(51,51,51,1);
+                    padding-left:19px;
+                }
+                .item-active{
+                    border-bottom:1px solid rgba(225,230,235,1);
+                    border-left:3px solid @t-tab-color;
+                    background:#fff;
+                    height:50px;
+                    cursor: pointer;
+                    color:@t-tab-color;
+                    font-size:16px;
+                    font-family:PingFangHK-Regular;
+                    padding-left:19px;
+                }
+            }
+            
+            .infos{
+                padding:0;
+                .record-part{
+                    border:1px solid rgba(225,233,240,1); 
+                    margin-bottom:10px;
+                    background:#fff;
+                    padding:20px 20px;
+                    .pay-part-title{
+                        padding:0 0 0 10px;
+                        color:#666;
+                    }
+                    .pay-part-title::before{
+                        background-color: @t-tab-color;
+                        content: "";
+                        height: 8px;
+                        left: 0px;
+                        margin-top: -4px;
+                        position: absolute;
+                        top: 50%;
+                        width: 4px;
+                    }
+                    #other-info::before{
+                        background-color: @t-tab-color;
+                        content: "";
+                        height: 8px;
+                        left: 0px;
+                        margin-top: -4px;
+                        position: absolute;
+                        top:15px;
+                        width: 4px;
+                    }
+                    .pay-part-info{
+                        padding:20px 0;
+                        .pay-item{
+                            text-align: center;
+                            height:21px;
+                            line-height:21px;
+                            padding:0;
+                            font-family:PingFangHK-Regular; 
+                            font-size:13px;
+                            margin-bottom: 26.5px;
+                            .pay-item-label{
+                                padding:0;
+                                text-align: right;
+                                color:rgba(102,102,102,1);
+                            }
+                            .pay-item-name{
+                                padding:0 0 0 8px;
+                                text-align: left;
+                                color:rgba(51,51,51,1);
+                            }
+                        }
+                    }
+
+                    .pay-info-tabs{
+                        padding:5px 0 0 0 ;
+                        .light-tabs {
+                            text-align: center;
+                            ul{
+                                overflow: hidden;
+                                display: inline-block;
+                                text-align: center;
+                                li{
+                                float:left;
+                                width:90px;
+                                height:28px;
+                                line-height: 26px;
+                                border:1px solid rgba(225,233,240,1);
+                                a{
+                                    font-size:12px;
+                                    font-family:MicrosoftYaHei;
+                                    color:rgba(102,102,102,1);
+                                }
+                                }
+                                li.active{
+                                border-color:@t-btn-bgcolor;
+                                border-radius: 2px ;
+                                a{
+                                    color:@t-btn-bgcolor;
+                                }
+                                }
+                            }
+                        }
+                    
+                
+                        .tab{
+                        text-align: left;
+                        overflow: hidden;
+                        margin-top:10px;
+                        margin-left:-20px;
+                        margin-right:-20px;
+                        padding:0;
+                        border-top:1px solid rgba(225,233,240,1);
+                        .tab-body{
+                            border:1px solid rgba(225,233,240,1);
+                            margin:30px 60px;
+                            overflow: hidden;
+                            .u-table {
+                            tr{
+                                height:40px;
+                                td{
+                                    span{
+                                        font-size:13px;
+                                        font-family:PingFangHK-Regular;
+                                        color:rgba(153,153,153,1);
+                                    }
+                                }
+                            }
+                            th{
+                                background:rgba(242,242,242,1);
+                                color:rgba(0,0,0,1);
+                                font-size:13px;
+                            }
+                            td, th{
+                                padding:0 20px;
+                            }
+                            }
+                            .tab-title{
+                                height:40px;
+                                line-height: 27px;
+                                padding:6px 20px;
+                                border-bottom:1px solid rgba(225,230,235,1) ;
+                                font-size: 14px;
+                                font-weight: bold;
+                                color:rgba(0,0,0,1);
+                            }
+                        }
+                        }
+                    }
+                
+                }
+
+                .record-part:first-child{
+                    border-top:none;
+                }
+            }
+        }
+
+    }
+}
+
+.cf{
+    *zoom: 1;
+
+    &:before, &:after {
+    display: table;
+      content: " ";
+    }
+    &:after {
+      clear: both;
+    }
+   }

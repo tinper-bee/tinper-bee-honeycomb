@@ -1,0 +1,34 @@
+@import "../../../../utils/variables.less";
+
+@light-orange: #FE711E;
+@dark-orange: #FD3D39;
+
+.agreement-container{
+    margin: 10px 120px;
+    background-color: @w-color;
+    font-size: 18px;
+    color: @b-color;
+    .title{
+        padding: 30px 40px;
+        font-size: 25px;
+        font-weight: bold;      
+    }
+    .logo{
+        width: 200px;
+        height: 90px;
+        background: url(../../../../static/images/if/gf_logo.jpg) no-repeat center center;
+        background-color: @w-color;
+        background-size: 100%;
+    }
+    .line{
+        height: 4px;
+        background-image: -webkit-gradient(linear, left top,right bottom, from(@light-orange), to(@dark-orange));
+    }
+    .content-container{    
+        padding: 20px 40px;      
+        line-height: 36px;
+        p{
+            text-indent: 2em;
+        }
+    }
+}

@@ -1,0 +1,77 @@
+@import '../../utils/publicStyle.less';
+@import '../../utils/variables.less';
+.delete-modal {
+    width: 210px !important;
+    height: 93px !important;
+    border-radius: 4px !important;
+    padding: 16px 15px !important;
+    .u-popconfirm-content {
+        padding: 0 !important;
+        .title-box {
+            position: relative;
+            margin-bottom: 16px;
+            .delete-icon, .delete-icon:hover {
+                color: #FFBF00 !important;
+                width: 21px !important;
+                height: 21px !important;
+                margin: 0 !important;
+                padding: 0 !important;
+                position: relative;
+                top: -2px;
+            }
+            .bd-title-1 {
+                font-size: 12px !important;
+                margin:0 0 0 11px !important;
+                line-height: 18px !important;
+                height: 18px !important;
+                vertical-align: top;
+            }
+            .close-icon {
+                width: 14px ;
+                height: 14px;
+                position: absolute;
+                top: 5px;
+                right: 0;
+                border: 1px solid red;
+            }
+        }
+    }
+    .u-popconfirm-confirm {
+        text-align: right;
+        button {
+            padding: 0 !important;
+            margin: 0 !important;
+            width: 44px !important;
+            height: 22px !important;
+            line-height: 20px !important;
+            border-radius: 4px !important;
+            font-size: 12px !important;
+        }
+        button.u-button-primary {
+            color: @w-color !important;
+            background: #E14C46 !important;
+            border: none !important;
+            margin-left: 12px !important;
+        }
+        button.u-button-border {
+            color: #666 !important;
+            background: @w-color !important;
+            border: 1px solid #D5D5D5 !important;
+        }
+    }
+}
+
+//搜索公共样式 
+.credit-search {
+    width: 240px !important;
+    .search-input {
+        width: 240px !important;
+        height: 28px;
+        padding-left: 9px;
+        border: 1px solid #ccc !important;
+        margin-top: 0 !important; 
+        &:focus {
+            border-color: @t-btn-bgcolor;
+        }
+    }
+}

@@ -14,7 +14,7 @@ const prodEntries = {};
 const prodChunks = [];
 const svrConfig = {
   host: "127.0.0.1",
-  port: 3000
+  port: 3002
 };
 
 const proxyConfig = [{
@@ -138,7 +138,7 @@ var prodConfig = {
   output: {
     path: path.resolve(__dirname, './dist'),
     filename: 'assets/js/[name].js',
-    publicPath: '//iuapcdn.yonyoucloud.com/'
+    publicPath: '/'
   },
   externals: {
     "react": "React",
@@ -196,12 +196,12 @@ var prodConfig = {
     new ExtractTextPlugin({
       filename: 'assets/css/[name].css',
       allChunks: true
+    }),
+    new uglifyJsPlugin({
+      compress: {
+        warnings: false
+      }
     })
-    // new uglifyJsPlugin({
-    //   compress: {
-    //     warnings: false
-    //   }
-    // })
   ],
   resolve: {
     extensions: [

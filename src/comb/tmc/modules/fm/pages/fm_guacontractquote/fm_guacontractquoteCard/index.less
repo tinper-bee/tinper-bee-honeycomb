@@ -1,0 +1,132 @@
+@import '../../../../../utils/publicStyle.less';
+@import '../../../../../utils/variables.less';
+.guacontractquoteCard {
+    .bordered {
+        border:1px solid #e1e6eb;
+    }
+    .bd-header {
+        border-bottom: 1px solid #e1e6eb;
+    }
+    .bd-title-2 {
+        float: right;
+        margin-right: 20px;
+    }
+    .uf {
+        position: absolute !important;
+        left: 115px !important;
+        top: 3px !important;
+    }
+    .date-picker-select {
+        .u-form-control {
+            text-indent: 3px;
+        }
+    }
+    .guacontractquoteFormDetail {
+        .u-col-md-10,.u-col-md-4 {
+            height: 60px !important;
+            span:first-child {
+                color: #666;
+            }
+            span:last-child {
+                margin-left: 20px;
+                color:#333;
+            }
+        }
+    }
+    .guacontractquoteForm {
+        position: relative;
+        .bordered;
+        height: 750px;
+        padding-top: 25px;
+        background: white;
+        .refer-input {
+            margin-left: 20px;
+        }
+        .u-radio-group {
+            top: -3px;
+        }
+        .u-col-md-10,.u-col-md-4 {
+            height: 60px !important;
+        }
+        .u-form-control {
+            width:160px;
+            height: 28px;
+        }
+        .vbillno,.quoteway,.debtid,.quoteolcamount {
+            margin-left: 10px;
+        }
+        .quoteamount {
+            color: red;
+        }
+        .u-input-group-outer {
+            padding-left: 5px;
+        }
+        .referItem {
+            .u-input-group-outer {
+                padding-left: 1px !important;
+            }
+        }
+    }
+    .u-label {
+        height:21px; 
+        font-size:13px;
+        font-family:PingFangHK-Regular;
+        color:#666666;
+        line-height:21px;
+        padding-right: 10px;
+    }
+    .success {
+        text-align: center;
+        color: #00B39E;
+    }
+    .false {
+        text-align: center;
+        color: red;
+    }
+    .vbillDivSuccess {
+        display: inline-block;
+        z-index: 10000;
+        cursor: pointer;
+        background: white;
+        position: absolute;
+        right: 20px;
+        top: 20px;
+        width: 100px;
+        height: 100px;
+        border: 3px solid #00B39E;
+        border-radius: 50%;
+        h3{ 
+            .success;
+            font-size: 24px; 
+            font-weight: bold;
+            padding-top: 25%;
+        }
+        p {
+            .success;
+            font-size: 14px;
+        }
+    }
+    .vbillDivFalse {
+        display: inline-block;
+        z-index: 10000;
+        cursor: pointer;
+        background: white;
+        position: absolute;
+        right: 20px;
+        top: 20px;
+        width: 100px;
+        height: 100px;
+        border: 3px solid red;
+        border-radius: 50%;
+        h3{ 
+            .false;
+            font-size: 24px; 
+            font-weight: bold;
+            padding-top: 25%;
+        }
+        p {
+            .false;
+            font-size: 14px;
+        }
+    }
+}

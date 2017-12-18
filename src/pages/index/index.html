@@ -8,9 +8,21 @@
     <link href="//design.yonyoucloud.com/static/tinper-bee/1.1.0/assets/tinper-bee.css" rel="stylesheet" media="screen">
 </head>
 <body>
-<div id="root">
+<div id="app">
 
 </div>
+<script type="text/javascript">
+  window.cloudURL = "/apptenant/";
+  // 生产环境
+  window.reqURL = {
+    bd : "/",
+    cff : "/",
+    fm : "/",
+    pass : "/",
+    bpm : "/",
+    home:"/"
+  }
+</script>
 <script src="https://cdn.bootcss.com/react/15.5.4/react.min.js"></script>
 <script src="https://cdn.bootcss.com/react/15.5.4/react-dom.min.js"></script>
 <script src="https://cdn.bootcss.com/react-router-dom/4.2.2/react-router-dom.js"></script>

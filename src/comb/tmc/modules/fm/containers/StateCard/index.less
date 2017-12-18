@@ -1,0 +1,149 @@
+@import "../../../../utils/variables.less";
+
+@border-color: #e1e6eb;
+@btn-border: rgba(217,217,217,1);
+@btn-text: rgba(51,51,51,0.98);
+@btn-active: #D9F3F0;
+@text-color: #666666;
+@read-color: #333333;
+
+.content-container{
+    min-height: 600px;
+    min-width: 1258px;
+    margin: 0 auto;
+    padding: 60px 20px;
+    border: 1px solid @border-color;
+    border-top: none;     
+    background-color: @w-color;
+    .u-form-item {
+        min-height: 50px;
+        .u-form-error {
+            color: #f22c1d;
+            display: none;
+            margin-top: -22px;
+            margin-left: 255px!important;
+            float: left;
+        }
+    }
+
+    .u-col-md-2{
+        padding: 0;
+        text-align: right;
+        .u-label{
+            padding: 0;
+            font-size: 13px;
+            color: @text-color;
+        }
+    }
+
+    .u-col-md-3, .u-col-md-4{
+        padding-left: 14px;
+        padding-right: 5px;
+        height: 50px;
+        .u-form-inline{
+            min-height: 50px;
+        }
+        .u-input-group{                
+            .u-form-control{
+                height: 28px;
+                width: 240px;
+            }           
+        }
+    }
+
+    .collapse-row{
+        .u-col-md-2, .u-col-sm-2, .u-col-xs-2{
+            height: 40px;
+            padding-top: 5px;
+            padding-right: 14px;
+        }      
+        .u-col-md-10, .u-col-sm-10, .u-col-xs-10{
+            min-height: 45px;
+            padding-right: 5px;
+        } 
+        .u-col-md-4, .u-col-sm-4, .u-col-xs-4{
+            padding-left: 10px;
+            padding-right: 10px;
+        }
+        .collapse-fieldname{
+            font-size: 13px;
+            color: @text-color;
+        }  
+        .collapse{
+            float: left;
+            width: 100%;
+            margin-bottom: 15px;
+        }
+        .popover{
+            float: right;
+        }
+    }
+
+    .u-radio-group {
+        margin-top:4px;
+        .is-checked {
+            .u-radio-label {
+                &:before {
+                border-color:@t-btn-bgcolor;
+                    box-shadow: none;
+                }
+        
+                &:after {
+                    background:@t-btn-bgcolor;              
+                }
+            }
+        }
+    
+        .u-radio-label {
+            font-size: 12px;
+            padding-left: 19px;
+            &:before {
+                width: 14px;
+                height: 14px;
+                text-align: center;
+                left: 2px;
+                top: 5px;
+                border-color: @border-color;
+                background-color: @w-color;
+            }
+            &:after {
+                top: 9px;
+                border-radius: 3px;
+                height: 6px;
+                width: 6px;
+                background: @w-color;
+                margin-left: 6px;
+            } 
+        }
+    
+        .u-radio-label:hover {
+            &:before {
+                border-color:@t-btn-bgcolor;          
+            }
+        }
+    }
+
+    .refer{
+        font-size: 13px;
+        color: @text-color;
+        margin-left: 1px;
+        width: 240px;
+    }
+
+    .u-input-group{
+        .u-switch{
+            top:5px;
+        }
+        .u-switch.is-checked {
+            border-color: @t-btn-bgcolor;
+            background-color: @t-btn-bgcolor;
+            }
+        }
+
+    .read{
+        padding: 0px 2px;
+        font-size: 13px;
+        color: @read-color;
+        line-height: 27px;
+    }
+}

@@ -53,13 +53,15 @@ class Siderbar extends Component {
   componentWillMount() {
     var self = this;
 
-    axios.get('/web/v1/menu/sidebarList')
-      .then(function (response) {
-        actions.app.setMenus(response.data.data)
+    // axios.get('/web/v1/menu/sidebarList')
+    //   .then(function (response) {
+    //     actions.app.setMenus(response.data.data)
+    //
+    //   }).catch(function (error) {
+    // });
 
-      }).catch(function (error) {
-    });
-
+    let data = require('../../../mock/api/sidebar.json');
+    actions.app.setMenus(data.data)
   }
 
 

@@ -1,0 +1,104 @@
+@import '~utils/publicStyle.less';
+#approve-detail {
+	.approve-detail {
+		width: 100%;
+		border: 1px solid #e3e7ed;
+		background-color: #fff;
+		margin-bottom: 10px;
+		.approve-header {
+			height: 70px;
+			border-bottom: 1px solid #e3e7ed;
+			padding-top: 13px;
+			padding-left: 60px;
+			textarea {
+				width: 326px;
+				height: 45px;
+				font-size: 13px;
+				resize: none;
+				vertical-align: top;
+			}
+			.u-button {
+				vertical-align: top;
+			}
+		}
+		.approve-process {
+			padding: 18px 60px;
+			.process {
+				width: 260px;
+				float: left;
+				position: relative;
+				&.active {
+					&:before {
+						background-color: @t-tab-color;
+						content: '';
+						display: inline-block;
+						width: 240px;
+						height: 1px;
+						// background-color: #d8d8d8;
+						position: absolute;
+						bottom: 5px;
+						left: 16px;
+					}
+					.approve-point {
+						border-color: @t-tab-color;
+					}
+					&:last-child {
+						&:before {
+							display: none;
+						}
+						.approve-point {
+							border-color: #999;
+						}
+					}
+					&.end-event {
+						.approve-point {
+							border-color: @t-tab-color;
+						}
+					}
+					&.doing:nth-last-of-type(2) {
+						&:before {
+							background-color: #d8d8d8;
+						}
+					}
+				}
+				.approve-time {
+					font-size: 13px;
+					color: #999;
+					line-height: 21px;
+				}
+				.approve-action {
+					font-size: 13px;
+					color: #333;
+					font-weight: bold;
+					line-height: 21px;
+					max-width: 120px;
+					display: inline-block;
+					overflow: hidden;
+					text-overflow: ellipsis;
+					white-space: nowrap;
+					height: 21px;
+				}
+				.approve-person {
+					font-size: 12px;
+					color: #999;
+					margin-left: 19px;
+					line-height: 21px;
+					max-width: 120px;
+					display: inline-block;
+					overflow: hidden;
+					text-overflow: ellipsis;
+					white-space: nowrap;
+					height: 21px;
+				}
+				.approve-point {
+					border: 2px solid #d8d8d8;
+					display: block;
+					height: 12px;
+					width: 12px;
+					border-radius: 12px;
+					margin-top: 6px;
+				}
+			}
+		}
+	}
+}

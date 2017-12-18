@@ -1,0 +1,58 @@
+@import "../../../../utils/variables.less";
+[id^='history-input']  {
+    display: inline-block;
+    position: relative;
+    input {
+        height: 28px;
+        padding: 0 25px 0 8px !important;
+        width: 100%;
+        cursor: pointer;
+        background: transparent;
+    }
+    .icon-arrow {
+        position: absolute;
+        right: 8px;
+        top: 6px;
+        color: #999;
+        font-size: 12px;
+        transition: transform .3s;
+        &.focus {
+            transform: rotate(180deg);
+        }
+    }
+    .history-list {
+        position: absolute;
+        left: 0;
+        top: 33px;
+        z-index: 10;
+        background: @w-color;
+        width: 100%;
+        transition: max-height .3s, min-height .3s;
+        overflow-y: hidden;
+        &.show {
+            box-shadow: 0 1px 4px 1px rgba(0, 0, 0, .2);
+            overflow-y: auto; 
+        }
+        .history-item {
+            width: 100%;
+            height: 28px;
+            line-height: 28px;
+            color: #aaa;
+            padding: 0 8px;
+            text-align: left;
+            font-family: PingFangHK-Semibold;
+            font-size: 13px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            &.active {
+                cursor: pointer;
+                color: #666;
+                &:hover {
+                    background: #eee;
+                    color: @t-btn-bgcolor;
+                }
+            }
+        }
+    }
+}

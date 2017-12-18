@@ -1,0 +1,33 @@
+@activeCor: #E14C46;
+@defaultCor: #00B39E;
+@9: #999;
+
+.textarea-wrap {
+	position: relative;
+	resize: none;
+	background-color: #fff;
+	border-color: #d9d9d9;
+
+	&:focus {
+		border-color: @defaultCor;
+		outline: 0;
+	}
+	
+	.text-count {
+		position: absolute;
+		visibility: hidden;
+		right: 6px;
+		bottom: 6px;
+		color: @9;
+	}
+
+	.isCount {
+		visibility: visible;
+	}
+
+	.textActive {
+		color: @activeCor;
+	}
+	
+}
+
