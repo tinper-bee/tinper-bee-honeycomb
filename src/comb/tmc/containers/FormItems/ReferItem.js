@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import Refer from 'containers/Refer';
+import Refer from '../Refer';
 
 export default class ReferItem extends Component {
 	state = {
@@ -12,7 +12,7 @@ export default class ReferItem extends Component {
 	handleChange = (value) => {
 		// this.setState({
 		// 	value: value
-		// }); 
+		// });
 		this.props.onChange(value);
 	}
 
@@ -20,8 +20,8 @@ export default class ReferItem extends Component {
 
 		// if (nextProp.defaultValue.refpk != this.state.defaultValue.refpk ) {
 		// 	console.log('Refer=> update');
-		// 	this.setState({ 
-		// 		defaultValue: nextProp.defaultValue, 
+		// 	this.setState({
+		// 		defaultValue: nextProp.defaultValue,
 		// 		value: nextProp.defaultValue,
 		// 		disabled: nextProp.disabled,
 		// 		clientParam: nextProp.clientParam
@@ -46,7 +46,7 @@ export default class ReferItem extends Component {
 		// 	});
 		// }
 	}
-	
+
 
 
 	render() {

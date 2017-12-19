@@ -28,7 +28,7 @@ import Myassetmodal from '../../containers/myassetmodal/index';
 import Lookmodal from '../../containers/Lookmodal/index';
 import Writemodal from '../../containers/Writemodal/index';
 import PageJump from '../../../../containers/PageJump';
-import SideModal from 'containers/SideModal';
+import SideModal from '../../../../containers/SideModal';
 import AssetModal from '../../containers/AssetModal';
 import './index.less';
 //const bank = ["全部", "广发银行", "上海银行", "浦发银行", "工商银行"];
@@ -701,8 +701,8 @@ export default class Myasset extends Component {
 					"searchMap": {
 						"bankaccount": e.eacctno,
 						"direct":"0"
-					} 
-				} 
+					}
+				}
 			},
 			success: res => {
 				this.setState(
@@ -878,7 +878,7 @@ export default class Myasset extends Component {
 				});
 				that.setState(
 					{
-						resdata: res,       
+						resdata: res,
 						yestDayIncome: assetData, //累计收益数额
 						totleIncome: assetData,
 						accountcenter: {
@@ -1101,14 +1101,14 @@ export default class Myasset extends Component {
 	onChange = activeKey => {
 		let defaultTab = this.state.defaultTab;
 		let urltitle;
-				
+
 		// 根据不同页签请求不同数据
 		let pageIndex = this.state.pageinfo.number;
 		let pageSize = this.state.pageinfo.size;
 		let page = this.state.pageinfo.number;
 		let size = this.state.pageinfo.size;
 		var datasource = {};
-		
+
 		if (activeKey == 'expend' && defaultTab != activeKey) {  //判断进入哪一个状态查询，请求哪一个数据
 			for (var index of taburl) {
 				if (index.title == defaultTab) {
@@ -1492,7 +1492,7 @@ export default class Myasset extends Component {
 								<Row className="yesterdayincome">
 									<Col componentClass="label" className="label" xs={12}>
 										<Col componentClass="span" className="title" xs={5}>
-											上次收益(元)									
+											上次收益(元)
 										</Col>
 										<Col componentClass="span" className="title" xs={5}>
 											上次收益时间
@@ -1572,8 +1572,8 @@ export default class Myasset extends Component {
 											}}
 											title={"投资明细"}
 										>
-                                            <AssetModal 
-                                                data={this.state.assetModalData} 
+                                            <AssetModal
+                                                data={this.state.assetModalData}
                                                 customercode={this.state.modalColumns.custcode}
                                             />
 										</SideModal>

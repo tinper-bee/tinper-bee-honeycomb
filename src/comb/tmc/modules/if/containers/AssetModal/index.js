@@ -4,7 +4,7 @@ import { Pagination } from 'tinper-bee';
 import Tabs, { TabPane } from 'bee-tabs';
 import Table from 'bee-table';
 import axios from 'axios';
-import ajax from 'utils/ajax';
+import ajax from '../../../../utils/ajax';
 const URL = window.reqURL.fm;
 
 let data1 = [

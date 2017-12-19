@@ -62,10 +62,10 @@
       "urltype": "url",
       "children": [
         {
-          "id": "register",
-          "name": "注册",
-          "location": "register",
-          "components":"developer/md-rp/main",
+          "id": "table",
+          "name": "表格",
+          "location": "table",
+          "components": "developer/md-service/main.page",
           "menustatus": "Y",
           "parentid": null,
           "icon": "iconfont cl cl-filebox yellow-700",
@@ -77,10 +77,25 @@
           "category": "pass"
         },
         {
-          "id": "table",
-          "name": "表格",
-          "location": "table",
-          "components":"developer/md-service/main.page",
+          "id": "myasset",
+          "name": "账户信息",
+          "location": "myasset",
+          "components": "developer/md-service/main.page",
+          "menustatus": "Y",
+          "parentid": null,
+          "icon": "iconfont cl cl-filebox yellow-700",
+          "target": "",
+          "urltype": "url",
+          "children": [],
+          "sort": 2,
+          "openview": "curpage",
+          "category": "pass"
+        },
+        {
+          "id": "creditmonitor",
+          "name": "额度监控",
+          "location": "creditmonitor",
+          "components": "developer/md-service/main.page",
           "menustatus": "Y",
           "parentid": null,
           "icon": "iconfont cl cl-filebox yellow-700",
@@ -91,10 +106,34 @@
           "openview": "curpage",
           "category": "pass"
         }
-      ],
-      "sort": 1,
-      "openview": "curpage",
-      "category": "engine"
+      ]
+    },
+    {
+      "id": "form",
+      "name": "表单",
+      "location": "/form",
+      "menustatus": "Y",
+      "parentid": null,
+      "icon": "uf uf-9square-2",
+      "target": "",
+      "urltype": "url",
+      "children": [
+        {
+          "id": "register",
+          "name": "注册",
+          "location": "register",
+          "components": "developer/md-rp/main",
+          "menustatus": "Y",
+          "parentid": null,
+          "icon": "iconfont cl cl-filebox yellow-700",
+          "target": "",
+          "urltype": "url",
+          "children": [],
+          "sort": 2,
+          "openview": "curpage",
+          "category": "pass"
+        }
+      ]
     }
   ]
 }

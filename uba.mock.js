@@ -11,6 +11,10 @@ module.exports = {
   ],
   "POST": [
     // 我的相关接口
-    { "/Test/post": "./mock/api/test.json" }
+    { "/Test/post": "./mock/api/test.json" },
+    { "/fm/subscribe/searchAppendAcc": "./mock/api/myasset/searchAppendAcc.json" },
+    { "/fm/interests/queryInvestAccs": "./mock/api/myasset/queryInvestAccs.json" },
+    { "/fm/creditmonitor/list": "./mock/api/creditmonitor/creditmonitor_list.json" },
+    { "/bd/project/search": "./mock/api/bd_project/search.json" },
   ]
 }

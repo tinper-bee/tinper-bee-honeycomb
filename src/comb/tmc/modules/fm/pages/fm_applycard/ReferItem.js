@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
-import Refer from 'containers/Refer';
+import Refer from '../../../../containers/Refer';
 
 export default class ReferItem1 extends Component {
 	constructor() {
 	    super();
 	    this.state = {};
-	}	
+	}
 
 	referChange = (val, name) => {
         console.log(val, name)
@@ -25,8 +25,8 @@ export default class ReferItem1 extends Component {
             value={{
                 refname: data.display || null,
               	refpk: data.value || null
-            }}  
-            {...attrs}                                                                  
-        />)    
-	}	
+            }}
+            {...attrs}
+        />)
+	}
 }

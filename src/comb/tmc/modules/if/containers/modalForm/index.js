@@ -9,7 +9,7 @@ import InputGroup from 'bee-input-group';
 import Form from 'bee-form';
 import FormControl from 'bee-form-control';
 import Label from 'bee-label';
-import { CheckboxItem, RadioItem, TextAreaItem, ReferItem , InputItem} from 'containers/FormItems';
+import { CheckboxItem, RadioItem, TextAreaItem, ReferItem , InputItem} from '../../../../containers/FormItems';
 const FormItem=Form.FormItem;
 import "./index.less";
 export default class InputForm extends Component {
@@ -24,7 +24,7 @@ export default class InputForm extends Component {
 				changeIn:'',
 				passWord:''
 			}
-		};		
+		};
 	}
 
 	close = (type) => {
@@ -33,7 +33,7 @@ export default class InputForm extends Component {
 		}
 	};
 
-	componentWillReceiveProps(nextProps) {		
+	componentWillReceiveProps(nextProps) {
 		this.setState({
 			data: nextProps.modalData||{
 				change:'',
@@ -58,7 +58,7 @@ export default class InputForm extends Component {
 		}else if(opre == "outType"){
 			console.log(e)
 			data = e.target.value;
-		}		
+		}
 		this.setState({data: data});
 	}
 
@@ -117,27 +117,27 @@ export default class InputForm extends Component {
 						<Col componentClass="span"  xs={1}>
 						</Col>
 						<Col componentClass="span"  xs={8} style={{marginTop:20}}>
-							转入:<span style={{marginLeft:25}}>{columns.eacctno}</span>	
+							转入:<span style={{marginLeft:25}}>{columns.eacctno}</span>
 						</Col>
 						</Row>
 					</li>
 					<li className="formbody">
 						 <Form submitCallBack={this.checkForm} showSubmit={false}  checkFormNow={checkFormNow}>
-							<FormItem  
-								labelName="转入金额" 
-								isRequire={true} reg={/^[0-9]+$/} 
-								errorMessage="金额格式错误" 
-								inputAfter={<span>本次最多可转入100,000.00</span>} 
-								method="blur" 
+							<FormItem
+								labelName="转入金额"
+								isRequire={true} reg={/^[0-9]+$/}
+								errorMessage="金额格式错误"
+								inputAfter={<span>本次最多可转入100,000.00</span>}
+								method="blur"
 								inline={true}>
 								<FormControl name="amount" placeholder="建议100元以上" />
 							</FormItem>
 							{/* <FormItem labelName="支付密码"
-								inputAfter={<span onClick={this.forgetMessage}>忘记密码？</span>} 
-								isRequire={true} 
-								method="blur" 
-								errorMessage="密码格式错误" 
-								htmlType="password" 
+								inputAfter={<span onClick={this.forgetMessage}>忘记密码？</span>}
+								isRequire={true}
+								method="blur"
+								errorMessage="密码格式错误"
+								htmlType="password"
 								inline={true}>
 								<FormControl name="age" ref="input"  placeholder="请输入支付密码" />
 							</FormItem> */}
@@ -148,7 +148,7 @@ export default class InputForm extends Component {
 		}else if(opre=='outType'){
 			return(
 				<ul id="modalForm">
-					<li> 
+					<li>
 						<Row>
 						<Col componentClass="label" className="label" xs={12}>
 									<Col  xs={4} className='banklogo'>
@@ -164,22 +164,22 @@ export default class InputForm extends Component {
 					</li>
 					<li className="formbody">
 						 <Form submitCallBack={this.checkForm} showSubmit={false}  checkFormNow={checkFormNow}>
-							<FormItem  
-							labelName="转出金额" 
-							isRequire={true}   
-							reg={/^[0-9]+$/} 
+							<FormItem
+							labelName="转出金额"
+							isRequire={true}
+							reg={/^[0-9]+$/}
 							errorMessage="金额格式错误"
-							 method="blur" 
-							// inputAfter={<span onClick={this.pullOut}>全部转出</span>} 
+							 method="blur"
+							// inputAfter={<span onClick={this.pullOut}>全部转出</span>}
 							 inline={true}>
 								<FormControl name="name" placeholder="建议100元以上" />
 							</FormItem>
-							{/* <FormItem labelName="支付密码" 
-								inputAfter={<span onClick={this.forgetMessage}>忘记密码？</span>} 
+							{/* <FormItem labelName="支付密码"
+								inputAfter={<span onClick={this.forgetMessage}>忘记密码？</span>}
 								isRequire={true}
-								method="blur" 
+								method="blur"
 								errorMessage="密码格式错误"
-								htmlType="password" 
+								htmlType="password"
 								inline={true}>
 								<FormControl name="age" ref="input"  placeholder="请输入支付密码" />
 							</FormItem> */}
@@ -220,14 +220,14 @@ export default class InputForm extends Component {
 								reg={/^[0-9]+$/}
 								errorMessage="金额格式错误"
 								method="blur"
-								//inputAfter={<span onClick={this.callback}>全部赎回</span>} 
+								//inputAfter={<span onClick={this.callback}>全部赎回</span>}
 								inline={true}>
 								<FormControl name="amount" placeholder="建议100元以上" />
 							</FormItem>
-							<FormItem inline={ true}  labelXs={2}  labelSm={2} labelMd={2} xs={4} md={4} sm={4} 
+							<FormItem inline={ true}  labelXs={2}  labelSm={2} labelMd={2} xs={4} md={4} sm={4}
 		                    	labelName="赎回方式："  isRequire={true}
 		                    	errorMessage="放款计划格式错误" >
-		                    	<RadioItem 
+		                    	<RadioItem
 		                    		name="type"
 		                    		items= {
 		                    			() => {
@@ -242,12 +242,12 @@ export default class InputForm extends Component {
 		                    		}
 		                    	/>
 		                    </FormItem>
-							{/* <FormItem 
+							{/* <FormItem
 							    labelName="支付密码"
 								isRequire={true} method="blur"
 								errorMessage="密码格式错误"
 								htmlType="password"
-								inputAfter={<span onClick={this.forgetMessage}>忘记密码？</span>} 
+								inputAfter={<span onClick={this.forgetMessage}>忘记密码？</span>}
 								inline={true}>
 								<FormControl name="age" ref="input"  placeholder="请输入支付密码" />
 							</FormItem> */}
@@ -260,13 +260,13 @@ export default class InputForm extends Component {
 
 	render() {
 		const { showModal, opre, modalData,columns } = this.props;
-		let { checked, value } = this.state;	
+		let { checked, value } = this.state;
 		return (
 			<Modal show={showModal} onHide={ this.close } id='modalTag'>
 					<Modal.Header closeButton>
 						<Modal.Title className='modaltitle'>{opre == 'inType' ? '转入' : opre == 'outType' ? '转出至' : opre == 'assetback' ? '赎回产品' :''}</Modal.Title>
 					</Modal.Header>
-					<Modal.Body>	
+					<Modal.Body>
 						{this.loadRows(opre,columns)}
 					</Modal.Body>
 					<Modal.Footer>
@@ -277,7 +277,7 @@ export default class InputForm extends Component {
 						</Button> : opre == 'assetback' ? <Button onClick={this.handleSubmit.bind(this)} className="turnBtn" style={{ marginRight: 20 }}>
 								确认赎回
 						</Button>:''}
-						
+
 						{/* <Button onClick={this.close.bind(this, 'cancel')} shape='border'>
 							取消
 						</Button> */}

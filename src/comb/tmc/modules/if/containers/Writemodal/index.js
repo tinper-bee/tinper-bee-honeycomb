@@ -7,8 +7,8 @@ import Tabs, { TabPane } from 'bee-tabs';
 import React, { Component } from 'react';
 import Button from 'bee-button';
 import Modal from 'bee-modal';
-import Refer from 'containers/Refer';//参照
-// import refer 
+import Refer from '../../../../containers/Refer';//参照
+// import refer
 import './index.less';
 
 import Ajax from '../../../../utils/ajax.js';
@@ -232,7 +232,7 @@ export default class Lookmodal extends Component {
                                         typeCode: this.state.jinrongjgcode
                                     }}
                                 />
-                                       
+
                                     </Col>
                                 </FormGroup>
                                 <FormGroup>

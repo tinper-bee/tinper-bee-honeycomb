@@ -17,8 +17,7 @@ import Refer from '../../../../containers/Refer';
 import BreadCrumbs from '../../../bd/containers/BreadCrumbs';
 import NoData from '../../../../containers/NoData';
 import Form from 'bee-form';
-import { CheckboxItem, RadioItem, TextAreaItem, InputItem, DateTimePickerItem } from 'containers/FormItems';
-import zhCN from 'rc-calendar/lib/locale/zh_CN';
+
 import moment from 'moment';
 const rootURL = window.reqURL.fm;
 const FORMAT = 'YYYY-MM-DD';

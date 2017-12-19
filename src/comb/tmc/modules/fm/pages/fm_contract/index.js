@@ -9,8 +9,8 @@ import DatePicker from 'bee-datepicker';
 import Loading from 'bee-loading';
 import zhCN from 'rc-calendar/lib/locale/zh_CN';
 import moment from 'moment';
-import Refer from 'containers/Refer';
-import { CheckboxItem, RadioItem, TextAreaItem, ReferItem , SelectItem, InputItem, DateTimePickerItem, SwitchItem} from 'containers/FormItems';
+import Refer from '../../../../containers/Refer';
+import { CheckboxItem, RadioItem, TextAreaItem, ReferItem , SelectItem, InputItem, DateTimePickerItem, SwitchItem} from '../../../../containers/FormItems';
 import Select from 'bee-select';
 import LightTabs from './LightTabs';
 import './index.less';
@@ -20,10 +20,10 @@ import Modal from 'bee-modal';
 import BreadCrumbs from '../../../bd/containers/BreadCrumbs';
 
 //上传附件
-import TmcUploader from 'containers/TmcUploader';
+import TmcUploader from '../../../../containers/TmcUploader';
 
-const deepClone = require('utils/deepClone');
-import { toast } from 'utils/utils';
+const deepClone = require('../../../../utils/deepClone');
+import { toast } from '../../../../utils/utils';
 
 const { FormItem } = Form;
 // const format = 'YYYY-MM-DD HH:mm:ss';
@@ -79,7 +79,7 @@ export default class Contract extends Component {
 
  	state = {
 
- 		//页面状态 EDIT VIEW 
+ 		//页面状态 EDIT VIEW
  		editStatus: 'new',
  		//页面标题
  		title: '贷款合同',
@@ -480,7 +480,7 @@ export default class Contract extends Component {
 		// if (data.data && data.success) {
 		// let isChange = (editStatus === 'change');
 		let { contractInfo, bankLoadInfo, payplanInfo, guaranteeInfo, creditinfo} = data;
- 
+
 		let contractInfoValues = contractInfo.rows[0].values;
 		for(let p in contractInfoValues) {
 
@@ -562,7 +562,7 @@ export default class Contract extends Component {
 				} else {
 					syndicatedloanData.rows.push(item);
 				}
-				
+
 
 			});
 
@@ -625,7 +625,7 @@ export default class Contract extends Component {
  		contractInfoData.iscreditcc = {
  			value: value,
  			display: '',
- 			scale: -1	
+ 			scale: -1
  		};
  		this.setState({
  			contractInfoData: contractInfoData,
@@ -894,7 +894,7 @@ export default class Contract extends Component {
 		 							}
 		 						}
 			 					ele.display = value.display || '';
-	 							
+
 	 						}
 
 	 						ele.scale = -1;
@@ -1033,7 +1033,7 @@ export default class Contract extends Component {
 	 			isValid = false;
 	 			synCheckSum.value = true;
 	 		}
- 			
+
  		}
 
  		//担保表体校验
@@ -1165,7 +1165,7 @@ export default class Contract extends Component {
  		let {value} = obj;
  		console.log('fsdafsa', obj);
  		return !!value;
- 	} 
+ 	}
 
 	isEmptyObject(obj) {　　
 		for (var key in obj) {　　　　
@@ -1212,7 +1212,7 @@ export default class Contract extends Component {
 		for(var p in obj) {
 			let e = obj[p];
 			if (e.value === undefined || e.value === '') {
-				e.value = null; 
+				e.value = null;
 			}
 		}
 	}
@@ -1360,7 +1360,7 @@ export default class Contract extends Component {
 					values: row
 				});
 			});
-			
+
 		}
 
 		//担保
@@ -1479,7 +1479,7 @@ export default class Contract extends Component {
 				display: null,
 				value: this.getCode('000', tableData.index),
 				scale: -1
-			} 
+			}
 		}
 
 		tableData.rows.push(newLine);
@@ -1544,9 +1544,9 @@ export default class Contract extends Component {
 					let defaultValue = null;
 					if (text.value) {
 					    defaultValue = moment(text.value);
-					} 
+					}
 
-					return (record.isEdit ? (<div > <DateTimePickerItem  {...errorBorder}   defaultValue = { defaultValue } 
+					return (record.isEdit ? (<div > <DateTimePickerItem  {...errorBorder}   defaultValue = { defaultValue }
 						format={ format } locale={ zhCN } placeholder={ dateInputPlaceholder }
 						onChange = {
 
@@ -1576,7 +1576,7 @@ export default class Contract extends Component {
 
 						}/>{errorMsg}</div>) : (<span>{text}</span>)
 					       );
-					
+
 				}
 			},{
 				title: "放款金额",
@@ -1664,7 +1664,7 @@ export default class Contract extends Component {
 								payplanData: this.state.payplanData
 							});
 
-						}} ><Icon className="iconfont icon-shanchu icon-style" /></span> 
+						}} ><Icon className="iconfont icon-shanchu icon-style" /></span>
 
 				)
 			}
@@ -1672,7 +1672,7 @@ export default class Contract extends Component {
 
 		let creditinfoTitle = ()=>(<div style={{ position: 'absolute', top: 4}} >
 								<span className="table_title">授信信息</span>
-								<Button size="sm" className="contract-new"   
+								<Button size="sm" className="contract-new"
 								        onClick={()=> {this.handleAddNewline('creditinfoData', 1); }} >新增</Button>
 								</div>);
 
@@ -1702,7 +1702,7 @@ export default class Contract extends Component {
 
 					}
 
-					return (record.isEdit ? (<div><Refer name="bankprotocolid" 
+					return (record.isEdit ? (<div><Refer name="bankprotocolid"
                                             value={ defaultValue }
                                             {...errorBorder}
  											ctx={'/uitemplate_web'}
@@ -1749,7 +1749,7 @@ export default class Contract extends Component {
 												});
 
                                             }}
-                                                                                   
+
                      />{errorMsg}</div>) : (<span>{text}</span> )
 					)
 				}
@@ -1775,7 +1775,7 @@ export default class Contract extends Component {
 
 					}
 
-					return (record.isEdit ? (<div><Refer name="cccurrtypeid" 
+					return (record.isEdit ? (<div><Refer name="cccurrtypeid"
                                             value={ defaultValue }
                                             {...errorBorder}
 											refCode="currencyRef"
@@ -1799,7 +1799,7 @@ export default class Contract extends Component {
 												});
 
                                             }}
-                                                                                   
+
                      />{errorMsg}</div>) : (<span>{text}</span> )
 					)
 				}
@@ -1825,7 +1825,7 @@ export default class Contract extends Component {
 
 					}
 
-					return (record.isEdit ? (<div><Refer name="cctypeid" 
+					return (record.isEdit ? (<div><Refer name="cctypeid"
 
                                             value={ defaultValue }
                                             {...errorBorder}
@@ -1854,7 +1854,7 @@ export default class Contract extends Component {
 												});
 
                                             }}
-                                                                                   
+
                      />{errorMsg}</div>) : (<span>{text}</span> )
 					)
 
@@ -1863,7 +1863,7 @@ export default class Contract extends Component {
 				title: "占用授信金额",
 				dataIndex: "ccamount",
 				key: "ccamount",
-				render: (text, record, index) => { 
+				render: (text, record, index) => {
 
 
 					let errorMsg, errorBorder;
@@ -1936,7 +1936,7 @@ export default class Contract extends Component {
 										scale: -1
 									};
 								} else {
-									
+
 									rows = rows.filter(function(v, i, a) {
 										return v.key != originData.key;
 									});
@@ -1949,15 +1949,15 @@ export default class Contract extends Component {
 							this.setState({
 								creditinfoData: this.state.creditinfoData
 							});
-						}} ><Icon className="iconfont icon-shanchu icon-style" /></span> 
+						}} ><Icon className="iconfont icon-shanchu icon-style" /></span>
 
-				)			
+				)
 			}
 		];
 
 		let syndicatedloanTitle = ()=>( <div style={{ position: 'absolute', top: 4}}>
 											<span className="table_title">银团贷款</span>
-											<Button size="sm" className="contract-new" 
+											<Button size="sm" className="contract-new"
 											onClick={()=> {this.handleAddNewline('syndicatedloanData', 3) }} >新增</Button>
 										</div>);
 
@@ -1993,7 +1993,7 @@ export default class Contract extends Component {
 
 					}
 
-					return (!isChange ? (<div><Refer name="finanparticipate" 
+					return (!isChange ? (<div><Refer name="finanparticipate"
                                             value={ defaultValue }
                                             {...errorBorder}
                                             ctx={'/uitemplate_web'}
@@ -2031,7 +2031,7 @@ export default class Contract extends Component {
 												});
 
                                             }}
-                                                                                   
+
                      />{errorMsg}</div>) : (<span>{text.display}</span> )
 					)
 				}
@@ -2075,7 +2075,7 @@ export default class Contract extends Component {
 										scale: -1
 									};
 									if (　financamount.value　&& reg.test(financamount.value) && reg.test(v)　) {
-										originData.confinancmny = { 
+										originData.confinancmny = {
 											display: null,
 											value: Number(v) * 0.01 * Number(financamount.value),
 											scale: -1
@@ -2307,7 +2307,7 @@ export default class Contract extends Component {
 				key: "oper",
 				width: 100,
 				render: (text, record, index) => (
-					index > 1 ? 
+					index > 1 ?
 						<span href="javascript:;" onClick={ () => {
 
 
@@ -2322,7 +2322,7 @@ export default class Contract extends Component {
 										scale: -1
 									};
 								} else {
-									
+
 									rows = rows.filter(function(v, i, a) {
 										return v.key != originData.key;
 									});
@@ -2354,13 +2354,13 @@ export default class Contract extends Component {
 								this.tabsActiveKey = 3;
 								this.setState();
 							}}>编辑</a>)*/
-				)			
+				)
 			}
 		];
 
 		let guaranteeTitle = ()=>(  <div style={{ position: 'absolute', top: 4}}>
 										<span className="table_title">担保信息</span>
-										<Button size="sm" className="contract-new"  
+										<Button size="sm" className="contract-new"
 										onClick={()=> {this.handleAddNewline('guaranteeData', 3) }} >新增</Button>
 									</div>);
 
@@ -2382,8 +2382,8 @@ export default class Contract extends Component {
 						errorMsg = <span className="validate-error-text">请选择正确的担保方式</span>
 					}
 
-					return (record.isEdit ? (<div><SelectItem name="guaranteetype" 
-								{...errorBorder} 
+					return (record.isEdit ? (<div><SelectItem name="guaranteetype"
+								{...errorBorder}
 								defaultValue={text.value}
 			 					items= { () => [{
 	                    					label: '保证',
@@ -2423,8 +2423,8 @@ export default class Contract extends Component {
 										});
 										// this.changeData("guaranteemny", v, index, "1");
 									} } />{ errorMsg}</div> ) : (<span>{text}</span> )
-					) 
-				} 
+					)
+				}
 			},{
 				title: "担保合同",
 				dataIndex: "guaranteeid",
@@ -2453,11 +2453,11 @@ export default class Contract extends Component {
 					}
 
 
-					return (record.isEdit ? (<div> 
-								<Refer name="gecurrtypeid" 
+					return (record.isEdit ? (<div>
+								<Refer name="gecurrtypeid"
 		                            value={ defaultValue }
 		                            {...errorBorder}
-									refCode="guacontractRef"	
+									refCode="guacontractRef"
 									refModelUrl="/fm/guacontractRef/"
 									multiLevelMenu={[
                                         {
@@ -2575,11 +2575,11 @@ export default class Contract extends Component {
 					}
 
 
-					return ( record.isEdit ? (<div> 
-								<Refer name="gecurrtypeid" 
+					return ( record.isEdit ? (<div>
+								<Refer name="gecurrtypeid"
 		                            value={ defaultValue }
 		                            {...errorBorder}
-									refCode="currencyRef"	
+									refCode="currencyRef"
 									refModelUrl="/bd/currencyRef/"
 		                            onChange={(v)=>{
 		                            	let { rows } = this.state.guaranteeData;
@@ -2650,7 +2650,7 @@ export default class Contract extends Component {
 				key: "contractbegindate",
 				width: 100,
 				render: (text, record, index) => {
-	
+
 					let errorMsg , errorBorder ;
 					if (!text.value && !record.isEscCheck) {
 						errorBorder= {
@@ -2663,9 +2663,9 @@ export default class Contract extends Component {
 					let defaultValue = null;
 					if (text.value) {
 					    defaultValue = moment(text.value);
-					} 
+					}
 
-					return (record.isEdit ? (<div > <DateTimePickerItem  {...errorBorder}   defaultValue = { defaultValue } 
+					return (record.isEdit ? (<div > <DateTimePickerItem  {...errorBorder}   defaultValue = { defaultValue }
 						format={ format } locale={ zhCN } placeholder={ dateInputPlaceholder }
 						onChange = {
 
@@ -2712,10 +2712,10 @@ export default class Contract extends Component {
 					let defaultValue = null;
 					if (text.value) {
 					    defaultValue = moment(text.value);
-					} 
+					}
 
-					return (record.isEdit ? (<div > <DateTimePickerItem  {...errorBorder} 
-							defaultValue = { defaultValue } 
+					return (record.isEdit ? (<div > <DateTimePickerItem  {...errorBorder}
+							defaultValue = { defaultValue }
 							format={ format } locale={ zhCN }
 							placeholder={ dateInputPlaceholder }
 							onChange = {
@@ -2762,7 +2762,7 @@ export default class Contract extends Component {
 										scale: -1
 									};
 								} else {
-									
+
 									rows = rows.filter(function(v, i, a) {
 										return v.key != originData.key;
 									});
@@ -2776,8 +2776,8 @@ export default class Contract extends Component {
 								guaranteeData: this.state.guaranteeData
 							});
 
-						}} ><Icon className="iconfont icon-shanchu icon-style" /></span> 
-				)			
+						}} ><Icon className="iconfont icon-shanchu icon-style" /></span>
+				)
 			}
 		];
 
@@ -2792,7 +2792,7 @@ export default class Contract extends Component {
 				isShow: this.state.hasPayplan,
 				label: '放款',
 				render: () =><Table key='1' title={ payplanTitle }  columns={payplanColums} data={payplanRows} />
-			},{ 
+			},{
 				key: 2,
 				isShow: this.state.hasCreditinfo,
 				label: '授信',
@@ -2801,12 +2801,12 @@ export default class Contract extends Component {
 				key: 3,
 				label: '银团',
 				isShow: this.state.hasSyndicatedloan,
-				render: () => <Table key='3' title={ syndicatedloanTitle } columns={syndicatedloanColumns} data={ syndicatedloanRows } /> 
+				render: () => <Table key='3' title={ syndicatedloanTitle } columns={syndicatedloanColumns} data={ syndicatedloanRows } />
 			},{
 				key: 4,
 				label: '担保',
 				isShow: this.state.hasGuarantee,
-				render: () => <Table key='4' title={ guaranteeTitle } columns={guaranteeColumns} data={guaranteeRows} /> 
+				render: () => <Table key='4' title={ guaranteeTitle } columns={guaranteeColumns} data={guaranteeRows} />
 			}
 		];
 
@@ -2825,7 +2825,7 @@ export default class Contract extends Component {
 						<Col  md={12}   xs={12}   sm={12} style={{position: 'relative'}}>
 							<Affix offsetTop={0} style={{ zIndex: 8000}} >
 			 					<div className="tab-header " style={{ zIndex: 8000}} >
-			 						
+
 			 						<div className="tab-header-left">{ this.state.title }</div>
 			 						<div className="tab-header-mid">
 			 							<ul>
@@ -2842,7 +2842,7 @@ export default class Contract extends Component {
 
 			 						</div>
 			 						<div className="tab-header-right">
-				 							{this.state.id ? 
+				 							{this.state.id ?
 				 							<span style={{marginRight:5}} >
 					 							<TmcUploader
 							                    	billID={this.state.id }
@@ -2852,13 +2852,13 @@ export default class Contract extends Component {
 						                            data={{ billId: '00000001', group: 'fm' }}
 						                            />
 					                        </span> : ''}
-				 							<Button size="sm" className="contract-info" 
-				 									onClick={this.handleSubmitSave} 
+				 							<Button size="sm" className="contract-info"
+				 									onClick={this.handleSubmitSave}
 				 									style={{ marginRight: 8}}>保存</Button>
 				 							<Button size="sm"  onClick={ this.handleCancel } >取消</Button>
 				 					</div>
-			 					</div> 
-			 				</Affix> 
+			 					</div>
+			 				</Affix>
 			 				<div className="section-container" >
 			 					<ScrollElement name="contractinfo">
 									<section  ref={(ele) => { this.sectionEle0 = ele; }} >
@@ -2866,22 +2866,22 @@ export default class Contract extends Component {
 											<div className="section-title">合同信息</div>
 											<Form   showSubmit={false} checkFormNow={ this.state.checkForm }
 													useRow={true}  submitCallBack={this.contractFormCallback}　>
-												<FormItem inline={ true } showMast={true} labelXs={2} labelSm={2} labelMd={2} xs={4} md={4} sm={4} 
+												<FormItem inline={ true } showMast={true} labelXs={2} labelSm={2} labelMd={2} xs={4} md={4} sm={4}
 													labelName="合同编号：" asyncCheck={this.asyncChec}   isRequire={true}  errorMessage="请输入合同编号"  method="blur"   >
-													<InputItem  name="contractcode" 
+													<InputItem  name="contractcode"
 																type="customer"
 																disabled={isChange}
 																autocomplete="off"
-																defaultValue={ contractInfoData.contractcode.value } 
-																placeholder="请输入合同编号" />	
+																defaultValue={ contractInfoData.contractcode.value }
+																placeholder="请输入合同编号" />
 							                    </FormItem>
-												<FormItem inline={ true } showMast={false} labelXs={2} labelSm={2} labelMd={2} xs={4} md={4} sm={4} 
+												<FormItem inline={ true } showMast={false} labelXs={2} labelSm={2} labelMd={2} xs={4} md={4} sm={4}
 													labelName="申请单号："     errorMessage="请输入申请单号" >
 													<InputItem  disabled name="applyno"
 																type="customer"
-																defaultValue={ contractInfoData.applyno.value }  /> 
+																defaultValue={ contractInfoData.applyno.value }  />
 							                    </FormItem>
-												<FormItem inline={ true } showMast={true} labelXs={2} labelSm={2} labelMd={2} xs={4} md={4} sm={4} 
+												<FormItem inline={ true } showMast={true} labelXs={2} labelSm={2} labelMd={2} xs={4} md={4} sm={4}
 													labelName="借款单位：" className="form-item-short"  asyncCheck={this.checkRefer}　 method="change"    errorMessage="请输入贷款单位" >
 													<ReferItem  name="financorg"　refCode="finorgRef"　refModelUrl="/bd/finorgRef/"
 																type="customer"
@@ -2890,18 +2890,18 @@ export default class Contract extends Component {
 																	refname: contractInfoData.financorg.display,
 																	refpk: contractInfoData.financorg.value
 																}}
-																refName = "借款单位" 
+																refName = "借款单位"
 																/>
 							                    </FormItem>
-							                    <FormItem inline={ true } showMast={false} labelXs={2} labelSm={2} labelMd={2} xs={4} md={4} sm={4}  
+							                    <FormItem inline={ true } showMast={false} labelXs={2} labelSm={2} labelMd={2} xs={4} md={4} sm={4}
 						                    		labelName="申请日期：" isRequire={ false }  errorMessage="请输入申请日期" >
 								                    <InputItem  disabled name="applydate"
 																type="customer"
-																defaultValue={ contractInfoData.applydate.value }  /> 
+																defaultValue={ contractInfoData.applydate.value }  />
  							                	</FormItem>
-							                    <FormItem inline={ true} showMast={true} labelXs={2}  labelSm={2} labelMd={2} xs={4} md={4} sm={4} 
+							                    <FormItem inline={ true} showMast={true} labelXs={2}  labelSm={2} labelMd={2} xs={4} md={4} sm={4}
 							                    	labelName="贷款机构：" asyncCheck={this.checkRefer} method="change"  errorMessage="贷款机构格式错误"  >
-							                    	<ReferItem  name="financorganization" 
+							                    	<ReferItem  name="financorganization"
 							                    				defaultValue={{
 																		refname: contractInfoData.financorganization.display,
 																		refpk: contractInfoData.financorganization.value
@@ -2927,15 +2927,15 @@ export default class Contract extends Component {
 																]}
 							                    		/>
 							                    </FormItem>
-							                     <FormItem inline={ true} showMast={true} labelXs={2}  labelSm={2} labelMd={2} xs={4} md={4} sm={4} 
-							                    	labelName="交易大类：" asyncCheck={this.checkRefer}  errorMessage="交易大类格式错误" 
+							                     <FormItem inline={ true} showMast={true} labelXs={2}  labelSm={2} labelMd={2} xs={4} md={4} sm={4}
+							                    	labelName="交易大类：" asyncCheck={this.checkRefer}  errorMessage="交易大类格式错误"
 							                    	method="change" change={this.handleTransactclass}  >
-							                    	<ReferItem disabled={isChange}  name="transactclass" type="customer" 
+							                    	<ReferItem disabled={isChange}  name="transactclass" type="customer"
 							                    		defaultValue={{
 															refname: contractInfoData.transactclass.display,
 															refpk: contractInfoData.transactclass.value
 														}}
-														type="customer" 
+														type="customer"
 														ctx={'/uitemplate_web'}
 														refModelUrl={'/bd/transtypeRef/'}
 														refCode={'transtypeRef'}
@@ -2956,16 +2956,16 @@ export default class Contract extends Component {
 														]}
 														 />
 							                    </FormItem>
-							                    <FormItem inline={ true} showMast={true} labelXs={2}  labelSm={2} labelMd={2} xs={4} md={4} sm={4} 
+							                    <FormItem inline={ true} showMast={true} labelXs={2}  labelSm={2} labelMd={2} xs={4} md={4} sm={4}
 							                    	labelName="交易类型：" 	change={this.handletransacttype}   asyncCheck={this.checkRefer}  errorMessage="交易类型格式错误"  method="change"  >
 							                    	<ReferItem  name="transacttype"
-							                    				refModelUrl="/bd/transtypeRef/" 
+							                    				refModelUrl="/bd/transtypeRef/"
 							                    				defaultValue={{
 																		refname: contractInfoData.transacttype.display,
 																		refpk: contractInfoData.transacttype.value
 																	}}
 																disabled={isChange}
-																type="customer" 
+																type="customer"
 																ctx={'/uitemplate_web'}
 																refModelUrl={'/bd/transtypeRef/'}
 																showHistory={ false }
@@ -2997,7 +2997,7 @@ export default class Contract extends Component {
 																]}
 																	/>
 							                    </FormItem>
-							                    <FormItem inline={true} showMast={true} labelXs={2}  labelSm={2} labelMd={2} xs={4} md={4} sm={4} 
+							                    <FormItem inline={true} showMast={true} labelXs={2}  labelSm={2} labelMd={2} xs={4} md={4} sm={4}
 							                    	labelName="币种："  change={ this.handleCurrtypeid }  asyncCheck={this.checkRefer} method="change"  errorMessage="币种格式错误"  >
 							                    	<ReferItem name="currtypeid"  refCode="currencyRef"	 refModelUrl="/bd/currencyRef/"
 							                    		type="customer"
@@ -3005,12 +3005,12 @@ export default class Contract extends Component {
 							                    		defaultValue={{
 																		refname: contractInfoData.currtypeid.display,
 																		refpk: contractInfoData.currtypeid.value
-																	}} /> 
+																	}} />
 							                    </FormItem>
-							                    <FormItem inline={ true} showMast={true} labelXs={2}  labelSm={2} labelMd={2} xs={4} md={4} sm={4} 
-							                    	labelName="贷款金额："  reg={/^[1-9][0-9|,]*(\.\d{1,2})?$/i} method="blur" change={this.handleFinancamount} isRequire={true} 
+							                    <FormItem inline={ true} showMast={true} labelXs={2}  labelSm={2} labelMd={2} xs={4} md={4} sm={4}
+							                    	labelName="贷款金额："  reg={/^[1-9][0-9|,]*(\.\d{1,2})?$/i} method="blur" change={this.handleFinancamount} isRequire={true}
 							                    	errorMessage="格式错误，最多两位小数"  >
-							                    	<InputItem name="financamount" 
+							                    	<InputItem name="financamount"
 							                    			type="customer"
 							                    			processChange = {
 																(state, v) => {
@@ -3021,10 +3021,10 @@ export default class Contract extends Component {
 							                    			defaultValue={this.formatAcuracy(contractInfoData.financamount)}
 							                    			placeholder="请输入贷款金额" />
 							                    </FormItem>
-							                    <FormItem inline={ true}  labelXs={2}  labelSm={2} labelMd={2} xs={4} md={4} sm={4} 
-							                    	labelName="本币汇率："    method="blur" inputAlfer="%"　　reg={/^[1-9][0-9|,]*(\.\d{1,4})?$/i} 
+							                    <FormItem inline={ true}  labelXs={2}  labelSm={2} labelMd={2} xs={4} md={4} sm={4}
+							                    	labelName="本币汇率："    method="blur" inputAlfer="%"　　reg={/^[1-9][0-9|,]*(\.\d{1,4})?$/i}
 							                    	errorMessage="格式错误，最多四位小数" change={this.handleOlcrate}  >
-							                    	<InputItem  name="olcrate" 
+							                    	<InputItem  name="olcrate"
 							                    				type="customer"
 							                    				disabled={isChange}
 							                    				processChange = {
@@ -3035,18 +3035,18 @@ export default class Contract extends Component {
 									                    		defaultValue={this.formatAcuracy(contractInfoData.olcrate, 4)}
 									                    		placeholder="请输入本币汇率" />
 							                    </FormItem>
-							                    <FormItem inline={ true}  showMast={true} labelXs={2}  labelSm={2} labelMd={2} xs={4} md={4} sm={4} 
-							                    	labelName="起始日期："  change={ (value) => { this.handleEndDateChange(value, 'begindate') }}   isRequire={true}  method="change"  
+							                    <FormItem inline={ true}  showMast={true} labelXs={2}  labelSm={2} labelMd={2} xs={4} md={4} sm={4}
+							                    	labelName="起始日期："  change={ (value) => { this.handleEndDateChange(value, 'begindate') }}   isRequire={true}  method="change"
 							                    	errorMessage="起始日期格式错误"    >
 							                        <DatePicker name="begindate" disabled={isChange}  type="customer" format={ format } locale={ zhCN }
 								                       defaultValue={ moment( contractInfoData.begindate.value) } placeholder={ dateInputPlaceholder } />
 							                    </FormItem>
-							                    <FormItem inline={ true} showMast={true} labelXs={2}  labelSm={2} labelMd={2} xs={4} md={4} sm={4} 
-							                    	labelName="期间："  isRequire={true} change={ (value) => { this.handleEndDateChange(value, 'periodcount') }}  errorMessage="期间格式错误" 
+							                    <FormItem inline={ true} showMast={true} labelXs={2}  labelSm={2} labelMd={2} xs={4} md={4} sm={4}
+							                    	labelName="期间："  isRequire={true} change={ (value) => { this.handleEndDateChange(value, 'periodcount') }}  errorMessage="期间格式错误"
 							                    	method="blur"  reg={/^[0-9]+$/}  >
 							                    	<InputItem name="periodcount" disabled={isChange} type="customer" defaultValue={ contractInfoData.periodcount.value } placeholder="请输入使用期间格式" />
 							                    </FormItem>
-							                    <FormItem inline={ true} showMast={true} labelXs={2}  labelSm={2} labelMd={2} xs={4} md={4} sm={4} 
+							                    <FormItem inline={ true} showMast={true} labelXs={2}  labelSm={2} labelMd={2} xs={4} md={4} sm={4}
 							                    	labelName="期间单位：" method="change" change={ (value) => { this.handleEndDateChange(value, 'periodunit') }}  isRequire={true} >
 									 				<SelectItem name="periodunit" disabled={isChange}  defaultValue={contractInfoData.periodunit.value}
 									 					items= {
@@ -3054,7 +3054,7 @@ export default class Contract extends Component {
 							                    				return [{
 							                    					label: '年',
 							                    					value: 'YEAR'
-							                    				}, 
+							                    				},
 							                    				{
 							                    					label: '季',
 							                    					value: 'QUARTER'
@@ -3069,23 +3069,23 @@ export default class Contract extends Component {
 							                    		}
 							                    		type="customer"
 									 				 />
-							                    </FormItem> 
-							                    <FormItem inline={ true} showMast={true}  labelXs={2}  labelSm={2} labelMd={2} xs={4} md={4} sm={4} 
-							                    	labelName="结束日期：" isRequire={true}  errorMessage="结束日期格式错误" 
+							                    </FormItem>
+							                    <FormItem inline={ true} showMast={true}  labelXs={2}  labelSm={2} labelMd={2} xs={4} md={4} sm={4}
+							                    	labelName="结束日期：" isRequire={true}  errorMessage="结束日期格式错误"
 							                    	method="change"  >
 							                    	<InputItem  name="enddate"  type="customer"  disabled defaultValue={ contractInfoData.enddate.value }  />
 							                        {/*<DatePicker name="enddate"  type="customer" format={ format } locale={ zhCN }
 								                       defaultValue={ moment( contractInfoData.enddate.value ) } placeholder={ dateInputPlaceholder } />*/}
 							                    </FormItem>
-							                    <FormItem inline={ true} showMast={true} labelXs={2}  labelSm={2} labelMd={2} xs={4} md={4} sm={4} 
-							                    	labelName="利率："  asyncCheck={this.checkRefer} isRequire={true}  errorMessage="利率格式错误" 
+							                    <FormItem inline={ true} showMast={true} labelXs={2}  labelSm={2} labelMd={2} xs={4} md={4} sm={4}
+							                    	labelName="利率："  asyncCheck={this.checkRefer} isRequire={true}  errorMessage="利率格式错误"
 							                    	method="change"  >
 							                    	<ReferItem  name="rateid" type="customer"
 							                    			    defaultValue={{
 																		refname: contractInfoData.rateid.display,
 																		refpk: contractInfoData.rateid.value
 																	}}
-							                    			    placeholder="请输入使用利率" 
+							                    			    placeholder="请输入使用利率"
 							                    			    ctx={'/uitemplate_web'}
 																refModelUrl={'/bd/rateRef/'}
 																refCode={'rateRef'}
@@ -3107,7 +3107,7 @@ export default class Contract extends Component {
 																showLabel={false}
 							                    			    />
 							                    </FormItem>
-							                    <FormItem inline={ true} showMast={true} labelXs={2}  labelSm={2} labelMd={2} xs={4} md={4} sm={4} 
+							                    <FormItem inline={ true} showMast={true} labelXs={2}  labelSm={2} labelMd={2} xs={4} md={4} sm={4}
 							                    	labelName="担保方式：" isRequire={true}  method="change" change={self.handleGTypeChange}  >
 									                <RadioItem  name="guaranteetype" disabled={isChange} type="customer" defaultValue={ contractInfoData.guaranteetype.value }
 							                    		items= {
@@ -3136,9 +3136,9 @@ export default class Contract extends Component {
 							                    		}
 							                    	/>
 							                    </FormItem>
-							                    <FormItem inline={ true} showMast={true} labelXs={2}  labelSm={2} labelMd={2} xs={4} md={4} sm={4} 
+							                    <FormItem inline={ true} showMast={true} labelXs={2}  labelSm={2} labelMd={2} xs={4} md={4} sm={4}
 							                    	labelName="借贷期间：" method="change"  isRequire={true} >
-													<SelectItem name="periodloan" disabled={isChange}  defaultValue={contractInfoData.periodloan.value} 
+													<SelectItem name="periodloan" disabled={isChange}  defaultValue={contractInfoData.periodloan.value}
 																items = {
 																	() => {
 																		return [{
@@ -3156,9 +3156,9 @@ export default class Contract extends Component {
 
 									 				 />
 							                    </FormItem>
-												<FormItem inline={ true} showMast={false} labelXs={2}  labelSm={2} labelMd={2} xs={4} md={4} sm={4} 
+												<FormItem inline={ true} showMast={false} labelXs={2}  labelSm={2} labelMd={2} xs={4} md={4} sm={4}
 							                    	labelName="固定利率：" method="change"   errorMessage="固定利率格式错误" >
-							                    	<RadioItem 
+							                    	<RadioItem
 							                    		name="isfixedintrate"
 							                    		defaultValue={ contractInfoData.isfixedintrate.value}
 							                    		disabled={isChange}
@@ -3176,11 +3176,11 @@ export default class Contract extends Component {
 							                    		type="customer"
 							                    	/>
 							                    </FormItem>
-						                    	<FormItem inline={ true} showMast={true} labelXs={2}  labelSm={2} labelMd={2} xs={4} md={4} sm={4} 
-							                    	labelName="还款方式："  asyncCheck={this.checkRefer}  errorMessage="还款方式格式错误" 
+						                    	<FormItem inline={ true} showMast={true} labelXs={2}  labelSm={2} labelMd={2} xs={4} md={4} sm={4}
+							                    	labelName="还款方式："  asyncCheck={this.checkRefer}  errorMessage="还款方式格式错误"
 							                    	method="change"  change={this.handleReturnmode} >
 							                    	<ReferItem name="returnmode"  refCode="repaymentmethodRef"
-							                    			    refModelUrl="/bd/repaymentmethodRef/" 
+							                    			    refModelUrl="/bd/repaymentmethodRef/"
 																multiLevelMenu={[
 																	{
 																		name: ['编码', '名称'],
@@ -3193,8 +3193,8 @@ export default class Contract extends Component {
 																		refpk: contractInfoData.returnmode.value
 																	}}  />
 							                    </FormItem>
-							                    <FormItem inline={true} showMast={!isIadateActive} labelXs={2}  labelSm={2} labelMd={2} xs={4} md={4} sm={4} 
-							                    	labelName="结息日："  change={ this.handleIadate }  asyncCheck={this.checkRefer}  errorMessage="结息日格式错误" 
+							                    <FormItem inline={true} showMast={!isIadateActive} labelXs={2}  labelSm={2} labelMd={2} xs={4} md={4} sm={4}
+							                    	labelName="结息日："  change={ this.handleIadate }  asyncCheck={this.checkRefer}  errorMessage="结息日格式错误"
 							                    	method="change"   >
 							                    	<ReferItem name="iadate"  refCode="interestDayRef"
 							                    		disabled={isIadateActive}
@@ -3212,32 +3212,32 @@ export default class Contract extends Component {
 																willNotCheck: isIadateActive
 														 }}  />
 							                    </FormItem>
-							                    <FormItem inline={ true} showMast={true} labelXs={2}  labelSm={2} labelMd={2} xs={4} md={4} sm={4} 
-							                    	labelName="合同版本日期："  isRequire={true}  errorMessage="合约版本日期格式错误" 
+							                    <FormItem inline={ true} showMast={true} labelXs={2}  labelSm={2} labelMd={2} xs={4} md={4} sm={4}
+							                    	labelName="合同版本日期："  isRequire={true}  errorMessage="合约版本日期格式错误"
 							                    	method="blur"  >
 							                    	<InputItem  name="versiondate"  type="customer"  disabled defaultValue={ contractInfoData.versiondate.value }  />
 							                    	{/*<DatePicker disabled={true} name="versiondate"  type="customer"  format={ format } locale={ zhCN }
 								                       defaultValue={ moment( contractInfoData.versiondate.value ) } placeholder={ dateInputPlaceholder } />*/}
 							                    </FormItem>
-							                    <FormItem inline={ true} showMast={true} labelXs={2}  labelSm={2} labelMd={2} xs={4} md={4} sm={4} 
-							                    	labelName="合同签定日期："  isRequire={true}  errorMessage="合约签定日期格式错误" 
+							                    <FormItem inline={ true} showMast={true} labelXs={2}  labelSm={2} labelMd={2} xs={4} md={4} sm={4}
+							                    	labelName="合同签定日期："  isRequire={true}  errorMessage="合约签定日期格式错误"
 							                    	method="blur"  >
 							                    	<DatePicker name="signdate" disabled={isChange}  type="customer"  format={ format } locale={ zhCN }
 								                       defaultValue={ moment( contractInfoData.signdate.value ) } placeholder={ dateInputPlaceholder } />
 							                    </FormItem>
-							                    <FormItem inline={ true}  labelXs={2}  labelSm={2} labelMd={2} xs={4} md={4} sm={4} 
+							                    <FormItem inline={ true}  labelXs={2}  labelSm={2} labelMd={2} xs={4} md={4} sm={4}
 							                    	labelName="合约状态：" errorMessage="合约状态格式错误"  >
 							                    	<InputItem  name="contstatus" isViewMode  type="customer"
 							                    			    defaultValue={contstatusMap[contractInfoData.contstatus.value || '7']} />
 							                    </FormItem>
-							                    <FormItem inline={ true}  labelXs={2}  labelSm={2} labelMd={2} xs={4} md={4} sm={4} 
+							                    <FormItem inline={ true}  labelXs={2}  labelSm={2} labelMd={2} xs={4} md={4} sm={4}
 							                    	labelName="审批状态："　errorMessage="审批状态格式错误"   >
-							                    	<InputItem  name="vbillstatus"  type="customer" isViewMode 
+							                    	<InputItem  name="vbillstatus"  type="customer" isViewMode
 							                    			    defaultValue={vbillstatusMap[contractInfoData.vbillstatus.value || '-1']}  />
 							                    </FormItem>
-	 
-							                    <FormItem  inline={ false}  labelXs={2}  labelSm={2} labelMd={2} xs={10} md={10} sm={10} 
-							                    	labelName="资金用途："      method="change" 
+
+							                    <FormItem  inline={ false}  labelXs={2}  labelSm={2} labelMd={2} xs={10} md={10} sm={10}
+							                    	labelName="资金用途："      method="change"
 							                    	errorMessage="备注格式错误"  >
 												    <TextAreaItem  type="customer"  style={{ width:869, height: 64}}
 												    		defaultValue={ contractInfoData.memo.value }
@@ -3246,12 +3246,12 @@ export default class Contract extends Component {
 												    		count={ 200 } name="memo" />
 												</FormItem>
 
-												<FormItem inline={ true}  labelXs={2}  labelSm={2} labelMd={2} xs={4} md={4} sm={4} 
+												<FormItem inline={ true}  labelXs={2}  labelSm={2} labelMd={2} xs={4} md={4} sm={4}
 							                    	labelName="放款占用授信："　errorMessage="放款占用授信格式错误" change={this.handleIscreditcc}   >
 							                    	<SwitchItem  name="iscreditcc" disabled={isChange}  type="customer" size="sm"
 							                    			    defaultValue={ contractInfoData.iscreditcc.value }  />
 							                    </FormItem>
-												<FormItem inline={ true}  labelXs={2}  labelSm={2} labelMd={2} xs={4} md={4} sm={4} 
+												<FormItem inline={ true}  labelXs={2}  labelSm={2} labelMd={2} xs={4} md={4} sm={4}
 							                    	labelName="项目："　  errorMessage="请选择项目参照"  >
 							                    	<ReferItem
 						                    			name='projectid'
@@ -3267,7 +3267,7 @@ export default class Contract extends Component {
 														refName={'项目'}
 													/>
 							                    </FormItem>
-							                   	<FormItem inline={ true}  labelXs={2}  labelSm={2} labelMd={2} xs={4} md={4} sm={4} 
+							                   	<FormItem inline={ true}  labelXs={2}  labelSm={2} labelMd={2} xs={4} md={4} sm={4}
 							                    	labelName="还本释放担保："　errorMessage="还本释放担保格式错误" >
 							                    	<SwitchItem disabled={isChange}  name="isprinrelease"  type="customer" size="sm"
 							                    			    defaultValue={ contractInfoData.isprinrelease.value }  />
@@ -3281,38 +3281,38 @@ export default class Contract extends Component {
 									<Panel >
 										<div className="section-title"> 保证金信息</div>
 										<Form   useRow={true}
-												submitAreaClassName='classArea' 
+												submitAreaClassName='classArea'
 												showSubmit={false}
 												checkFormNow={ self.state.checkForm }
 												submitCallBack={ self.submitBusiness }　>
-											<FormItem  inline={ true} showMast={true} labelXs={2}  labelSm={2} labelMd={2} xs={4} md={4} sm={4} 
+											<FormItem  inline={ true} showMast={true} labelXs={2}  labelSm={2} labelMd={2} xs={4} md={4} sm={4}
 						                    	labelName="保证金编号："  method="change"   errorMessage="保证金编号格式错误" >
-						                    	 <ReferItem name="depositno" 
+						                    	 <ReferItem name="depositno"
 						                    	 	defaultValue={{
 																	refname: 'refname',
 																	refpk: 'refpk'
 																}} />
 											</FormItem>
-											<FormItem inline={ true } showMast={true} labelXs={2} labelSm={2} labelMd={2} xs={4} md={4} sm={4} 
-												labelName="使用保证金金额："   isRequire={true}  errorMessage="请输入使用保证金金额" 
+											<FormItem inline={ true } showMast={true} labelXs={2} labelSm={2} labelMd={2} xs={4} md={4} sm={4}
+												labelName="使用保证金金额："   isRequire={true}  errorMessage="请输入使用保证金金额"
 												method="change"  reg={/^[0-9]+$/}  >
 												<InputItem name="depositmny" defaultValue="1111232" placeholder="请输入使用保证金金额" />
 						                    </FormItem>
-											<FormItem inline={ true } showMast={true} labelXs={2} labelSm={2} labelMd={2} xs={4} md={4} sm={4} 
-												labelName="保证金占贷款比例%："   isRequire={true} errorMessage="请输入保证金占贷款比例%" 
+											<FormItem inline={ true } showMast={true} labelXs={2} labelSm={2} labelMd={2} xs={4} md={4} sm={4}
+												labelName="保证金占贷款比例%："   isRequire={true} errorMessage="请输入保证金占贷款比例%"
 												method="blur"  >
 												<InputItem name="depositratio" defaultValue="11" placeholder="请输入保证金占贷款比例%" />
 						                    </FormItem>
 											<FormItem inline={ true} showMast={true}  labelXs={2}  labelSm={2} labelMd={2} xs={4} md={4} sm={4}
 												labelName="保证金币种："  method="change"    errorMessage="保证金币种格式错误"  >
-												<ReferItem name="dptcurrtypeid" 
+												<ReferItem name="dptcurrtypeid"
 													defaultValue={{
 																refname: 'refname',
 																refpk: 'refpk'
 																}} />
 											</FormItem>
-											<FormItem inline={ true } showMast={true}  labelXs={2} labelSm={2} labelMd={2} xs={4} md={4} sm={4} 
-												labelName="保证金存款收益："  isRequire={true}  errorMessage="请输入保证金存款收益" 
+											<FormItem inline={ true } showMast={true}  labelXs={2} labelSm={2} labelMd={2} xs={4} md={4} sm={4}
+												labelName="保证金存款收益："  isRequire={true}  errorMessage="请输入保证金存款收益"
 												method="blur"  >
 												<InputItem name="depositprofit" defaultValue="1111232" placeholder="请输入保证金存款收益" />
 						                    </FormItem>
@@ -3335,7 +3335,7 @@ export default class Contract extends Component {
 			        	<Modal.Header>
 	                		<Modal.Title>
 	                    		<span>合同保存</span>
-	                    		<span style={{ fontSize: 10, color: '#ccc', float: 'right'}} className='close-icon iconfont iconfont-title-contract icon-guanbi' 
+	                    		<span style={{ fontSize: 10, color: '#ccc', float: 'right'}} className='close-icon iconfont iconfont-title-contract icon-guanbi'
 	                    				  onClick={()=> { hashHistory.go(-1); }} >
 								</span>
 							</Modal.Title>

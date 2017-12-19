@@ -67,6 +67,27 @@ import 'combs/tmc/containers/Refer/index.less';
 import 'combs/tmc/modules/fm/pages/fm_financepay/index.less';
 
 
+const AsyncMyasset = Loadable({
+  loader: () => import('combs/tmc/modules/if/pages/if_myasset/index'),
+  loading: MyLoadingComponent,
+});
+import 'combs/tmc/modules/if/pages/if_myasset/index.less';
+import 'combs/tmc/modules/if/containers/myassetmodal/index.less';
+import 'combs/tmc/modules/if/containers/Writemodal/index.less';
+
+const AsyncCreditmonitor= Loadable({
+  loader: () => import('combs/tmc/modules/fm/pages/fm_creditmonitor/index'),
+  loading: MyLoadingComponent,
+});
+import 'combs/tmc/modules/fm/pages/fm_creditmonitor/index.less';
+
+
+const AsyncContract= Loadable({
+  loader: () => import('combs/tmc/modules/fm/pages/fm_contract/index'),
+  loading: MyLoadingComponent,
+});
+import 'combs/tmc/modules/fm/pages/fm_contract/index.less';
+
 const App = ({ location}) => {
 
   const currentKey = location.pathname.split('/')[1] || '/'
@@ -84,6 +105,8 @@ const App = ({ location}) => {
               <Route path="/mdservice" component={AsyncMdService} />
               <Route path="/register" component={AsyncRegister} />
               <Route path="/table" component={AsyncTable} />
+              <Route path="/myasset" component={AsyncMyasset} />
+              <Route path="/creditmonitor" component={AsyncCreditmonitor} />
             </Switch>
           </section>
         </CSSTransition>
