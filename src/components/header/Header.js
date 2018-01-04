@@ -27,29 +27,42 @@ class Header extends Component {
   render(){
     let {expanded} = this.props;
     return (
-      <Navbar className="header platform-header" fluid expanded={this.state.expanded} onToggle={this.onToggle.bind(this)}>
-        <div className="platform-left">
-          <span className="platform-left-icon">
-            <i className="uf uf-userset"></i>
-          </span>
-        </div>
+      <Navbar className="header" fluid expanded={this.state.expanded} onToggle={this.onToggle.bind(this)}>
+        <MenuToggle show/>
+        <Headers>
+          <Brand>
+            <a href="javascript:;" onClick={() => actions.app.setExpanded()}>
+              <i className="navmenu uf uf-navmenu"></i>
+            </a>
+          </Brand>
+        </Headers>
 
-        <div className="platform-title"><span>首页</span></div>
-
-        <div className="platform-right">
-          <div className="tc platform-right-index" >
-            <i className="uf uf-search-light-2"></i></div>
-          <div className="tc platform-right-index" >
-            <i className="uf uf-4square-3"></i></div>
-          <div className="tc platform-right-index">
-            <i className="uf uf-bell-o" title="智能通讯"></i>
-            <span className="CircleDot"></span></div>
-        </div>
+        <Nav pullRight>
+          <NavItem eventKey={1}>
+            <FormControl type="search" placeholder="站内搜索"/>
+          </NavItem>
+          <NavItem eventKey={2}>
+            <Badge dataBadge="4" colors="warning">
+              <Icon type="uf-bell"></Icon>
+            </Badge>
+          </NavItem>
+          <NavItem eventKey={3}><Icon type="uf-bubble-o"></Icon></NavItem>
+          <Menu mode="horizontal" className="dropdown">
+            <SubMenu title={<span><span className="avatar-icon"><img src="https://gw.alipayobjects.com/zos/rmsportal/eHBsAsOrrJcnvFlnzNTT.png" /></span>刘认华<Icon type="uf-triangle-down"></Icon></span>}>
+              <Menu.Item key="setting:2"><i className="uf uf-users-o"></i>个人中心</Menu.Item>
+              <Menu.Item key="setting:3"><i className="uf uf-settings"></i>设置</Menu.Item>
+              <Menu.Item key="setting:4"><i className="uf uf-plug-o"></i>退出登录</Menu.Item>
+            </SubMenu>
+          </Menu>
+        </Nav>
       </Navbar>
     )
   }
 
 }
 
-export default Headers
+
+export default connect(state => {
+  return state.app
+})(Header)
 

@@ -100,7 +100,7 @@ const App = ({ location}) => {
         <CSSTransition key={currentKey} timeout={timeout} classNames="fade" appear>
           <section className="page-main-inner">
             <Switch location={location}>
-              <Route exact={true} path="/" component={AsyncMdService} />
+              <Route exact={true} path="/default" component={AsyncMdService} />
               <Route path="/dashboard" component={AsyncMyRP} />
               <Route path="/mdservice" component={AsyncMdService} />
               <Route path="/register" component={AsyncRegister} />

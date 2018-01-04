@@ -32,7 +32,7 @@ const proxyConfig = [{
 
 
 const staticConfig = {
-  folder: "src"
+  folder: "src/static"
 };
 
 glob.sync('./src/pages/**/index.js').forEach(path => {
@@ -71,7 +71,7 @@ var devConfig = {
     }, {
       test: /\.css$/,
       use: ExtractTextPlugin.extract({
-        use: ['css-loader','postcss-loader'],
+        use: ['css-loader'],
         fallback: 'style-loader'
       })
     }, {
@@ -158,7 +158,7 @@ var prodConfig = {
     }, {
       test: /\.css$/,
       use: ExtractTextPlugin.extract({
-        use: ['css-loader','postcss-loader'],
+        use: ['css-loader'],
         fallback: 'style-loader'
       })
     }, {
