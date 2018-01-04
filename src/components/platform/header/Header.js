@@ -1,7 +1,7 @@
 import React,{Component} from 'react'
 import mirror, {actions, connect} from 'mirrorx'
 import {Navbar,Menu,FormControl,Badge,Icon} from 'tinper-bee'
-import './header.css'
+import './header.css';
 
 const SubMenu = Menu.SubMenu;
 const MenuItemGroup = Menu.ItemGroup;
@@ -51,5 +51,6 @@ class Header extends Component {
 
 }
 
-export default Headers
+
+export default Header
 

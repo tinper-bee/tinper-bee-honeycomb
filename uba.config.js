@@ -71,7 +71,7 @@ var devConfig = {
     }, {
       test: /\.css$/,
       use: ExtractTextPlugin.extract({
-        use: ['css-loader'],
+        use: ['css-loader','postcss-loader'],
         fallback: 'style-loader'
       })
     }, {
@@ -124,6 +124,7 @@ var devConfig = {
     ],
     alias: {
       components: path.resolve(__dirname, 'src/components/'),
+      containers:path.resolve(__dirname, 'src/containers/'),
       honeyAssets: path.resolve(__dirname, 'src/assets/'),
       combs:path.resolve(__dirname, 'src/comb/'),
       mock:path.resolve(__dirname, 'mock/')
@@ -157,7 +158,7 @@ var prodConfig = {
     }, {
       test: /\.css$/,
       use: ExtractTextPlugin.extract({
-        use: ['css-loader'],
+        use: ['css-loader','postcss-loader'],
         fallback: 'style-loader'
       })
     }, {
@@ -209,6 +210,7 @@ var prodConfig = {
     ],
     alias: {
       components: path.resolve(__dirname, 'src/components/'),
+      containers:path.resolve(__dirname, 'src/containers/'),
       honeyAssets: path.resolve(__dirname, 'src/assets/'),
       combs:path.resolve(__dirname, 'src/comb/'),
       mock:path.resolve(__dirname, 'mock/')

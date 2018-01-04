@@ -1,0 +1,19 @@
+{
+  "data": [
+    {
+      "accessTime": "一天前",
+      "latestAccessId": "asdfasdfas223",
+      "serve": {
+        "application": {
+          "applicationName": "结算中心"
+        },
+        "serveCode": "serve",
+        "serveName": "核算服务"
+      },
+      "serveIcon": "http://dummyimage.com/20x20",
+      "serveId": "serve_1"
+    }
+  ],
+  "msg": "",
+  "status": 1
+}

@@ -26,18 +26,10 @@ const MyLoadingComponent = function ({ error, pastDelay }) {
     return null;
   }
 }
-import Apps from './Home'
-import Test from './Test'
-
+//加载业务节点
+import Apps from './Apps'
 
 import 'combs/developer/components/Title.css';
-
-const AsyncMyRP = Loadable({
-  loader: () => import('combs/developer/myrp/main'),
-  loading: MyLoadingComponent,
-});
-import 'combs/developer/myrp/index.css';
-
 
 
 const AsyncMdService = Loadable({
@@ -48,51 +40,10 @@ import 'combs/developer/md-service/index.css';
 import 'combs/developer/md-service/component/serivceitem.css';
 
 
-
-const AsyncRegister = Loadable({
-  loader: () => import('combs/tmc/modules/if/pages/if_register/index'),
-  loading: MyLoadingComponent,
-});
-import 'combs/tmc/modules/if/pages/if_register/index.less';
-
-
-const AsyncTable = Loadable({
-  loader: () => import('combs/tmc/modules/bd/pages/bd_project/index'),
-  loading: MyLoadingComponent,
-});
-import 'combs/tmc/modules/bd/pages/bd_project/index.less';
-import 'combs/tmc/utils/publicStyle.less';
-import 'combs/tmc/utils/variables.less';
-import 'combs/tmc/containers/Refer/index.less';
-import 'combs/tmc/modules/fm/pages/fm_financepay/index.less';
-
-
-const AsyncMyasset = Loadable({
-  loader: () => import('combs/tmc/modules/if/pages/if_myasset/index'),
-  loading: MyLoadingComponent,
-});
-import 'combs/tmc/modules/if/pages/if_myasset/index.less';
-import 'combs/tmc/modules/if/containers/myassetmodal/index.less';
-import 'combs/tmc/modules/if/containers/Writemodal/index.less';
-
-const AsyncCreditmonitor= Loadable({
-  loader: () => import('combs/tmc/modules/fm/pages/fm_creditmonitor/index'),
-  loading: MyLoadingComponent,
-});
-import 'combs/tmc/modules/fm/pages/fm_creditmonitor/index.less';
-
-
-const AsyncContract= Loadable({
-  loader: () => import('combs/tmc/modules/fm/pages/fm_contract/index'),
-  loading: MyLoadingComponent,
-});
-import 'combs/tmc/modules/fm/pages/fm_contract/index.less';
-
 const App = ({ location}) => {
 
   const currentKey = location.pathname.split('/')[1] || '/'
   const timeout = { enter: 500, exit: 500 }
-
 
   return (
     <Apps>
@@ -101,12 +52,6 @@ const App = ({ location}) => {
           <section className="page-main-inner">
             <Switch location={location}>
               <Route exact={true} path="/" component={AsyncMdService} />
-              <Route path="/dashboard" component={AsyncMyRP} />
-              <Route path="/mdservice" component={AsyncMdService} />
-              <Route path="/register" component={AsyncRegister} />
-              <Route path="/table" component={AsyncTable} />
-              <Route path="/myasset" component={AsyncMyasset} />
-              <Route path="/creditmonitor" component={AsyncCreditmonitor} />
             </Switch>
           </section>
         </CSSTransition>

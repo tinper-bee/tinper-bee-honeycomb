@@ -1,0 +1,22 @@
+{
+  "status": 1,
+  "msg": 1,
+  "data": {
+    "userName": "maokunb",
+    "logo": "\u6d4b\u8bd5\u5185\u5bb9p714",
+    "userId": "9ab8b615-a28c-43d6-9b3f-447be0d7299f",
+    "company": 1,
+    "userEmail": "",
+    "admin": false,
+    "redPacketsNum": 0,
+    "userAvator": "",
+    "userMobile": "181****9676",
+    "gloriesNum": 0,
+    "allowTenants": [
+      {
+        "tenantId": "gtzceot7",
+        "tenantName": "\u6bdb\u5764\u6d4b\u8bd5"
+      }
+    ]
+  }
+}

@@ -1,0 +1,191 @@
+.btn{
+  width: 80px;
+  height:32px; 
+  display: inline-block;
+  vertical-align: middle;
+  text-align: center;
+  cursor:pointer;
+  border-radius: 3px ;
+  box-sizing: border-box;
+  margin:0 8px;
+  font-family:Helvetica;
+  font-size:14px;
+}
+.btn>i{
+  margin-right:8px;
+}
+/** 品牌红 **/
+.brand_btn{
+  background:rgba(225,76,70,1);
+  color:rgba(255,255,255,1);
+}
+.brand_btn:hover{
+  background:rgba(210,61,55,1);
+}
+.brand_btn:active{
+  background:rgba(178,51,46,1);
+  color:rgba(255,255,255,1);
+}
+.brand_btn:disabled{
+  background:rgba(9,44,66,0.04);
+}
+
+/** 默认**/
+.default_btn{
+  color:rgba(71,77,84,1);
+  background:rgba(9,44,66,0.04);
+}
+.default_btn:hover{
+ background:rgba(9,44,66,0.08);
+  color:rgba(71,77,84,1);
+}
+.default_btn:active{
+  background:rgba(225,76,70,0.1);
+  color:rgba(225,76,70,1);
+}
+.default_btn:disabled{
+  background:rgba(9,44,66,0.04);
+  color:rgba(165,173,186,1);
+}
+
+/** 默认带边框 **/
+.default_line_btn{
+   color:rgba(255,255,255,1);
+  background:rgba(255,255,255,0.08);
+  border: 1px solid rgba(255,255,255,0.8);
+}
+.default_line_btn:active{
+  background:rgba(252,237,236,1);
+  color:rgba(225,76,70,1);
+}
+.default_line_btn:hover{
+  border: 1px solid rgba(255,255,255,0.5);
+  background:rgba(255,255,255,0.08);
+  color:rgba(255,255,255,1);
+}
+.default_line_btn:disabled{
+  color:rgba(165,173,186,1);
+  background:rgba(245,246,248,1);
+}
+/**
+.default_line_btn:visited{
+ background:rgba(245,246,248,1);
+ color:rgba(165,173,186,1);
+ opacity:70; 
+ cursor: not-allowed;
+}
+**/
+
+
+/**  默认无背景色 **/
+.default_alpha_btn{
+  font-family:PingFangSC-Regular;
+  color:rgba(71,77,84,1);
+  background: transparent;
+}
+.default_alpha_btn:active{
+  background:rgba(225,76,70,0.1);
+  color:rgba(225,76,70,1);
+}
+.default_alpha_btn:hover{
+  color:rgba(71,77,84,1);
+  background:rgba(9,44,66,0.08);
+}
+.default_alpha_btn:disabled{
+  background:rgba(9,44,66,0);
+  color:rgba(165,173,186,1);
+  cursor: not-allowed;
+}
+
+
+/** 选用样式一 **/
+.check_selected_btn{
+  width:20px;
+  height:20px; 
+  color:rgb(118, 127, 139);
+  // border: 1px solid rgba(117,127,140,1);
+  background: transparent;
+  margin: 0px;
+  margin-left:2px;
+}
+.check_selected_btn:active{
+  color: rgba(0,203,124,1);
+  // border: 1px solid rgba(0,203,124,1);
+}
+.check_selected_btn:hover{
+  color: rgba(45,63,93,1);
+  background:none;
+  // border: 1px solid rgba(45,63,93,1);
+}
+
+.disabled_check_selected_btn{
+  
+}
+
+/**  选用样式二 **/
+.check_close_btn{
+  width:20px;
+  height:20px;
+  color:rgb(118, 127, 139);
+  // border: 1px solid rgba(117,127,140,1);
+  background: transparent;
+  margin: 0px;
+  margin-left:2px;
+}
+.check_close_btn:active{
+  color: rgba(45,63,93,1);
+  // border: 1px solid rgba(45,63,93,1);
+}
+
+.check_close_btn:hover{
+  color: rgba(68,70,81,1);
+  background:none;
+  // border: 1px solid rgba(68,70,81,1);
+}
+
+.disabled_check_close_btn{
+  
+}
+
+
+/**  危险 **/
+.danger_btn{
+  font-size:14px;font-family:AppleSystemUIFont;
+  color:rgba(255,255,255,1);
+  background:rgb(76, 76, 76);
+}
+.danger_btn:hover{
+  background:rgba(95,95,95,1);
+  color:rgba(255,255,255,1);
+}
+.danger_btn:active{
+  background:rgba(68,70,81,1);
+  color:rgba(255,255,255,1);
+}
+.disabled_danger_btn{
+  background:rgba(9,44,66,0);
+  color:rgba(165,173,186,1);
+}
+
+
+/**  警告 **/
+.warning_btn{
+  font-family:PingFangSC-Regular;
+  color:rgba(71,77,84,1);
+  background:rgba(255,171,0,1);
+} 
+.warning_btn:hover{
+  background:rgb(246, 197, 68);
+  font-family:PingFangSC-Medium;
+  color:rgba(71,77,84,1);
+}
+.warning_btn:active{
+  background:rgba(255,153,31,1);
+  font-family:PingFangSC-Medium;
+  color:rgba(71,77,84,1);
+}
+
+.warning_btn:disabled{
+  background:rgba(9,44,66,0.04);
+  color:rgba(165,173,186,1);
+}

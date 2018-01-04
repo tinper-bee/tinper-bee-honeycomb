@@ -1,0 +1,8 @@
+.header2 {
+    padding: 0 12px 0 0;
+    background: #fff;
+    -webkit-box-shadow: 0 1px 4px rgba(0, 21, 41, 0.08);
+    box-shadow: 0 1px 4px rgba(0, 21, 41, 0.08);
+    position: relative;
+    height:64px;
+}

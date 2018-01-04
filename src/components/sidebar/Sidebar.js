@@ -84,17 +84,20 @@ class Siderbar extends Component {
     const latestCloseKey = this.myfilter(state.openKeys,openKeys);
 
     /*   const latestOpenKey = openKeys.find(key => !(state.openKeys.indexOf(key) > -1));
-       const latestCloseKey = state.openKeys.find(key => !(openKeys.indexOf(key) > -1));*/
+     const latestCloseKey = state.openKeys.find(key => !(openKeys.indexOf(key) > -1));*/
 
     let nextOpenKeys = [];
+
     if (latestOpenKey) {
       nextOpenKeys = this.getAncestorKeys(latestOpenKey).concat(latestOpenKey);
     }
     if (latestCloseKey) {
-      this.state.currentArray.push(latestCloseKey);
       nextOpenKeys = this.getAncestorKeys(latestCloseKey);
     }
-    actions.app.setOpenKeys(nextOpenKeys);
+    this.setState({current:openKeys,submenuSelected:openKeys,openKeys: nextOpenKeys,expanded:false});
+    //actions.app.setOpenKeys(nextOpenKeys);
+
+
     //this.setState({openKeys: nextOpenKeys});
   }
   //IE下 array.find（）方法不可用
@@ -122,7 +125,8 @@ class Siderbar extends Component {
   }
 
   render() {
-    let {expanded,openKeys,menus} = this.props;
+    let {expanded,menus} = this.props;
+    let {openKeys} = this.state;
     return (
       <div className={classNames({ 'sidebar-contanier':true,'sidebar-expanded': expanded })}>
         <div className="sider-menu">

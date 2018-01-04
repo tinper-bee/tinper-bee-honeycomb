@@ -1,0 +1,181 @@
+body {
+  margin: 0;
+  padding: 0;
+  font-family: -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    Roboto,
+    "Helvetica Neue",
+    Helvetica,
+    "PingFang SC",
+    "Hiragino Sans GB",
+    "Microsoft YaHei",
+    SimSun,
+    sans-serif;
+  background-color:rgba(230,233,233,1);
+  font-size:15px;
+}
+#root{
+
+  -moz-user-select:none;/*火狐*/
+
+  -webkit-user-select:none;/*webkit浏览器*/
+
+  -ms-user-select:none;/*IE10*/
+
+  -khtml-user-select:none;/*早期浏览器*/
+
+  user-select:none;
+}
+.iconfont{
+  font-weight:bold;
+}
+.wrap {
+  padding: 20px;
+}
+.u-menu-inline>.u-menu-item{
+	font-size:12px;
+	color:#4A515D;
+}
+.u-menu-inline>.u-menu-submenu>.u-menu-submenu-title{
+  font-size:14px;
+  font-weight: bold;
+  color:#4A515D;
+}
+.u-menu-inline .u-menu-inline .u-menu-item-selected, .u-menu-inline .u-menu-selected{
+  border:none;
+	color:#E14C46;
+}
+.u-menu-submenu-open.u-menu-submenu-inline>.u-menu-submenu-title,:root .u-menu-submenu-inline>.u-menu-submenu-title:after{
+  font-weight: bold;
+  // font-size:16px;
+  // color:#4A515D;
+}
+.u-menu-submenu-inline>.u-menu-submenu-title:after{
+  font-size: 16px;
+  transform: scale(.66667) rotate(-90deg);
+}
+.u-menu-inline .u-menu-submenu-active>.u-menu-submenu-title:after{
+  color:#E14C46;
+}
+/** loading **/
+.u-loading-backdrop{
+  z-index: 0;
+}
+
+.src-workbench-pc-pages-work-style__wrap--GLwgN .lebra-navbar-left-content img{
+  display: none;
+}.u-modal-open .u-modal{
+  overflow-y: hidden;
+}
+.lebra-navbar-left{
+  display:flex;
+}
+.lebra-navbar-left-icon{
+  width:32px;
+  height:32px;
+  border-radius: 16px;
+  -webkit-box-flex: 1;
+}
+.lebra-navbar-left-content{
+  -webkit-box-flex: 1;
+  line-height: 36px;
+}
+.lebra-navbar-left-icon .iconfont{
+  font-size:20px;
+}
+.u-dropdown-menu{
+  box-shadow: 0 0 0 1px rgba(9,30,66,0.08);
+}
+.u-dropdown-menu>.u-dropdown-menu-item{
+  padding:0 30px;
+  height:28px;
+  line-height:28px;
+}
+.u-dropdown-menu>.u-dropdown-menu-item:first-child{margin-top: 0;}
+.u-dropdown-menu>.u-dropdown-menu-item:hover{cursor: pointer;}
+.u-dropdown-menu>.u-dropdown-menu-item:active{cursor: pointer;color:#E14C46;}
+.u-select-arrow:before{color:#878B94;}
+.u-select-open .u-select-arrow:before{
+  transform: rotate(-180deg);
+  color:#E14C46;
+}
+.u-input-group .u-form-control:last-child {
+  border-bottom-left-radius: 3px;
+  border-top-left-radius: 3px;
+}
+
+
+/***----------统一组价样式----------**/
+.horizontalParent{
+  display: -webkit-box;
+}
+.horizontal{
+  -webkit-box-flex:1;
+}
+
+/***----------统一组价样式 弹框----------**/
+.pop_dialog_delete{
+  /**
+  width: 416px;
+  height: 201px;
+  **/
+  width: 370px;
+  height: 200px;
+  margin: 0 auto;
+  top: 60px;
+  z-index: 99999;
+  border: 1px solid rgba(78,89,104,0.19);
+  box-shadow: 0 6px 8px 0 rgba(74,81,93,0.25);
+  border-radius: 3px;
+}
+.pop_dialog_delete .u-modal-dialog{
+  width: auto;
+}
+.pop_cont{
+}
+.pop_cont .icon{
+  color: #FFAB00;
+  font-size: 20px;
+  padding-right: 5px;
+}
+.pop_cont span{
+  font-family: MicrosoftYaHei;
+  font-size: 14px;
+  color: #474D54;
+  line-height: 24px;
+}
+.input{
+  width:110px;
+  height:22px; 
+  background:rgba(255,255,255,1);
+  border-radius: 2px ; 
+  border: 1px solid rgba(78,89,104,0.19);
+}
+
+.input:hover{
+  border: 2px solid #00CDC3;
+}
+.u-button{
+  min-width: 5px;
+  padding:0;
+}
+.manageDialogFolder .close{
+  top: -46px;
+  right: 20px;
+}
+.u-tabs-tab{
+  padding-left: 0px !important;
+}
+.u-checkbox span{
+  padding-top: 4px;
+  color: #888;
+}
+.u-select-dropdown .u-select-dropdown-menu-item{
+  border-top: 1px solid rgba(78,89,104,0.19);
+}
+.u-select-dropdown{
+  /**
+  margin-top: 16px;
+  **/
+}
