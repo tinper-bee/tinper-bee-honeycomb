@@ -5,6 +5,7 @@ import { Select,FormControl } from 'tinper-bee';
 import 'honeyAssets/css/index.css'
 
 import Header from 'components/platform/header/Header'
+import UserCenter from 'components/usercenter/UserCenter'
 import PageContent from 'components/pagecontent/PageContent'
 import { Transition,TransitionGroup} from 'react-transition-group'
 
@@ -35,6 +36,7 @@ class App extends Component {
       <div className="honey-container">
         <div className="page-layout">
           <Header />
+          <UserCenter />
           <PageContent>
             <Transition in={!this.props.show} appear={true} timeout={duration}>
               {(state) => (

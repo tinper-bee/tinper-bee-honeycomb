@@ -25,11 +25,10 @@ class Header extends Component {
     this.setState({expanded: value});
   }
   render(){
-    let {expanded} = this.props;
     return (
       <Navbar className="header platform-header" fluid expanded={this.state.expanded} onToggle={this.onToggle.bind(this)}>
         <div className="platform-left">
-          <span className="platform-left-icon">
+          <span className="platform-left-icon" onClick={() => actions.userCenter.setExpanded()}>
             <i className="uf uf-userset"></i>
           </span>
         </div>
@@ -52,5 +51,7 @@ class Header extends Component {
 }
 
 
-export default Header
+export default connect(state => {
+  return state.userCenter
+})(Header)
 
