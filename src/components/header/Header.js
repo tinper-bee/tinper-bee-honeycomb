@@ -31,7 +31,7 @@ class Header extends Component {
         <MenuToggle show/>
         <Headers>
           <Brand>
-            <a href="javascript:;" onClick={() => actions.app.setExpanded()}>
+            <a href="javascript:;" onClick={() => actions.sidebar.setExpanded()}>
               <i className="navmenu uf uf-navmenu"></i>
             </a>
           </Brand>
@@ -62,7 +62,4 @@ class Header extends Component {
 }
 
 
-export default connect(state => {
-  return state.app
-})(Header)
-
+export default Header

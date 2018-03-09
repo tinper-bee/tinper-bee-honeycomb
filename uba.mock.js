@@ -7,7 +7,8 @@ module.exports = {
     { "/middleware/web/v1/mq/page": "./mock/api/mq.json" },
     { "/middleware/web/v1/zk/page": "./mock/api/zk.json" },
     { "/middleware/web/v1/jenkins/page": "./mock/api/jenkins.json" },
-    { "/middleware/web/v1/dclb/page": "./mock/api/dclb.json" }
+    { "/middleware/web/v1/dclb/page": "./mock/api/dclb.json" },
+    { "/desktop/getdeskTop":"./mock/api/desktop/getdeskTop.json"}
   ],
   "POST": [
     // 我的相关接口

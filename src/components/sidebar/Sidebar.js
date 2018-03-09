@@ -1,40 +1,15 @@
 import React,{Component} from 'react'
 import mirror, {actions, connect,NavLink} from 'mirrorx'
 import {Menu,Navbar,Icon,Breadcrumb} from 'tinper-bee';
+import model from '../../models/sidebar';
+
 import './sidebar.css';
 const classNames = require('classnames');
 const SubMenu = Menu.SubMenu;
 const SideContainer = Menu.SideContainer;
 
-mirror.model({
-  name: 'app',
-  initialState: {
-    expanded:false,
-    openKeys:[],
-    menus:[],
-  },
-  reducers: {
-    setExpanded(state,expanded) {
-      const expand = expanded?false:!state.expanded;
-      return {
-        ...state,
-        expanded:expand
-      }
-    },
-    setOpenKeys(state,openKeys){
-      return {
-        ...state,
-        openKeys:openKeys
-      }
-    },
-    setMenus(state,menus){
-      return {
-        ...state,
-        menus:menus
-      }
-    }
-  }
-})
+//初始化数据模型
+mirror.model(model);
 
 class Siderbar extends Component {
 
@@ -61,7 +36,7 @@ class Siderbar extends Component {
     // });
 
     let data = require('../../../mock/api/sidebar.json');
-    actions.app.setMenus(data.data)
+    actions.sidebar.setMenus(data.data)
   }
 
 
@@ -79,7 +54,7 @@ class Siderbar extends Component {
   }
   onOpenChange(openKeys) {
     const state = this.state;
-    actions.app.setExpanded(true);
+    actions.sidebar.setExpanded(true);
     const latestOpenKey = this.myfilter(openKeys,state.openKeys);
     const latestCloseKey = this.myfilter(state.openKeys,openKeys);
 
@@ -178,6 +153,6 @@ class Siderbar extends Component {
 }
 
 export default connect(state => {
-  return state.app
+  return state.sidebar
 })(Siderbar)
 

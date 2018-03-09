@@ -1,13 +1,15 @@
 import React,{createElement,Component} from 'react'
 import {Route} from 'mirrorx'
+import { Transition,TransitionGroup} from 'react-transition-group'
 
 import { Select,FormControl } from 'tinper-bee';
 import 'honeyAssets/css/index.css'
 
-import Header from 'components/header/Header'
-import Sidebar from 'components/sidebar/Sidebar'
+import Header from 'components/platform/header/Header'
+import UserCenter from 'components/usercenter/UserCenter'
 import PageContent from 'components/pagecontent/PageContent'
-import { Transition,TransitionGroup} from 'react-transition-group'
+
+import Tile from '../../contaniers/tile'
 
 const duration = 300;
 
@@ -34,9 +36,9 @@ class App extends Component {
 
     return (
       <div className="honey-container">
-        <Sidebar />
         <div className="page-layout">
-          <Header/>
+          <Header />
+          <UserCenter />
           <PageContent>
             <Transition in={!this.props.show} appear={true} timeout={duration}>
               {(state) => (
@@ -44,7 +46,8 @@ class App extends Component {
                   ...defaultStyle,
                   ...transitionStyles[state]
                 }}>
-                  {this.props.children}
+                  {/*{this.props.children}*/}
+                  <Tile />
                 </div>
               )}
             </Transition>
