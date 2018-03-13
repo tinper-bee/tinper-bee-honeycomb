@@ -35,3 +35,22 @@ export function getDeskTop() {
   })
 }
 
+export function getSideBar() {
+  return request('/web/v1/menu/sidebarList', {
+    data: {
+      _limit: PAGE_SIZE,
+    },
+    fit: response => {
+      return {
+        success: true,
+        content: {
+          list: response.data,
+          // should read from header['x-total-count'], but natty-fetch does not
+          // provide a way to access response headers
+          total: 10
+        }
+      }
+    }
+  })
+}
+

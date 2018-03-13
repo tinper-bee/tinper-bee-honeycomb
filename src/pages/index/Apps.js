@@ -4,8 +4,8 @@ import {Route} from 'mirrorx'
 import { Select,FormControl } from 'tinper-bee';
 import 'honeyAssets/css/index.css'
 
-import Header from 'components/header/Header'
-import Sidebar from 'components/sidebar/Sidebar'
+import Header from 'containers/header/index'
+import Sidebar from 'containers/sidebar/index'
 import PageContent from 'components/pagecontent/PageContent'
 import { Transition,TransitionGroup} from 'react-transition-group'
 

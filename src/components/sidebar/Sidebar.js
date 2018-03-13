@@ -8,8 +8,6 @@ const classNames = require('classnames');
 const SubMenu = Menu.SubMenu;
 const SideContainer = Menu.SideContainer;
 
-//初始化数据模型
-mirror.model(model);
 
 class Siderbar extends Component {
 
@@ -26,17 +24,7 @@ class Siderbar extends Component {
   }
 
   componentWillMount() {
-    var self = this;
 
-    // axios.get('/web/v1/menu/sidebarList')
-    //   .then(function (response) {
-    //     actions.app.setMenus(response.data.data)
-    //
-    //   }).catch(function (error) {
-    // });
-
-    let data = require('../../../mock/api/sidebar.json');
-    actions.sidebar.setMenus(data.data)
   }
 
 
@@ -152,7 +140,4 @@ class Siderbar extends Component {
   }
 }
 
-export default connect(state => {
-  return state.sidebar
-})(Siderbar)
-
+export default Siderbar
