@@ -9,7 +9,7 @@ import Header from 'components/platform/header/Header'
 import UserCenter from 'components/usercenter/UserCenter'
 import PageContent from 'components/pagecontent/PageContent'
 
-import Tile from '../../contaniers/tile'
+import Tile from 'containers/tile'
 
 const duration = 300;
 
