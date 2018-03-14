@@ -1,9 +1,11 @@
-import React from 'react'
+import React, {Component} from 'react'
 import {Route,Link,Router,Switch,withRouter,actions, connect} from 'mirrorx'
 import Loadable from 'react-loadable';
 import {Loading} from 'tinper-bee';
 import { Transition,TransitionGroup,CSSTransition} from 'react-transition-group'
 import 'honeyAssets/css/animation.css'
+//加载路由节点
+import routes from '../../router/index'
 
 const duration = 300;
 
@@ -17,102 +19,52 @@ const transitionStyles = {
   entered: { opacity: 1 },
 };
 
-const MyLoadingComponent = function ({ error, pastDelay }) {
-  if (error) {
-    return <div>Error!</div>;
-  } else if (pastDelay) {
-    return <div>Loading...</div>;
-  } else {
-    return null;
+//warper
+import Apps from './Apps';
+
+//检查侧边栏的路由是否注册
+function checkRoute(menus,route) {
+  if (menus = JSON.stringify(menus).match(route.path.replace(/\//,'')) != null){
+    return  (<Route
+      path={route.path}
+      exact={route.exact}
+      component={route.component}
+    />)
   }
 }
 
-//加载业务节点
-import Apps from './Apps'
 
-import 'combs/developer/components/Title.css';
+class App extends Component {
 
-const AsyncMyRP = Loadable({
-  loader: () => import('combs/developer/myrp/main'),
-  loading: MyLoadingComponent,
-});
-import 'combs/developer/myrp/index.css';
+  constructor(props, context) {
+    super(props, context);
+  }
+  render() {
+    const {menus,location} = this.props;
+    const currentKey = location.pathname.split('/')[1] || '/'
+    const timeout = { enter: 500, exit: 500 }
 
-
-
-const AsyncMdService = Loadable({
-  loader: () => import('combs/developer/md-service/main.page'),
-  loading: MyLoadingComponent,
-});
-import 'combs/developer/md-service/index.css';
-import 'combs/developer/md-service/component/serivceitem.css';
-
-
-
-const AsyncRegister = Loadable({
-  loader: () => import('combs/tmc/modules/if/pages/if_register/index'),
-  loading: MyLoadingComponent,
-});
-import 'combs/tmc/modules/if/pages/if_register/index.less';
-
-
-const AsyncTable = Loadable({
-  loader: () => import('combs/tmc/modules/bd/pages/bd_project/index'),
-  loading: MyLoadingComponent,
-});
-import 'combs/tmc/modules/bd/pages/bd_project/index.less';
-import 'combs/tmc/utils/publicStyle.less';
-import 'combs/tmc/utils/variables.less';
-import 'combs/tmc/containers/Refer/index.less';
-import 'combs/tmc/modules/fm/pages/fm_financepay/index.less';
-
-
-const AsyncMyasset = Loadable({
-  loader: () => import('combs/tmc/modules/if/pages/if_myasset/index'),
-  loading: MyLoadingComponent,
-});
-import 'combs/tmc/modules/if/pages/if_myasset/index.less';
-import 'combs/tmc/modules/if/containers/myassetmodal/index.less';
-import 'combs/tmc/modules/if/containers/Writemodal/index.less';
-
-const AsyncCreditmonitor= Loadable({
-  loader: () => import('combs/tmc/modules/fm/pages/fm_creditmonitor/index'),
-  loading: MyLoadingComponent,
-});
-import 'combs/tmc/modules/fm/pages/fm_creditmonitor/index.less';
-
-
-const AsyncContract= Loadable({
-  loader: () => import('combs/tmc/modules/fm/pages/fm_contract/index'),
-  loading: MyLoadingComponent,
-});
-import 'combs/tmc/modules/fm/pages/fm_contract/index.less';
-
-const App = ({ location}) => {
-
-  const currentKey = location.pathname.split('/')[1] || '/'
-  const timeout = { enter: 500, exit: 500 }
-
-  return (
-    <Apps>
-      <TransitionGroup component="main" className="page-main">
-        <CSSTransition key={currentKey} timeout={timeout} classNames="fade" appear>
-          <section className="page-main-inner">
-            <Switch location={location}>
-              <Route exact={true} path="/" component={AsyncMdService} />
-              <Route path="/dashboard" component={AsyncMyRP} />
-              <Route path="/mdservice" component={AsyncMdService} />
-              <Route path="/register" component={AsyncRegister} />
-              <Route path="/table" component={AsyncTable} />
-              <Route path="/myasset" component={AsyncMyasset} />
-              <Route path="/creditmonitor" component={AsyncCreditmonitor} />
-            </Switch>
-          </section>
-        </CSSTransition>
-      </TransitionGroup>
-    </Apps>
-  )
+    return (
+      <Apps>
+        <TransitionGroup component="main" className="page-main">
+          <CSSTransition key={currentKey} timeout={timeout} classNames="fade" appear>
+            <section className="page-main-inner">
+              <Switch location={location}>
+                {
+                  routes.map((route, index) => (
+                    // Render more <Route>s with the same paths as
+                    // above, but different components this time.
+                    checkRoute(menus,route)
+                  ))}
+              </Switch>
+            </section>
+          </CSSTransition>
+        </TransitionGroup>
+      </Apps>
+    )
+  }
 }
 
-export default withRouter(App);
+
+export default connect(state => state.sidebar)(withRouter(App))
 

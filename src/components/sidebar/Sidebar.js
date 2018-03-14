@@ -24,7 +24,7 @@ class Siderbar extends Component {
   }
 
   componentWillMount() {
-
+    actions.sidebar.load()
   }
 
 

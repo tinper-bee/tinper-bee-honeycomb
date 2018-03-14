@@ -9,10 +9,9 @@ mirror.model(model);
 mirror.hook((action, getState) => {
   const {routing: {location}} = getState()
 
-
-  if(action.type=='@@router/LOCATION_CHANGE'&&location.pathname === '/') {
-    actions.sidebar.load()
-  }
+  // if(action.type=='@@router/LOCATION_CHANGE') {
+  //   actions.sidebar.load()
+  // }
 })
 
 export default connect(
