@@ -17,7 +17,7 @@
       "urltype": "url",
       "children": [
         {
-          "id": "dashboard",
+          "id": "user",
           "name": "用户",
           "location": "user",
           "components":"developer/md-rp/main",

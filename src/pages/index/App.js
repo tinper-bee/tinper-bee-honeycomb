@@ -66,5 +66,5 @@ class App extends Component {
 }
 
 
-export default connect(state => state.sidebar)(withRouter(App))
+export default withRouter(connect(state => state.sidebar)(App))
 
