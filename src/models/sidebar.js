@@ -6,14 +6,19 @@ export default {
   initialState: {
     expanded:false,
     openKeys:[],
+    currentOpenKeys:[],
     menus:[],
   },
   reducers: {
     setExpanded(state,expanded) {
       const expand = expanded?false:!state.expanded;
+      const currentOpenKeys = expand?state.currentOpenKeys=state.openKeys:state.currentOpenKeys;
+      const openkeys = expand?[]:state.currentOpenKeys
       return {
         ...state,
-        expanded:expand
+        expanded:expand,
+        openKeys:openkeys,
+        currentOpenKeys:currentOpenKeys
       }
     },
     setOpenKeys(state,openKeys){

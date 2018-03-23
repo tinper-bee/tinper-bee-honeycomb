@@ -15,10 +15,7 @@ class Siderbar extends Component {
     super(props, context);
     this.state = {
       selectedkey: 1,
-      expanded: false,
       currentArray: [],
-      openKeys: [],
-      menu:[]
     }
     this.myfilter = this.myfilter.bind(this);
   }
@@ -41,10 +38,10 @@ class Siderbar extends Component {
     this.setState({current: e.key});
   }
   onOpenChange(openKeys) {
-    const state = this.state;
+    const props = this.props;
     actions.sidebar.setExpanded(true);
-    const latestOpenKey = this.myfilter(openKeys,state.openKeys);
-    const latestCloseKey = this.myfilter(state.openKeys,openKeys);
+    const latestOpenKey = this.myfilter(openKeys,props.openKeys);
+    const latestCloseKey = this.myfilter(props.openKeys,openKeys);
 
     /*   const latestOpenKey = openKeys.find(key => !(state.openKeys.indexOf(key) > -1));
      const latestCloseKey = state.openKeys.find(key => !(openKeys.indexOf(key) > -1));*/
@@ -57,9 +54,8 @@ class Siderbar extends Component {
     if (latestCloseKey) {
       nextOpenKeys = this.getAncestorKeys(latestCloseKey);
     }
-    this.setState({current:openKeys,submenuSelected:openKeys,openKeys: nextOpenKeys,expanded:false});
-    //actions.app.setOpenKeys(nextOpenKeys);
-
+    //this.setState({current:openKeys,submenuSelected:openKeys,openKeys: nextOpenKeys,expanded:false});
+    actions.sidebar.setOpenKeys(nextOpenKeys);
 
     //this.setState({openKeys: nextOpenKeys});
   }
@@ -88,8 +84,7 @@ class Siderbar extends Component {
   }
 
   render() {
-    let {expanded,menus} = this.props;
-    let {openKeys} = this.state;
+    let {expanded,menus,openKeys} = this.props;
     return (
       <div className={classNames({ 'sidebar-contanier':true,'sidebar-expanded': expanded })}>
         <div className="sider-menu">
