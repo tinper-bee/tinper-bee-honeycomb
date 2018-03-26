@@ -43,7 +43,7 @@ class Siderbar extends Component {
     const latestOpenKey = this.myfilter(openKeys,props.openKeys);
     const latestCloseKey = this.myfilter(props.openKeys,openKeys);
 
-    /*   const latestOpenKey = openKeys.find(key => !(state.openKeys.indexOf(key) > -1));
+     /* const latestOpenKey = openKeys.find(key => !(state.openKeys.indexOf(key) > -1));
      const latestCloseKey = state.openKeys.find(key => !(openKeys.indexOf(key) > -1));*/
 
     let nextOpenKeys = [];
@@ -57,7 +57,6 @@ class Siderbar extends Component {
     //this.setState({current:openKeys,submenuSelected:openKeys,openKeys: nextOpenKeys,expanded:false});
     actions.sidebar.setOpenKeys(nextOpenKeys);
 
-    //this.setState({openKeys: nextOpenKeys});
   }
   //IE下 array.find（）方法不可用
   myfilter(arr1,arr2) {
