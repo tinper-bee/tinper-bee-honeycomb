@@ -4,7 +4,8 @@ import {Route} from 'mirrorx'
 import { Select,FormControl } from 'tinper-bee';
 import 'honeyAssets/css/index.css'
 
-import Header from 'components/platform/header/Header'
+import Header from 'components/header/Header'
+import Sidebar from 'components/sidebar/Sidebar'
 import PageContent from 'components/pagecontent/PageContent'
 import { Transition,TransitionGroup} from 'react-transition-group'
 
@@ -33,8 +34,9 @@ class App extends Component {
 
     return (
       <div className="honey-container">
+        <Sidebar />
         <div className="page-layout">
-          <Header />
+          <Header/>
           <PageContent>
             <Transition in={!this.props.show} appear={true} timeout={duration}>
               {(state) => (
